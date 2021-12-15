@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core
+namespace Testing
 {
     public class Class1
     {
