@@ -11,7 +11,7 @@ public static class VersionExtension
 
     public static bool IsGreaterThanOrEquals(this Version obj1, Version obj2)
     {
-        return obj1.CompareTo(obj2) > 0;
+        return obj1.CompareTo(obj2) >= 0;
     }
 
     public static bool IsSame(this Version obj1, Version obj2)
