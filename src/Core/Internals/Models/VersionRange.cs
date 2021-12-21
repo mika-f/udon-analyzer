@@ -3,7 +3,6 @@
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // ------------------------------------------------------------------------------------------
 
-using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
@@ -47,7 +46,7 @@ internal abstract class VersionRange
         }
 
         var range = $"{str[0]}{str[^1]}";
-        var versions = str[1..^1].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+        var versions = str[1..^1].Split(',');
 
         switch (range)
         {
@@ -57,12 +56,12 @@ internal abstract class VersionRange
                 return true;
 
             // (,1.0] meaning x <= 1.0
-            case "(]" when versions.Length == 1 && GenericVersion.TryParse(versions[0], out _):
-                result.ParsedVersionRange = new VersionRangeLessThanOrEquals(versions[0]);
+            case "(]" when versions.Length == 2 && versions[0] == "" && GenericVersion.TryParse(versions[1], out _):
+                result.ParsedVersionRange = new VersionRangeLessThanOrEquals(versions[1]);
                 return true;
 
             // [1.0,) meaning 1.0 <= x
-            case "[)" when versions.Length == 1 && GenericVersion.TryParse(versions[0], out _):
+            case "[)" when versions.Length == 2 && GenericVersion.TryParse(versions[0], out _) && versions[1] == "":
                 result.ParsedVersionRange = new VersionRangeGreaterThanOrEquals(versions[0]);
                 return true;
 
