@@ -11,17 +11,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuGetPackage", "NuGetPackag
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualStudio", "VisualStudio\VisualStudio.csproj", "{F2EEEC24-92DB-4949-8DA3-D4E43E9DC33D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{9B662B5F-0B76-4F9C-A31A-B48FA6C7C981}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{9B662B5F-0B76-4F9C-A31A-B48FA6C7C981}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F33F611F-81EF-4B9D-9FB8-7DA91EA29918}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Tests", "Tests\Core.Tests\Core.Tests.csproj", "{9D55EBF6-9372-4519-A77C-FEAA72B528E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Tests", "Tests\Core.Tests\Core.Tests.csproj", "{9D55EBF6-9372-4519-A77C-FEAA72B528E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzers.Tests", "Tests\Analyzers.Tests\Analyzers.Tests.csproj", "{C645EE75-8F5B-4406-AF84-FBC4D9122905}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analyzers.Tests", "Tests\Analyzers.Tests\Analyzers.Tests.csproj", "{C645EE75-8F5B-4406-AF84-FBC4D9122905}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFixes.Tests", "Tests\CodeFixes.Tests\CodeFixes.Tests.csproj", "{299BAFC7-7759-4604-84D1-5CEF259166BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFixes.Tests", "Tests\CodeFixes.Tests\CodeFixes.Tests.csproj", "{299BAFC7-7759-4604-84D1-5CEF259166BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{BB4542FD-5E90-4106-9F9D-2471D1BEBE5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing", "Tests\Testing\Testing.csproj", "{BB4542FD-5E90-4106-9F9D-2471D1BEBE5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +73,7 @@ Global
 		{9D55EBF6-9372-4519-A77C-FEAA72B528E3} = {F33F611F-81EF-4B9D-9FB8-7DA91EA29918}
 		{C645EE75-8F5B-4406-AF84-FBC4D9122905} = {F33F611F-81EF-4B9D-9FB8-7DA91EA29918}
 		{299BAFC7-7759-4604-84D1-5CEF259166BF} = {F33F611F-81EF-4B9D-9FB8-7DA91EA29918}
+		{BB4542FD-5E90-4106-9F9D-2471D1BEBE5A} = {F33F611F-81EF-4B9D-9FB8-7DA91EA29918}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD9AF575-4E27-4074-881E-A56B09EBDC81}

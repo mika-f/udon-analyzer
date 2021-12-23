@@ -29,4 +29,8 @@
     <EmbeddedResource Update="Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Internal\" />
+  </ItemGroup>
+
 </Project>
