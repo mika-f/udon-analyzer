@@ -5,15 +5,22 @@
 
 using System;
 
+using NatsunekoLaboratory.UdonAnalyzer.Internals.Models;
+
 namespace NatsunekoLaboratory.UdonAnalyzer.Attributes;
 
 [AttributeUsage(AttributeTargets.Class)]
 public class RequireUdonVersionAttribute : Attribute
 {
-    public string VersionRange { get; }
+    private readonly VersionRange _version;
 
-    public RequireUdonVersionAttribute(string versionRange)
+    public RequireUdonVersionAttribute(string version)
     {
-        VersionRange = versionRange;
+        _version = VersionRange.Parse(version);
+    }
+
+    public bool IsFulfill(string version)
+    {
+        return _version.IsFulfill(version);
     }
 }
