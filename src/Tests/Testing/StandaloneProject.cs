@@ -37,7 +37,7 @@ public class StandaloneProject
 
     protected ReadOnlyCollection<Diagnostic> Diagnostics { get; private set; } = new List<Diagnostic>().AsReadOnly();
 
-    public static StandaloneProject CreateProject<T>(string[] sources, string debugName = "StandaloneProject") where T : StandaloneProject, new()
+    public static StandaloneProject CreateProject<T>(IEnumerable<string> sources, string debugName = "StandaloneProject") where T : StandaloneProject, new()
     {
         var projectId = ProjectId.CreateNewId(debugName);
         var solution = new AdhocWorkspace().CurrentSolution.AddProject(projectId, SolutionName, AssemblyName, LanguageNames.CSharp);

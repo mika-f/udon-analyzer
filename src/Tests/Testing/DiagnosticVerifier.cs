@@ -19,7 +19,7 @@ public abstract class DiagnosticVerifier<TAnalyzer, TProject> where TAnalyzer : 
 {
     protected virtual ImmutableArray<string> FilteredDiagnosticIds { get; } = ImmutableArray.Create<string>();
 
-    protected DiagnosticResult ExpectDiagnostic()
+    protected virtual DiagnosticResult ExpectDiagnostic()
     {
         return new DiagnosticResult(new TAnalyzer().SupportedDiagnostics[0]);
     }
@@ -74,6 +74,7 @@ public abstract class DiagnosticVerifier<TAnalyzer, TProject> where TAnalyzer : 
                     var message = new StringBuilder();
                     while (sr.Peek() != ']')
                         message.Append(sr.Read());
+                    sr.Read();
 
                     diagnostics.Add(ExpectDiagnostic().WithSpan(expectedLine, expectedColumn, line, column).WithMessage(message.ToString()));
                     isReadingAnnotation = false;
