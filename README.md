@@ -14,4 +14,6 @@ A collection of [analyzers](./src/Analyzers/README.md), [refactorings](./src/Ref
 
 ## License
 
-MIT by [@6jz](https://twitter.com/6jz)
+MS-RSL by [@6jz](https://twitter.com/6jz)
+
+If you want to see/use/modify the source code under a free license (MIT), consider supporting it with GitHub Sponsors, Patreon or Pixiv Fanbox (monthly or yearly donations are supported).
