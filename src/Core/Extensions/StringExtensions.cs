@@ -5,7 +5,7 @@
 
 namespace NatsunekoLaboratory.UdonAnalyzer.Extensions;
 
-internal static class StringExtension
+internal static class StringExtensions
 {
     public static int CountOf(this string obj, string str)
     {
