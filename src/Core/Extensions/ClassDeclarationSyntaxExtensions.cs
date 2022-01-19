@@ -44,19 +44,29 @@ public static class ClassDeclarationSyntaxExtensions
 
     public static bool HasAttribute(this ClassDeclarationSyntax syntax, string fullyQualifiedMetadataName, SemanticModel model)
     {
-        var attributes = syntax.AttributeLists
-                               .SelectMany(w => w.Attributes)
-                               .Select(w => model.GetSymbolInfo(w))
-                               .Select(w => w.Symbol as IMethodSymbol)
-                               .NotNull()
-                               .Select(w => w.ReceiverType)
-                               .NotNull()
-                               .ToList();
-
-        if (attributes.None())
+        var symbol = model.Compilation.GetTypeByMetadataName(fullyQualifiedMetadataName);
+        if (symbol == null)
             return false;
 
+        return syntax.AttributeLists
+                     .SelectMany(w => w.Attributes)
+                     .Any(w => w.IsEquivalentType(symbol, model));
+    }
+
+    public static AttributeSyntax? GetAttribute<TAttribute>(this ClassDeclarationSyntax syntax, SemanticModel model) where TAttribute : Attribute
+    {
+        return GetAttribute(syntax, typeof(TAttribute), model);
+    }
+
+    public static AttributeSyntax? GetAttribute(this ClassDeclarationSyntax syntax, Type t, SemanticModel model)
+    {
+        var fullyQualifiedMetadataName = t.FullName ?? throw new InvalidOperationException();
         var symbol = model.Compilation.GetTypeByMetadataName(fullyQualifiedMetadataName);
-        return attributes.Any(w => w.Equals(symbol, SymbolEqualityComparer.Default));
+        if (symbol == null)
+            return null;
+
+        return syntax.AttributeLists
+                     .SelectMany(w => w.Attributes)
+                     .FirstOrDefault(w => w.IsEquivalentType(symbol, model));
     }
 }
