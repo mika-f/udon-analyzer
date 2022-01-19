@@ -37,4 +37,17 @@ public static class AttributeSyntaxExtensions
         return method.ReceiverType?.Equals(symbol, SymbolEqualityComparer.Default) == true;
     }
 
+    public static TAttribute? Invoke<TAttribute>(this AttributeSyntax syntax, SemanticModel model) where TAttribute : Attribute
+    {
+        var info = model.GetSymbolInfo(syntax);
+        if (info.Symbol is not IMethodSymbol symbol)
+            return default;
+
+        var constructor = typeof(TAttribute).FindBestMatchingConstructor(symbol, model);
+        if (constructor == null)
+            return default;
+
+        var arguments = syntax.ArgumentList?.Arguments.Select(w => w.Invoke(model)).ToArray() ?? new object[] { };
+        return constructor.Invoke(arguments) as TAttribute;
+    }
 }
