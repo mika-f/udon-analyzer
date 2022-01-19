@@ -23,6 +23,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFixes.Tests", "Tests\Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing", "Tests\Testing\Testing.csproj", "{BB4542FD-5E90-4106-9F9D-2471D1BEBE5A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{98C99DBF-1F03-41CB-B865-FAC4C3ADC70C}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitattributes = ..\.gitattributes
+		..\.gitignore = ..\.gitignore
+		..\CHANGELOG.md = ..\CHANGELOG.md
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnalyzerSpec", "AnalyzerSpec\AnalyzerSpec.csproj", "{24FEB3B5-AEDA-441A-8723-E94A08864F8C}"
 EndProject
 Global
