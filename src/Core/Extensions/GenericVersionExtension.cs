@@ -3,7 +3,7 @@
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // -------------------------------------------------------------------------------------------
 
-using NatsunekoLaboratory.UdonAnalyzer.Internals.Models;
+using NatsunekoLaboratory.UdonAnalyzer.Models;
 
 namespace NatsunekoLaboratory.UdonAnalyzer.Extensions;
 

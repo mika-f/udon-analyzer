@@ -5,14 +5,15 @@
 
 using NatsunekoLaboratory.UdonAnalyzer.Extensions;
 
-namespace NatsunekoLaboratory.UdonAnalyzer.Internals.Models;
+namespace NatsunekoLaboratory.UdonAnalyzer.Models;
 
-internal class VersionRangeLessThanOrEquals : VersionRange
+internal class VersionRangeGreaterThanOrEqualsAndLessThan : VersionRange
 {
-    public VersionRangeLessThanOrEquals(string max) : base("0", max) { }
+    public VersionRangeGreaterThanOrEqualsAndLessThan(string min, string max) : base(min, max) { }
 
     public override bool IsFulfill(string version)
     {
-        return MaxVersion.IsLessThanOrEquals(GenericVersion.Parse(version));
+        var v = GenericVersion.Parse(version);
+        return MinVersion.IsGreaterThanOrEquals(v) && MaxVersion.IsLessThan(v);
     }
 }

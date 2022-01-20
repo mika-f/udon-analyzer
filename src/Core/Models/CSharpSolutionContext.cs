@@ -12,9 +12,8 @@ using System.Linq;
 using Microsoft.CodeAnalysis.Diagnostics;
 
 using NatsunekoLaboratory.UdonAnalyzer.Extensions;
-using NatsunekoLaboratory.UdonAnalyzer.Internals.Models;
 
-namespace NatsunekoLaboratory.UdonAnalyzer.Solution;
+namespace NatsunekoLaboratory.UdonAnalyzer.Models;
 
 public static class CSharpSolutionContext
 {

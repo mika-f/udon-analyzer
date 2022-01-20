@@ -1,14 +1,14 @@
 ﻿// -------------------------------------------------------------------------------------------
 //  Copyright (c) Natsuneko. All rights reserved.
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
-// ------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------
 
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace NatsunekoLaboratory.UdonAnalyzer.Internals.Models;
+namespace NatsunekoLaboratory.UdonAnalyzer.Models;
 
 /// <summary>
 ///     GenericVersion supports x.x.x.x (semantic) and x.x.x.x.x (datetime) versioning

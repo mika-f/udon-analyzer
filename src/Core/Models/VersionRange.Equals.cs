@@ -5,7 +5,7 @@
 
 using NatsunekoLaboratory.UdonAnalyzer.Extensions;
 
-namespace NatsunekoLaboratory.UdonAnalyzer.Internals.Models;
+namespace NatsunekoLaboratory.UdonAnalyzer.Models;
 
 internal class VersionRangeEquals : VersionRange
 {

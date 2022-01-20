@@ -5,7 +5,7 @@
 
 using System;
 
-using NatsunekoLaboratory.UdonAnalyzer.Internals.Models;
+using NatsunekoLaboratory.UdonAnalyzer.Models;
 
 namespace NatsunekoLaboratory.UdonAnalyzer.Attributes;
 

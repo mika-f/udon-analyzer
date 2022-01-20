@@ -13,7 +13,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 using NatsunekoLaboratory.UdonAnalyzer.Attributes;
 using NatsunekoLaboratory.UdonAnalyzer.Extensions;
-using NatsunekoLaboratory.UdonAnalyzer.Solution;
+using NatsunekoLaboratory.UdonAnalyzer.Models;
 
 namespace NatsunekoLaboratory.UdonAnalyzer.Internal;
 

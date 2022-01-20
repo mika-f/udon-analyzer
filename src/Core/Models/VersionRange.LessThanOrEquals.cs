@@ -3,14 +3,16 @@
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // -------------------------------------------------------------------------------------------
 
-namespace NatsunekoLaboratory.UdonAnalyzer.Internals.Models;
+using NatsunekoLaboratory.UdonAnalyzer.Extensions;
 
-internal class VersionRangeInvalid : VersionRange
+namespace NatsunekoLaboratory.UdonAnalyzer.Models;
+
+internal class VersionRangeLessThanOrEquals : VersionRange
 {
-    public VersionRangeInvalid() : base("0", "0") { }
+    public VersionRangeLessThanOrEquals(string max) : base("0", max) { }
 
     public override bool IsFulfill(string version)
     {
-        return false;
+        return MaxVersion.IsLessThanOrEquals(GenericVersion.Parse(version));
     }
 }
