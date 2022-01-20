@@ -2,7 +2,7 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
     <Identity Id="c405a8dc-e60f-4060-b627-576916a62424" Version="1.0" Language="en-US" Publisher="Natsuneko"/>
-    <DisplayName>UdonAnalyzer</DisplayName>
+    <DisplayName>UdonAnalyzer 2022</DisplayName>
     <Description xml:space="preserve">A Roslyn Analyzer for VRChat</Description>
   </Metadata>
   <Installation>
