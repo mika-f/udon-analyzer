@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFixes.Tests", "Tests\Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing", "Tests\Testing\Testing.csproj", "{BB4542FD-5E90-4106-9F9D-2471D1BEBE5A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VisualStudio", "VisualStudio", "{D800703B-289A-41F1-9C81-B1CB580EEB81}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualStudio2019", "VisualStudio\VisualStudio2019\VisualStudio2019.csproj", "{F98FAB57-DD3B-4F54-A19C-61592589DD05}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{98C99DBF-1F03-41CB-B865-FAC4C3ADC70C}"
