@@ -10,6 +10,7 @@
     <PackageId>*$(MSBuildProjectFile)*</PackageId>
     <RootNamespace>NatsunekoLaboratory.UdonAnalyzer</RootNamespace>
     <AssemblyName>NatsunekoLaboratory.UdonAnalyzer.Analyzers</AssemblyName>
+    <NoWarn>$(NoWarn);RS1025;RS1026</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

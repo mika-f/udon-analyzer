@@ -5,6 +5,7 @@
     <IsPackable>false</IsPackable>
     <Nullable>enable</Nullable>
     <RootNamespace>NatsunekoLaboratory.UdonAnalyzer.Testing</RootNamespace>
+    <NoWarn>$(NoWarn);NU1701</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
