@@ -1,7 +1,7 @@
-﻿// -----------------------------------------------------------------------------------------------------------------
+﻿// ------------------------------------------------------------------------------------------
 //  Copyright (c) Natsuneko. All rights reserved.
-//  Licensed under the Microsoft Reference Source License. See LICENSE in the project root for license information.
-// -----------------------------------------------------------------------------------------------------------------
+//  Licensed under the MIT License. See LICENSE in the project root for license information.
+// ------------------------------------------------------------------------------------------
 
 using System;
 using System.Linq;
@@ -37,6 +37,7 @@ public static class AttributeSyntaxExtensions
         return method.ReceiverType?.Equals(symbol, SymbolEqualityComparer.Default) == true;
     }
 
+    [Obsolete("this method has security issues")]
     public static TAttribute? Invoke<TAttribute>(this AttributeSyntax syntax, SemanticModel model) where TAttribute : Attribute
     {
         var info = model.GetSymbolInfo(syntax);

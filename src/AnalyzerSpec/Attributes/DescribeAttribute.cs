@@ -1,7 +1,7 @@
-﻿// -----------------------------------------------------------------------------------------------------------------
+﻿// ------------------------------------------------------------------------------------------
 //  Copyright (c) Natsuneko. All rights reserved.
-//  Licensed under the Microsoft Reference Source License. See LICENSE in the project root for license information.
-// -----------------------------------------------------------------------------------------------------------------
+//  Licensed under the MIT License. See LICENSE in the project root for license information.
+// ------------------------------------------------------------------------------------------
 
 using System;
 using System.Diagnostics;

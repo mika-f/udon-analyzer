@@ -1,7 +1,7 @@
-﻿// -----------------------------------------------------------------------------------------------------------------
+﻿// ------------------------------------------------------------------------------------------
 //  Copyright (c) Natsuneko. All rights reserved.
-//  Licensed under the Microsoft Reference Source License. See LICENSE in the project root for license information.
-// -----------------------------------------------------------------------------------------------------------------
+//  Licensed under the MIT License. See LICENSE in the project root for license information.
+// ------------------------------------------------------------------------------------------
 
 using System;
 
@@ -12,6 +12,7 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Extensions;
 
 public static class ExpressionSyntaxExtensions
 {
+    [Obsolete("this method has security issues")]
     public static object? Invoke(this ExpressionSyntax syntax, SemanticModel model)
     {
         var constantValue = model.GetConstantValue(syntax);
