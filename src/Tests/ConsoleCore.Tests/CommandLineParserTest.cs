@@ -38,6 +38,19 @@ public class CommandLineParserTest
     }
 
     [Theory]
+    [InlineData("str", 1, new[] { "str", "1" })]
+    [InlineData("hello", 5000, new[] { "hello", "5000" })]
+    [InlineData("foobar", -250, new[] { "foobar", "-250" })]
+    public void ParseOrderedOptions(string expectedStr, int expectedInt, string[] args)
+    {
+        var (obj, errors) = Parse<ParseOrderedOptionsEntity>(args);
+
+        Assert.Equal(expectedStr, obj?.StrValue);
+        Assert.Equal(expectedInt, obj?.IntValue);
+        Assert.Equal(0, errors.Count);
+    }
+
+    [Theory]
     [InlineData("test", new[] { "commit", "-vtest" })]
     [InlineData("test", new[] { "commit", "-v", "test" })]
     [InlineData("hile", new[] { "commit", "-v", "hile" })]

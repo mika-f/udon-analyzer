@@ -148,7 +148,7 @@ internal class CommandLineParser
     {
         var internalErrors = new List<IErrorMessage>();
 
-        if (parameters.DistinctBy(w => w.LongName).Count() != parameters.Count || parameters.DistinctBy(w => w.ShortName).Count() != parameters.Count)
+        if (CheckNamedParametersDuplication(parameters))
         {
             internalErrors.Add(new ErrorMessage("duplicated parameters"));
             errors = internalErrors.AsReadOnly();
@@ -176,6 +176,12 @@ internal class CommandLineParser
         }
 
         errors = internalErrors.AsReadOnly();
+    }
+
+    private static bool CheckNamedParametersDuplication(List<Parameter> parameters)
+    {
+        var namedParameters = parameters.Where(w => w.LongName != null || w.ShortName != null).ToList();
+        return namedParameters.DistinctBy(w => w.LongName).Count() != namedParameters.Count || namedParameters.DistinctBy(w => w.ShortName).Count() != namedParameters.Count;
     }
 
     private static bool IsAssignableToObject(OptionAttribute attr, List<Parameter> parameters, [NotNullWhen(true)] out Parameter? parameter)
