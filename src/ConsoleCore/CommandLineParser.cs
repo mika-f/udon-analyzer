@@ -123,7 +123,10 @@ internal class CommandLineParser
                 case { } when arg.StartsWith("-") && !isParsingNamedParams:
                     category = 2;
                     name = arg["-".Length..];
-                    if (name.Length != 1)
+
+                    if (double.TryParse(arg, out _))
+                        parameters.Add(new Parameter(i, null, null, arg));
+                    else if (name.Length != 1)
                         parameters.Add(new Parameter(i, null, name[0].ToString(), name[1..]));
                     else
                         isParsingNamedParams = true;
