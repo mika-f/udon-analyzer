@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <AssemblyName>docgen</AssemblyName>
+    <RootNamespace>NatsunekoLaboratory.UdonAnalyzer.DocumentGenerator</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ConsoleCore\ConsoleCore.csproj" />
+    <ProjectReference Include="..\..\Core\Core.csproj" />
+    <ProjectReference Include="..\CodeGeneration\CodeGeneration.csproj" />
+  </ItemGroup>
+
+</Project>
