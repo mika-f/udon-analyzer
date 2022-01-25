@@ -14,6 +14,8 @@ public class RequireUdonSharpCompilerVersionAttribute : Attribute
 {
     private readonly VersionRange _version;
 
+    public string VersionStr => _version.ToString();
+
     public RequireUdonSharpCompilerVersionAttribute(string version)
     {
         _version = VersionRange.Parse(version);

@@ -14,6 +14,8 @@ public class RequireUdonVersionAttribute : Attribute
 {
     private readonly VersionRange _version;
 
+    public string VersionStr => _version.ToString();
+
     public RequireUdonVersionAttribute(string version)
     {
         _version = VersionRange.Parse(version);
