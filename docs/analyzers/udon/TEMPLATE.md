@@ -1,11 +1,13 @@
 ## %ID%: %TITLE%
 
-| Property | Value      |
-| -------- | ---------- |
-| ID       | %ID%       |
-| Category | %CATEGORY% |
-| Severity | %SEVERITY% |
-| Version  | %VERSION%  |
+| Property | Value             |
+| -------- | ----------------- |
+| ID       | %ID%              |
+| Category | %CATEGORY%        |
+| Severity | %SEVERITY%        |
+| Version  | %RUNTIME_VERSION% |
+
+%DESCRIPTION%
 
 ### Example
 

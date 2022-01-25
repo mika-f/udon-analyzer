@@ -1,11 +1,14 @@
 ## %ID%: %TITLE%
 
-| Property | Value      |
-| -------- | ---------- |
-| ID       | %ID%       |
-| Category | %CATEGORY% |
-| Severity | %SEVERITY% |
-| Version  | %VERSION%  |
+| Property          | Value              |
+| ----------------- | ------------------ |
+| ID                | %ID%               |
+| Category          | %CATEGORY%         |
+| Severity          | %SEVERITY%         |
+| Udon Version      | %RUNTIME_VERSION%  |
+| UdonSharp Version | %COMPILER_VERSION% |
+
+%DESCRIPTION%
 
 ### Example
 
