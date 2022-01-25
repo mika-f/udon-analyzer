@@ -37,8 +37,7 @@ public static class AttributeSyntaxExtensions
         return method.ReceiverType?.Equals(symbol, SymbolEqualityComparer.Default) == true;
     }
 
-    [Obsolete("this method has security issues")]
-    public static TAttribute? Invoke<TAttribute>(this AttributeSyntax syntax, SemanticModel model) where TAttribute : Attribute
+    public static TReturn? GetAttributeValue<TAttribute, TReturn>(this AttributeSyntax syntax, string name, SemanticModel model) where TReturn : class where TAttribute : Attribute
     {
         var info = model.GetSymbolInfo(syntax);
         if (info.Symbol is not IMethodSymbol symbol)
@@ -48,7 +47,12 @@ public static class AttributeSyntaxExtensions
         if (constructor == null)
             return default;
 
-        var arguments = syntax.ArgumentList?.Arguments.Select(w => w.Invoke(model)).ToArray() ?? new object[] { };
-        return constructor.Invoke(arguments) as TAttribute;
+        var arg = constructor.GetParameters().Select((w, i) => (Item: w, Index: i)).FirstOrDefault(w => w.Item.Name == name);
+        return arg == default ? default : GetAttributeValue<TReturn>(syntax, arg.Index, model);
+    }
+
+    public static TReturn? GetAttributeValue<TReturn>(this AttributeSyntax syntax, int index, SemanticModel model) where TReturn : class
+    {
+        return syntax.ArgumentList?.Arguments[index].InvokeConstantValue(model) as TReturn;
     }
 }

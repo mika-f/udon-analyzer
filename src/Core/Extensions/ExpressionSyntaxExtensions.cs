@@ -12,8 +12,7 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Extensions;
 
 public static class ExpressionSyntaxExtensions
 {
-    [Obsolete("this method has security issues")]
-    public static object? Invoke(this ExpressionSyntax syntax, SemanticModel model)
+    public static object? InvokeConstantValue(this ExpressionSyntax syntax, SemanticModel model)
     {
         var constantValue = model.GetConstantValue(syntax);
         if (constantValue.HasValue)
