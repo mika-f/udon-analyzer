@@ -80,6 +80,17 @@ internal abstract class VersionRange
         }
     }
 
+    public override string ToString()
+    {
+        if (MinVersion == MaxVersion)
+            return MinVersion.ToString();
+        if (MaxVersion.ToString() == "0")
+            return $"{MinVersion} ~ latest";
+        if (MinVersion.ToString() == "0")
+            return $"initial ~ {MaxVersion}";
+        return $"{MinVersion} ~ {MaxVersion}";
+    }
+
     private struct VersionRangeResult
     {
         public VersionRange ParsedVersionRange { get; set; }
