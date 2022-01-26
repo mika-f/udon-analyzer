@@ -8,19 +8,14 @@ using System.IO;
 using System.Threading.Tasks;
 
 using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration;
+using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.Templates;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore.Helpers;
 using NatsunekoLaboratory.UdonAnalyzer.DocumentGenerator;
 
-static async Task<string> ReadTemplateAsync(string path)
-{
-    using var sr = new StreamReader(path);
-    return await sr.ReadToEndAsync();
-}
-
 static async Task WriteTemplateAsync(string path, string id, string category, string content)
 {
-    await using var sw = new StreamWriter(Path.Combine(path, category.ToLower(), $"{id}.md"));
+    await using var sw = new StreamWriter(Path.Combine(path, "analyzers", category.ToLower(), $"{id}.md"));
     await sw.WriteLineAsync(content);
 }
 
@@ -30,25 +25,18 @@ static async Task<int> RunDefaultAsync(CommandLineParameters args)
     var isAnalyzeSuccess = await metadata.TryAnalyzingAsync();
     if (isAnalyzeSuccess)
     {
-        var path = Path.Combine(args.Path, "docs", "analyzers");
-        var templateForUdon = await ReadTemplateAsync(Path.GetFullPath(Path.Combine(path, "udon", "TEMPLATE.md")));
-        var templateForUdonSharp = await ReadTemplateAsync(Path.GetFullPath(Path.Combine(path, "udonsharp", "TEMPLATE.md")));
-
+        var path = Path.GetFullPath(Path.Combine(args.Path, "docs"));
         foreach (var data in metadata.Metadata)
         {
             var id = data.Id;
             var category = id.StartsWith("VRC") ? "Udon" : "UdonSharp";
-
-            var content = (id.StartsWith("VRC") ? templateForUdon : templateForUdonSharp)
-                          .Replace("%ID%", id)
-                          .Replace("%TITLE%", data.Title)
-                          .Replace("%DESCRIPTION%", data.Description)
-                          .Replace("%CATEGORY%", data.Category)
-                          .Replace("%SEVERITY%", data.Severity.ToString())
-                          .Replace("%RUNTIME_VERSION%", data.RuntimeVersion)
-                          .Replace("%COMPILER_VERSION%", data.CompilerVersion)
-                          .Replace("%CODE_WITH_DIAGNOSTIC%", data.CodeWithDiagnostic)
-                          .Replace("%CODE_WITH_FIX%", data.CodeWithFix);
+            var accessor = new MetadataVariableAccessor(data);
+            var content = category switch
+            {
+                "Udon" => (await TemplateGenerator.CreateForUdonAnalyzerAsync(path)).Generate(accessor),
+                "UdonSharp" => (await TemplateGenerator.CreateForUdonSharpAnalyzerAsync(path)).Generate(accessor),
+                _ => throw new ArgumentOutOfRangeException(category)
+            };
 
             await WriteTemplateAsync(path, id, category, content);
 
