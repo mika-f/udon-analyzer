@@ -11,7 +11,7 @@ public interface ITemplate
 {
     string Key { get; }
 
-    string Path { get; }
+    string Content { get; }
 
     ImmutableArray<string> Variables { get; }
 }

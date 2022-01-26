@@ -5,10 +5,6 @@
 
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.IO;
-using System.Threading.Tasks;
-
-using NatsunekoLaboratory.UdonAnalyzer.Extensions;
 
 namespace NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.Templates;
 
@@ -32,26 +28,15 @@ public class TemplateGenerator
         _variables = variables;
     }
 
-    public static async ValueTask<TemplateGenerator> CreateFromTemplateAsync(ITemplate template)
+    public static TemplateGenerator CreateFromTemplate(ITemplate template)
     {
         if (Templates.ContainsKey(template.Key))
             return new TemplateGenerator(Templates[template.Key], Variables[template.Key]);
 
-        using var sr = new StreamReader(template.Path);
-        Templates.Add(template.Key, await sr.ReadToEndAsync().Stay());
+        Templates.Add(template.Key, template.Content);
         Variables.Add(template.Key, template.Variables);
 
         return new TemplateGenerator(Templates[template.Key], Variables[template.Key]);
-    }
-
-    public static async Task<TemplateGenerator> CreateForUdonAnalyzerAsync(string path)
-    {
-        return await CreateFromTemplateAsync(new UdonAnalyzerTemplate(path)).ConfigureAwait(false);
-    }
-
-    public static async Task<TemplateGenerator> CreateForUdonSharpAnalyzerAsync(string path)
-    {
-        return await CreateFromTemplateAsync(new UdonSharpAnalyzerTemplate(path)).ConfigureAwait(false);
     }
 
     public string Generate(IVariableAccessor variables)

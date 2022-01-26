@@ -8,7 +8,6 @@ using System.IO;
 using System.Threading.Tasks;
 
 using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration;
-using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.Templates;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore.Helpers;
 using NatsunekoLaboratory.UdonAnalyzer.DocumentGenerator;
@@ -30,12 +29,11 @@ static async Task<int> RunDefaultAsync(CommandLineParameters args)
         {
             var id = data.Id;
             var category = id.StartsWith("VRC") ? "Udon" : "UdonSharp";
-            var accessor = new MetadataVariableAccessor(data);
             var content = category switch
             {
-                "Udon" => (await TemplateGenerator.CreateForUdonAnalyzerAsync(path)).Generate(accessor),
-                "UdonSharp" => (await TemplateGenerator.CreateForUdonSharpAnalyzerAsync(path)).Generate(accessor),
-                _ => throw new ArgumentOutOfRangeException(category)
+                "Udon" => UdonAnalyzerMarkdown.CreateAnalyzerDocument(data),
+                "UdonSharp" => UdonSharpAnalyzerMarkdown.CreateAnalyzerDocument(data),
+                _ => throw new ArgumentOutOfRangeException()
             };
 
             await WriteTemplateAsync(path, id, category, content);
