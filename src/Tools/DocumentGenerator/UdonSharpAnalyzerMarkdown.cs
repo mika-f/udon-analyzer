@@ -3,6 +3,9 @@
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // ------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Linq;
+
 using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp;
 
 using static NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.Markdown.Linq.MarkdownFactory;
@@ -31,6 +34,19 @@ internal static class UdonSharpAnalyzerMarkdown
             CodeBlock(metadata.CodeWithDiagnostic!, "csharp"),
             Heading4("Code with Fix"),
             CodeBlock(metadata.CodeWithFix ?? "// NOT YET PROVIDED", "csharp")
+        ).ToString();
+    }
+
+    public static string CreateIndexDocument(List<AnalyzerMetadata> metadata)
+    {
+        var items = metadata.Select(w => TableBody(w.Id, w.Title, w.Severity.ToString()));
+
+        return Document(
+            Heading2("List of Compiler Analyzers in UdonAnalyzers"),
+            Table(
+                TableHeader("ID", "Title", "Severity"),
+                items.ToArray()
+            )
         ).ToString();
     }
 }

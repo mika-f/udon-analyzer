@@ -4,10 +4,12 @@
 // ------------------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
 using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration;
+using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore.Helpers;
 using NatsunekoLaboratory.UdonAnalyzer.DocumentGenerator;
@@ -25,6 +27,9 @@ static async Task<int> RunDefaultAsync(CommandLineParameters args)
     if (isAnalyzeSuccess)
     {
         var path = Path.GetFullPath(Path.Combine(args.Path, "docs"));
+        var runtimeAnalyzers = new List<AnalyzerMetadata>();
+        var compilerAnalyzers = new List<AnalyzerMetadata>();
+
         foreach (var data in metadata.Metadata)
         {
             var id = data.Id;
@@ -36,10 +41,18 @@ static async Task<int> RunDefaultAsync(CommandLineParameters args)
                 _ => throw new ArgumentOutOfRangeException()
             };
 
+            if (category == "Udon")
+                runtimeAnalyzers.Add(data);
+            else
+                compilerAnalyzers.Add(data);
+
             await WriteTemplateAsync(path, id, category, content);
 
             Console.Write($"Writing UdonAnalyzer documentation for {category}:{id} to {category.ToLower()}/{id}.md");
         }
+
+        await WriteTemplateAsync(path, "README", "Udon", UdonAnalyzerMarkdown.CreateIndexDocument(runtimeAnalyzers));
+        await WriteTemplateAsync(path, "README", "UdonSharp", UdonSharpAnalyzerMarkdown.CreateIndexDocument(compilerAnalyzers));
 
         return ExitCodes.Success;
     }
