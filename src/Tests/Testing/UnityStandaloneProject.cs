@@ -22,11 +22,11 @@ public class UnityStandaloneProject : StandaloneProject
     {
         var path = FindUnityPath();
 
-        var managed = Path.Combine(path, "Managed");
+        var managed = Path.Combine(path, "Data", "Managed");
         yield return Path.Combine(path, managed, "UnityEditor.dll");
         yield return Path.Combine(path, managed, "UnityEngine.dll");
 
-        var mono = Path.Combine(path, "MonoBleedingEdge", "lib", "mono", "4.7.1-api");
+        var mono = Path.Combine(path, "Data", "MonoBleedingEdge", "lib", "mono", "4.7.1-api");
         yield return Path.Combine(mono, "mscorlib.dll");
         yield return Path.Combine(mono, "System.dll");
     }
@@ -57,7 +57,7 @@ public class UnityStandaloneProject : StandaloneProject
         process.WaitForExit();
 
         var editors = process.StandardOutput.ReadToEnd();
-        foreach (var editor in editors.Split(Environment.NewLine))
+        foreach (var editor in editors.Split("\n"))
         {
             var version = editor.Split(",")[0].Trim();
             if (version != TargetedUnityVersion)
