@@ -73,7 +73,7 @@ public class UnityStandaloneProject : StandaloneProject
     [SupportedOSPlatform("windows")]
     private static string FindUnityPathFromRegistry()
     {
-        var registry = Registry.LocalMachine.OpenSubKey("Software/Unity Technologies/Hub");
+        var registry = Registry.LocalMachine.OpenSubKey(@"Software\Unity Technologies\Hub");
         if (registry == null)
             throw new NotSupportedException("UnityHub is not installed on this computer");
 
