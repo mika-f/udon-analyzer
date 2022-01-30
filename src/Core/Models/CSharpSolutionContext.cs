@@ -17,11 +17,12 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Models;
 
 public static class CSharpSolutionContext
 {
-    private const string UdonRuntimeVersionGuid = "473737f63e15e204aa3a3df7a3a173e3";
+    private const string UdonRuntimeVersionOldGuid = "473737f63e15e204aa3a3df7a3a173e3";
+    private const string UdonRuntimeVersionNewGuid = "2cdbe2e71e2c46e48951c13df254e5b1";
     private const string UdonSharpCompilerVersionGuid = "cb4c25a39519c854fbe183f6a7ec08f7";
 
     // ReSharper disable once InconsistentNaming
-    private const string SDKAssemblyName = "VRCSDK3.dll";
+    private const string SDKAssemblyName = "VRC.Udon.dll";
 
     private static string? _udonRuntimeVersion;
     private static string? _udonSharpCompilerVersion;
@@ -36,7 +37,7 @@ public static class CSharpSolutionContext
             if (HasVRChatSDKAssembly(references, out var path))
             {
                 var paths = FindUnityRootDirectory(path);
-                if (TryReadSpecifiedGuidFileAsStringFromPaths(paths, UdonRuntimeVersionGuid, out var version))
+                if (TryReadSpecifiedGuidFileAsStringFromPaths(paths, new[] { UdonRuntimeVersionOldGuid, UdonRuntimeVersionNewGuid }, out var version))
                     _udonRuntimeVersion = version;
             }
         }
@@ -52,7 +53,7 @@ public static class CSharpSolutionContext
             if (HasVRChatSDKAssembly(references, out var path))
             {
                 var paths = FindUnityRootDirectory(path);
-                if (TryReadSpecifiedGuidFileAsStringFromPaths(paths, UdonSharpCompilerVersionGuid, out var version))
+                if (TryReadSpecifiedGuidFileAsStringFromPaths(paths, new[] { UdonSharpCompilerVersionGuid }, out var version))
                     _udonSharpCompilerVersion = version;
             }
         }
@@ -63,37 +64,39 @@ public static class CSharpSolutionContext
     // ReSharper disable once InconsistentNaming
     private static bool HasVRChatSDKAssembly(IEnumerable<string> references, [NotNullWhen(true)] out string? path)
     {
-        path = references.FirstOrDefault(w => w == SDKAssemblyName);
+        path = references.FirstOrDefault(w => w.EndsWith(SDKAssemblyName));
         return !string.IsNullOrWhiteSpace(path);
     }
 
     private static IEnumerable<string> FindUnityRootDirectory(string path)
     {
-        const string unityAssetsDirectory = "Assets";
+        const string unityLibraryDirectory = "Library";
         var paths = new List<string>();
         var lastIndex = 0;
 
-        while (path.IndexOf(unityAssetsDirectory, lastIndex, StringComparison.InvariantCulture) >= 0)
+        while (path.IndexOf(unityLibraryDirectory, lastIndex, StringComparison.InvariantCulture) >= 0)
         {
-            var i = path.IndexOf(unityAssetsDirectory, lastIndex, StringComparison.InvariantCulture);
+            var i = path.IndexOf(unityLibraryDirectory, lastIndex, StringComparison.InvariantCulture);
             paths.Add(path[..i]);
 
-            lastIndex = i + unityAssetsDirectory.Length;
+            lastIndex = i + unityLibraryDirectory.Length;
         }
 
         paths.Reverse();
         return paths;
     }
 
-    private static bool TryReadSpecifiedGuidFileAsStringFromPaths(IEnumerable<string> paths, string guid, [NotNullWhen(true)] out string? version)
+    private static bool TryReadSpecifiedGuidFileAsStringFromPaths(IEnumerable<string> paths, string[] guid, [NotNullWhen(true)] out string? version)
     {
         foreach (var path in paths)
         {
             var metas = Directory.GetFiles(Path.Combine(path, "Assets"), "version.txt.meta", SearchOption.AllDirectories);
             foreach (var meta in metas)
-                if (HasSpecifiedGuid(meta, guid))
+                if (guid.Any(w => HasSpecifiedGuid(meta, w)))
                 {
                     version = ReadContentFromMetaPath(meta);
+                    if (version.StartsWith("v"))
+                        version = version["v".Length..];
                     return true;
                 }
         }
@@ -112,6 +115,6 @@ public static class CSharpSolutionContext
     {
         var actual = Path.Combine(Path.GetDirectoryName(path) ?? throw new InvalidOperationException(), Path.GetFileNameWithoutExtension(path));
         using var sr = new StreamReader(actual);
-        return sr.ReadToEnd();
+        return sr.ReadToEnd().Trim();
     }
 }
