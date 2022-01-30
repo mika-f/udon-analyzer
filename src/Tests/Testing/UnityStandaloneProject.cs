@@ -23,8 +23,11 @@ public class UnityStandaloneProject : StandaloneProject
         var path = FindUnityPath();
 
         var managed = Path.Combine(path, "Data", "Managed");
-        yield return Path.Combine(path, managed, "UnityEditor.dll");
-        yield return Path.Combine(path, managed, "UnityEngine.dll");
+        yield return Path.Combine(managed, "UnityEditor.dll");
+        yield return Path.Combine(managed, "UnityEngine.dll");
+
+        var engine = Path.Combine(path, "Data", "Managed", "UnityEngine");
+        yield return Path.Combine(engine, "UnityEngine.CoreModule.dll");
 
         var mono = Path.Combine(path, "Data", "MonoBleedingEdge", "lib", "mono", "4.7.1-api");
         yield return Path.Combine(mono, "mscorlib.dll");
