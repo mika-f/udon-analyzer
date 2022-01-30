@@ -14,6 +14,6 @@ internal class VersionRangeGreaterThanOrEqualsAndLessThan : VersionRange
     public override bool IsFulfill(string version)
     {
         var v = GenericVersion.Parse(version);
-        return MinVersion.IsGreaterThanOrEquals(v) && MaxVersion.IsLessThan(v);
+        return MinVersion.IsLessThan(v) && MaxVersion.IsGreaterThanOrEquals(v);
     }
 }

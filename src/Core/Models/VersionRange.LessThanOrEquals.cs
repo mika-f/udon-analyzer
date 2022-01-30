@@ -13,6 +13,6 @@ internal class VersionRangeLessThanOrEquals : VersionRange
 
     public override bool IsFulfill(string version)
     {
-        return MaxVersion.IsLessThanOrEquals(GenericVersion.Parse(version));
+        return MaxVersion.IsGreaterThan(GenericVersion.Parse(version));
     }
 }
