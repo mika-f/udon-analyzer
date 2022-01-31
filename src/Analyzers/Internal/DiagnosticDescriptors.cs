@@ -9,6 +9,19 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Internal;
 
 internal static class DiagnosticDescriptors
 {
+    #region VSC - UdonSharp Compiler
+
+    public static readonly DiagnosticDescriptor DoesNotSupportInheritingFromInterfaces = DiagnosticDescriptorFactory.Create(
+        "VSC0001",
+        "UdonSharp does not yet support inheriting from interfaces",
+        "UdonSharp does not yet support inheriting from interfaces",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+
+    #endregion
+
     #region VRC - VRChat SDK
 
     public static readonly DiagnosticDescriptor TryCatchFinallyIsNotSupported = DiagnosticDescriptorFactory.Create(
