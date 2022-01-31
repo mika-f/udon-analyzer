@@ -57,6 +57,13 @@ internal class CommandLineParser
         return !string.IsNullOrWhiteSpace(command);
     }
 
+    public string[] GetRemainingParameters()
+    {
+        if (TryGetSubCommand(out var _))
+            return GetParsingArgs().ToArray();
+        return _args;
+    }
+
     public bool TryParse<T>([NotNullWhen(true)] out T? entity, out IReadOnlyCollection<IErrorMessage> errors) where T : class, new()
     {
         var r = TryParse(typeof(T), out var rawEntity, out errors);
@@ -163,19 +170,23 @@ internal class CommandLineParser
             var attr = (OptionAttribute)Attribute.GetCustomAttribute(property, typeof(OptionAttribute))!;
             if (attr.AutomaticSetLongName)
                 attr.LongName = property.Name;
+            var isAssigned = false;
 
             if (IsAssignableToObject(attr, parameters, out var parameter))
                 try
                 {
                     var value = CastToTFromString(property.PropertyType, parameter.Value, attr.SeparatorChar);
                     property.SetMethod!.Invoke(instance, new[] { value });
+
+                    isAssigned = true;
                 }
                 catch (Exception e)
                 {
                     internalErrors.Add(new ErrorMessage(e.Message));
                 }
-            else if (attr.IsRequired)
-                internalErrors.Add(new ErrorMessage($"Property '{property.Name}' is not provided value"));
+
+            if (attr.IsRequired && !isAssigned)
+                internalErrors.Add(new ErrorMessage($"Property '{property.Name}' is required but not provided"));
         }
 
         errors = internalErrors.AsReadOnly();

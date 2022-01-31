@@ -12,7 +12,7 @@ using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration;
 using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore.Helpers;
-using NatsunekoLaboratory.UdonAnalyzer.DocumentGenerator;
+using NatsunekoLaboratory.UdonAnalyzer.DocumentGenerator.Models;
 
 static async Task WriteTemplateAsync(string path, string id, string category, string content)
 {
@@ -60,5 +60,5 @@ static async Task<int> RunDefaultAsync(CommandLineParameters args)
     return ExitCodes.Failure;
 }
 
-return await ConsoleHost.Create<CommandLineParameters>(args, RunDefaultAsync)
-                        .RunAsync();
+return await ConsoleHost.Create<CommandLineParameters>(RunDefaultAsync)
+                        .RunAsync(args);

@@ -10,7 +10,7 @@ using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore.Attributes;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore.Interfaces;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore.Models;
 
-namespace NatsunekoLaboratory.UdonAnalyzer.DocumentGenerator;
+namespace NatsunekoLaboratory.UdonAnalyzer.DocumentGenerator.Models;
 
 public class CommandLineParameters : IValidatableEntity
 {

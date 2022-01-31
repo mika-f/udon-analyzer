@@ -11,7 +11,7 @@ using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp;
 using static NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.Markdown.Linq.MarkdownFactory;
 
 
-namespace NatsunekoLaboratory.UdonAnalyzer.DocumentGenerator;
+namespace NatsunekoLaboratory.UdonAnalyzer.DocumentGenerator.Models;
 
 internal static class UdonAnalyzerMarkdown
 {
