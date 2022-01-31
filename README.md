@@ -4,13 +4,22 @@ A collection of [analyzers](./src/Analyzers/README.md), [refactorings](./src/Ref
 
 ## Features
 
-- Extensions for Visual Studio 2022+
-- Extensions for Visual Studio Code
+Analyze your UdonSharp (or other C#/VB implementation of Udon) source code and report diagnostics such as compilation errors, unexpected behavior, and more.  
+This extension is a feature of the Roslyn C# compiler and can be used with any type of editor.  
+Officially supported editors are following:
+
+- Visual Studio 2019 (Community, Pro, Enterprise)
+- Visual Studio 2022 (Community, Pro, Enterprise)
+- Visual Studio Code
   - Note: Extensions for Visual Studio Code is not included in this repository. Visit [here](https://github.com/natsuneko-laboratory/udon-analyzer-vscode).
-- NuGet Analyzers
+- OmniSharp
+
+You can also run it from outside of the editor. The following execution methods are supported:
+
+- NuGet
+- Command-Line Interface
 - Unity Integration
   - Note: Unity Integration is not included in this repository. Visit [here](https://github.com/natsuneko-laboratory/udon-analyzer-unity).
-- Udon Analyzer Command-Line Interface
 
 ## License
 
