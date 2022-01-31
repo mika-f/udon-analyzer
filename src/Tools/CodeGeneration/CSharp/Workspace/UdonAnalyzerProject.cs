@@ -3,8 +3,9 @@
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // ------------------------------------------------------------------------------------------
 
-using Microsoft.CodeAnalysis;
+using System.Diagnostics;
 
-namespace NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp;
+namespace NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp.Workspace;
 
-public record AnalyzerMetadata(string Id, string Title, string Description, string Category, DiagnosticSeverity Severity, string RuntimeVersion, string CompilerVersion, string? CodeWithDiagnostic, string? CodeWithFix);
+[DebuggerDisplay("{Category} - {DisplayName}")]
+internal record UdonAnalyzerProject(string DisplayName, string CsProjName, string? Category = null);

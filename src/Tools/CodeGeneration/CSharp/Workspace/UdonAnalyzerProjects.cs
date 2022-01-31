@@ -3,7 +3,7 @@
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // ------------------------------------------------------------------------------------------
 
-namespace NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp;
+namespace NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp.Workspace;
 
 internal static class UdonAnalyzerProjects
 {

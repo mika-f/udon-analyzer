@@ -17,7 +17,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 using NatsunekoLaboratory.UdonAnalyzer.AnalyzerSpec.Attributes;
 using NatsunekoLaboratory.UdonAnalyzer.Attributes;
-using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp;
+using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp.Workspace;
 using NatsunekoLaboratory.UdonAnalyzer.Extensions;
 
 namespace NatsunekoLaboratory.UdonAnalyzer.CodeGeneration;

@@ -14,7 +14,7 @@ using Microsoft.CodeAnalysis.MSBuild;
 
 using NatsunekoLaboratory.UdonAnalyzer.Extensions;
 
-namespace NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp;
+namespace NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp.Workspace;
 
 internal sealed class UdonAnalyzerSolution
 {

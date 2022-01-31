@@ -6,7 +6,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp;
+using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp.Workspace;
 
 using static NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.Markdown.Linq.MarkdownFactory;
 

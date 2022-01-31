@@ -5,7 +5,7 @@
 
 using System;
 
-using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp;
+using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp.Workspace;
 
 namespace NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.Templates;
 

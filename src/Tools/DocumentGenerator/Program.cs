@@ -9,7 +9,7 @@ using System.IO;
 using System.Threading.Tasks;
 
 using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration;
-using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp;
+using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp.Workspace;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore.Helpers;
 using NatsunekoLaboratory.UdonAnalyzer.DocumentGenerator.Models;
