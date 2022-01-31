@@ -16,26 +16,32 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Testing;
 
 public class UnityStandaloneProject : StandaloneProject
 {
+    private static readonly string UnityInstallationPath;
+
+    static UnityStandaloneProject()
+    {
+        var version = new UnityStandaloneProject().TargetedUnityVersion;
+        UnityInstallationPath = FindUnityPath(version);
+    }
+
     protected virtual string TargetedUnityVersion => "2019.4.31f1";
 
     protected override IEnumerable<string> ExternalReferences()
     {
-        var path = FindUnityPath();
-
-        var managed = Path.Combine(path, "Data", "Managed");
+        var managed = Path.Combine(UnityInstallationPath, "Data", "Managed");
         yield return Path.Combine(managed, "UnityEditor.dll");
         yield return Path.Combine(managed, "UnityEngine.dll");
 
-        var engine = Path.Combine(path, "Data", "Managed", "UnityEngine");
+        var engine = Path.Combine(UnityInstallationPath, "Data", "Managed", "UnityEngine");
         yield return Path.Combine(engine, "UnityEngine.CoreModule.dll");
 
-        var mono = Path.Combine(path, "Data", "MonoBleedingEdge", "lib", "mono", "4.7.1-api");
+        var mono = Path.Combine(UnityInstallationPath, "Data", "MonoBleedingEdge", "lib", "mono", "4.7.1-api");
         yield return Path.Combine(mono, "mscorlib.dll");
         yield return Path.Combine(mono, "System.dll");
     }
 
     [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>")]
-    private string FindUnityPath()
+    private static string FindUnityPath(string targetVersion)
     {
         var hub = Environment.OSVersion.Platform switch
         {
@@ -63,7 +69,7 @@ public class UnityStandaloneProject : StandaloneProject
         foreach (var editor in editors.Split("\n"))
         {
             var version = editor.Split(",")[0].Trim();
-            if (version != TargetedUnityVersion)
+            if (version != targetVersion)
                 continue;
 
             var path = editor.Split(",")[1].Trim();
