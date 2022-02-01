@@ -19,6 +19,7 @@ using NatsunekoLaboratory.UdonAnalyzer.AnalyzerSpec.Attributes;
 using NatsunekoLaboratory.UdonAnalyzer.Attributes;
 using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp.Workspace;
 using NatsunekoLaboratory.UdonAnalyzer.Extensions;
+using NatsunekoLaboratory.UdonAnalyzer.Internal;
 
 namespace NatsunekoLaboratory.UdonAnalyzer.CodeGeneration;
 
@@ -36,7 +37,27 @@ public class UdonAnalyzerMetadata
         _metadata = new List<AnalyzerMetadata>();
     }
 
-    public async Task<bool> TryAnalyzingAsync()
+    public async Task<bool> TryAnalyzingAllAsync()
+    {
+        _metadata.Clear();
+
+        try
+        {
+            await TryLoadUdonAnalyzerSolutionAsync().Stay();
+            await TryLoadAnalyzerTestsAsync().Stay();
+            await TryLoadCodeFixTestsAsync().Stay();
+
+            return true;
+        }
+        catch (Exception e)
+        {
+            await Console.Error.WriteLineAsync(e.Message).Stay();
+
+            return false;
+        }
+    }
+
+    public async Task<bool> TryAnalyzingImplementationsOnlyAsync()
     {
         _metadata.Clear();
 
@@ -65,7 +86,27 @@ public class UdonAnalyzerMetadata
         _solution = await UdonAnalyzerSolution.CreateFromPathAsync(path).Stay();
     }
 
-    private async Task TryLoadAnalyzersAsync()
+    private Task TryLoadAnalyzersAsync()
+    {
+        var types = typeof(BaseDiagnosticAnalyzer).Assembly.GetTypes();
+        var targets = types.Where(w => Attribute.GetCustomAttribute(w, typeof(DiagnosticAnalyzerAttribute)) != null).ToList();
+
+        foreach (var t in targets)
+        {
+            var i = Activator.CreateInstance(t);
+            if (i is BaseDiagnosticAnalyzer b)
+            {
+                var diagnostic = b.SupportedDiagnostic;
+                _metadata.Add(new AnalyzerMetadata(diagnostic.Id, diagnostic.Title.ToString(), diagnostic.Description.ToString(), diagnostic.Category, diagnostic.DefaultSeverity, null, null, null, null, t.Name));
+            }
+        }
+
+        return Task.CompletedTask;
+    }
+
+    private async Task TryLoadCodeFixesAsync() { }
+
+    private async Task TryLoadAnalyzerTestsAsync()
     {
         if (_solution == null)
             throw new InvalidOperationException();
@@ -83,7 +124,7 @@ public class UdonAnalyzerMetadata
         }
     }
 
-    private async Task TryLoadCodeFixesAsync()
+    private async Task TryLoadCodeFixTestsAsync()
     {
         if (_solution == null)
             throw new InvalidOperationException();
@@ -155,7 +196,7 @@ public class UdonAnalyzerMetadata
 
         var example = AnalyzeTestCodeForExampleSource(node, model);
 
-        return new AnalyzerMetadata(descriptor.Id, descriptor.Title.ToString(), descriptor.Description.ToString(), descriptor.Category, descriptor.DefaultSeverity, runtime.VersionStr, compiler.VersionStr, example, null);
+        return new AnalyzerMetadata(descriptor.Id, descriptor.Title.ToString(), descriptor.Description.ToString(), descriptor.Category, descriptor.DefaultSeverity, runtime.VersionStr, compiler.VersionStr, example, null, null);
     }
 
     private static string? AnalyzeTestCodeForExampleSource(TypeDeclarationSyntax node, SemanticModel model)
