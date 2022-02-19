@@ -1,3 +1,10 @@
 ﻿; Unshipped analyzer release
 ; https://github.com/dotnet/roslyn-analyzers/blob/main/src/Microsoft.CodeAnalysis.Analyzers/ReleaseTrackingAnalyzers.Help.md
 
+### New Rules
+
+Rule ID | Category | Severity | Notes
+--------|----------|----------|-------
+VRC0001 | Compiler | Error | [Document](../../docs/analyzers/udon/VRC0001.md)
+VRC0002 | Compiler | Error | [Document](../../docs/analyzers/udon/VRC0002.md)
+VSC0001 | Compiler | Error | [Document](../../docs/analyzers/udonsharp/VSC0001.md)
