@@ -13,7 +13,7 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Models;
 /// <summary>
 ///     GenericVersion supports x.x.x.x (semantic) and x.x.x.x.x (datetime) versioning
 /// </summary>
-internal class GenericVersion : IComparable<GenericVersion>, IEquatable<GenericVersion>
+public class GenericVersion : IComparable<GenericVersion>, IEquatable<GenericVersion>
 {
     private static readonly Regex ValidVersionPattern = new(@"^([1-9]\d*|0)(\.\d+(\.\d+(\.\d+(\.\d+)?)?)?)?$", RegexOptions.Compiled);
 
