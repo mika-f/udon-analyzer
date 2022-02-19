@@ -13,5 +13,9 @@ public interface ITemplate
 
     string Content { get; }
 
+    string VariableFormat { get; }
+
     ImmutableArray<string> Variables { get; }
+
+    string OutPath { get; }
 }
