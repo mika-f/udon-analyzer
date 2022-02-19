@@ -1,14 +1,14 @@
-﻿// -------------------------------------------------------------------------------------------
+﻿// ------------------------------------------------------------------------------------------
 //  Copyright (c) Natsuneko. All rights reserved.
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
-// -------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
 
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace NatsunekoLaboratory.UdonAnalyzer.Models;
 
-internal abstract class VersionRange
+public abstract class VersionRange
 {
     protected GenericVersion MinVersion { get; }
 
@@ -90,6 +90,8 @@ internal abstract class VersionRange
             return $"initial ~ {MaxVersion}";
         return $"{MinVersion} ~ {MaxVersion}";
     }
+
+    public abstract string ToRangeString();
 
     private struct VersionRangeResult
     {

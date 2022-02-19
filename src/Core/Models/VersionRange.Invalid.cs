@@ -13,4 +13,9 @@ internal class VersionRangeInvalid : VersionRange
     {
         return false;
     }
+
+    public override string ToRangeString()
+    {
+        return "INVALID";
+    }
 }

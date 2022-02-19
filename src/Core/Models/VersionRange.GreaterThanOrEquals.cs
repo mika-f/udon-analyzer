@@ -7,12 +7,17 @@ using NatsunekoLaboratory.UdonAnalyzer.Extensions;
 
 namespace NatsunekoLaboratory.UdonAnalyzer.Models;
 
-internal class VersionRangeGreaterThanOrEquals : VersionRange
+public class VersionRangeGreaterThanOrEquals : VersionRange
 {
     public VersionRangeGreaterThanOrEquals(string min) : base(min, "0") { }
 
     public override bool IsFulfill(string version)
     {
         return MinVersion.IsLessThanOrEquals(GenericVersion.Parse(version));
+    }
+
+    public override string ToRangeString()
+    {
+        return $"[{MinVersion},)";
     }
 }
