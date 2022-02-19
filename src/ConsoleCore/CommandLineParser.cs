@@ -194,8 +194,15 @@ internal class CommandLineParser
 
     private static bool CheckNamedParametersDuplication(List<Parameter> parameters)
     {
-        var namedParameters = parameters.Where(w => w.LongName != null || w.ShortName != null).ToList();
-        return namedParameters.DistinctBy(w => w.LongName).Count() != namedParameters.Count || namedParameters.DistinctBy(w => w.ShortName).Count() != namedParameters.Count;
+        var longNamedParameters = parameters.Where(w => w.LongName != null).ToList();
+        if (longNamedParameters.DistinctBy(w => w.LongName).Count() != longNamedParameters.Count)
+            return true;
+
+        var shortNamedParameters = parameters.Where(w => w.ShortName != null).ToList();
+        if (shortNamedParameters.DistinctBy(w => w.LongName).Count() != shortNamedParameters.Count)
+            return true;
+
+        return false;
     }
 
     private static bool IsAssignableToObject(OptionAttribute attr, List<Parameter> parameters, [NotNullWhen(true)] out Parameter? parameter)
