@@ -38,7 +38,7 @@ internal static class UdonAnalyzerMarkdown
 
     public static string CreateIndexDocument(List<AnalyzerMetadata> metadata)
     {
-        var items = metadata.Select(w => TableBody(w.Id, w.Title, w.Severity.ToString()));
+        var items = metadata.OrderBy(w => w.Id).Select(w => TableBody(w.Id, w.Title, w.Severity.ToString()));
 
         return Document(
             Heading2("List of Runtime Analyzers in UdonAnalyzers"),
