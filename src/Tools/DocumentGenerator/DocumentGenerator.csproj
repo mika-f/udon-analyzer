@@ -14,4 +14,7 @@
     <ProjectReference Include="..\CodeGeneration\CodeGeneration.csproj" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="cd $(OutDir) &amp;&amp; cp -r ./* $(ProjectDir)/../../../bin/&#xD;&#xA;" />
+  </Target>
 </Project>
