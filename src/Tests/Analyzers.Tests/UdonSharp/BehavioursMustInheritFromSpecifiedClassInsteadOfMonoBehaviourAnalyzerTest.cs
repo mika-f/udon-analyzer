@@ -20,18 +20,6 @@ public class BehavioursMustInheritFromSpecifiedClassInsteadOfMonoBehaviourAnalyz
 {
     protected override ImmutableArray<string> FilteredDiagnosticIds => ImmutableArray.Create("CS0433");
 
-    [Fact]
-    public async Task TestNoDiagnostic_InheritFromMonoBehaviourWhenNotEnableWorkspaceAnalyzing()
-    {
-        await VerifyAnalyzerAsync(@"
-using UnityEngine;
-
-class TestBehaviour : MonoBehaviour
-{
-}
-");
-    }
-
 
     [Fact]
     [Example]
@@ -49,5 +37,31 @@ class TestBehaviour : [|MonoBehaviour|]
 {
 }
 ", editorconfig);
+    }
+
+    [Fact]
+    public async Task TestNoDiagnostic_InheritFromMonoBehaviourWhenNotEnableWorkspaceAnalyzing()
+    {
+        await VerifyAnalyzerAsync(@"
+using UnityEngine;
+
+class TestBehaviour : MonoBehaviour
+{
+}
+");
+    }
+
+    [Fact]
+    public async Task TestNoDiagnostic_InheritFromUdonSharpBehaviour()
+    {
+        await VerifyAnalyzerAsync(@"
+using UnityEngine;
+
+using UdonSharp;
+
+class TestBehaviour : UdonSharpBehaviour
+{
+}
+");
     }
 }

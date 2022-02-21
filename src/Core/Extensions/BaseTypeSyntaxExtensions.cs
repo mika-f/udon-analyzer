@@ -23,11 +23,13 @@ public static class BaseTypeSyntaxExtensions
         return obj.IsClassOf(symbol, model);
     }
 
+    public static bool IsClassOf(this BaseTypeSyntax obj, string fullyQualifiedClassName, SemanticModel model)
+    {
+        return obj.Type.IsClassOf(fullyQualifiedClassName, model);
+    }
+
     public static bool IsClassOf(this BaseTypeSyntax obj, INamedTypeSymbol symbol, SemanticModel model)
     {
-        var info = model.GetSymbolInfo(obj);
-        if (info.Symbol is not INamedTypeSymbol t)
-            return false;
-        return t.Equals(symbol, SymbolEqualityComparer.Default);
+        return obj.Type.IsClassOf(symbol, model);
     }
 }

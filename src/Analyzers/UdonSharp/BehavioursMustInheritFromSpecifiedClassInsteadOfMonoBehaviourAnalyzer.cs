@@ -33,12 +33,7 @@ public class BehavioursMustInheritFromSpecifiedClassInsteadOfMonoBehaviourAnalyz
     private static void AnalyzeBaseList(SyntaxNodeAnalysisContext context)
     {
         var bases = (BaseListSyntax)context.Node;
-        var inherit = context.GetEditorConfigValue(AnalyzerOptionDescriptors.BehaviourInheritFrom)!;
-        var symbol = context.SemanticModel.Compilation.GetTypeByMetadataName(inherit);
-        if (symbol == null)
-            return;
-
-        var inheritance = bases.Types.Where(w => !w.IsClassOf(symbol, context.SemanticModel)).ToList();
+        var inheritance = bases.Types.Where(w => w.IsClassOf("UnityEngine.MonoBehaviour", context.SemanticModel)).ToList();
         if (inheritance.Count > 0)
             DiagnosticHelper.ReportDiagnostic(context, DiagnosticDescriptors.BehavioursMustInheritFromSpecifiedClassInsteadOfMonoBehaviour, inheritance[0]);
     }
