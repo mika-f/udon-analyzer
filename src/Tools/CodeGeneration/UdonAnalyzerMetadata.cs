@@ -137,7 +137,7 @@ public class UdonAnalyzerMetadata
 
     private string GetSourcePath(string project, string? category = null)
     {
-        return Path.GetFullPath(Path.Combine(_root, "src", category ?? "", project));
+        return Path.GetFullPath(Path.Combine(_root, category ?? "", project));
     }
 
     private static async Task<IEnumerable<(Document Document, ClassDeclarationSyntax Node)>> EnumerateTestClassesAsync(Project project)
