@@ -7,7 +7,7 @@ namespace NatsunekoLaboratory.UdonAnalyzer;
 
 public readonly struct AnalyzerOptionDescriptor<T>
 {
-    public AnalyzerOptionDescriptor(string key, T? defaultValue = default)
+    public AnalyzerOptionDescriptor(string key, T defaultValue)
     {
         Key = key;
         DefaultValue = defaultValue;
@@ -15,5 +15,5 @@ public readonly struct AnalyzerOptionDescriptor<T>
 
     public string Key { get; }
 
-    public T? DefaultValue { get; }
+    public T DefaultValue { get; }
 }

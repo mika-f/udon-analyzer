@@ -14,6 +14,6 @@ public static class AnalyzerOptionDescriptors
     public static readonly AnalyzerOptionDescriptor<string> UdonVirtualMachineVersion = new("udon_analyzer.vrchat_sdk", "auto");
     public static readonly AnalyzerOptionDescriptor<string> UdonSharpCompilerVersion = new("udon_analyzer.udon_sharp", "auto");
     public static readonly AnalyzerOptionDescriptor<string> UdonSharpCompilerIgnoringPreprocessor = new("udon_analyzer.udon_sharp_ignore", "COMPILER_UDONSHARP");
-    public static readonly AnalyzerOptionDescriptor<DictionaryMode> UdonApiDictionaryMode = new("udon_analyzer.api_dictionary_mode");
-    public static readonly AnalyzerOptionDescriptor<DictionaryMode> UdonNetworkDictionaryMode = new("udon_analyzer.network_dictionary_mode");
+    public static readonly AnalyzerOptionDescriptor<DictionaryMode> UdonApiDictionaryMode = new("udon_analyzer.api_dictionary_mode", DictionaryMode.Direct);
+    public static readonly AnalyzerOptionDescriptor<DictionaryMode> UdonNetworkDictionaryMode = new("udon_analyzer.network_dictionary_mode", DictionaryMode.Direct);
 }

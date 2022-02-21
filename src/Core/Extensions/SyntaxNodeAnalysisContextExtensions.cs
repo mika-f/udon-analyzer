@@ -4,7 +4,6 @@
 // -------------------------------------------------------------------------------------------
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.CodeAnalysis.Diagnostics;
 
@@ -17,8 +16,7 @@ public static class SyntaxNodeAnalysisContextExtensions
         return GetEditorConfigValue(context, descriptor.Key, descriptor.DefaultValue);
     }
 
-    [return: NotNullIfNotNull("defaultValue")]
-    public static T? GetEditorConfigValue<T>(this SyntaxNodeAnalysisContext context, string key, T? defaultValue = default)
+    public static T GetEditorConfigValue<T>(this SyntaxNodeAnalysisContext context, string key, T defaultValue)
     {
         var provider = context.Options.AnalyzerConfigOptionsProvider;
         var options = provider.GetOptions(context.Node.SyntaxTree);
@@ -26,10 +24,10 @@ public static class SyntaxNodeAnalysisContextExtensions
         if (options.TryGetValue(key, out var value))
             return typeof(T) switch
             {
-                { } when typeof(T) == typeof(string) => (T?)(object)value,
-                { } when typeof(T) == typeof(bool) => bool.TryParse(value, out var b) ? (T?)(object)b : defaultValue,
-                { } when typeof(T).IsEnum => Enum.IsDefined(typeof(T), value) ? (T?)Enum.Parse(typeof(T), value) : defaultValue,
-                { } when typeof(T) == typeof(int) => int.TryParse(value, out var i) ? (T?)(object)i : defaultValue,
+                { } when typeof(T) == typeof(string) => (T)(object)value,
+                { } when typeof(T) == typeof(bool) => bool.TryParse(value, out var b) ? (T)(object)b : defaultValue,
+                { } when typeof(T).IsEnum => Enum.IsDefined(typeof(T), value) ? (T)Enum.Parse(typeof(T), value) : defaultValue,
+                { } when typeof(T) == typeof(int) => int.TryParse(value, out var i) ? (T)(object)i : defaultValue,
                 _ => throw new ArgumentOutOfRangeException($"not supported type: {typeof(T)}")
             };
 
