@@ -11,7 +11,7 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Extensions;
 
 public static class SyntaxNodeAnalysisContextExtensions
 {
-    public static T? GetEditorConfigValue<T>(this SyntaxNodeAnalysisContext context, AnalyzerOptionDescriptor<T> descriptor)
+    public static T GetEditorConfigValue<T>(this SyntaxNodeAnalysisContext context, AnalyzerOptionDescriptor<T> descriptor)
     {
         return GetEditorConfigValue(context, descriptor.Key, descriptor.DefaultValue);
     }
