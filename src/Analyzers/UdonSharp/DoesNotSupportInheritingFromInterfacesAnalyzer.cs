@@ -33,7 +33,6 @@ public class DoesNotSupportInheritingFromInterfacesAnalyzer : BaseDiagnosticAnal
     private static void AnalyzeBaseList(SyntaxNodeAnalysisContext context)
     {
         var bases = (BaseListSyntax)context.Node;
-        var sm = context.SemanticModel;
 
         var interfaces = bases.Types.Where(w => w.IsInterface(context.SemanticModel)).ToList();
         if (interfaces.None())
