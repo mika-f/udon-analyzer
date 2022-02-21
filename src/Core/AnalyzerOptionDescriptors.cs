@@ -9,7 +9,7 @@ namespace NatsunekoLaboratory.UdonAnalyzer;
 
 public static class AnalyzerOptionDescriptors
 {
-    public static readonly AnalyzerOptionDescriptor<bool> RequireBehaviourInherit = new("udon_analyzer.require_inherit", true);
+    public static readonly AnalyzerOptionDescriptor<bool> EnableWorkspaceAnalyzing = new("udon_analyzer.enable_workspace_analyzing", false);
     public static readonly AnalyzerOptionDescriptor<string> BehaviourInheritFrom = new("udon_analyzer.inherit_from", "UdonSharp.UdonSharpBehaviour");
     public static readonly AnalyzerOptionDescriptor<string> UdonVirtualMachineVersion = new("udon_analyzer.vrchat_sdk", "auto");
     public static readonly AnalyzerOptionDescriptor<string> UdonSharpCompilerVersion = new("udon_analyzer.udon_sharp", "auto");

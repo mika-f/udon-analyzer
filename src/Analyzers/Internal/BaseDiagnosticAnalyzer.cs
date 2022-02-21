@@ -41,7 +41,7 @@ public abstract class BaseDiagnosticAnalyzer : DiagnosticAnalyzer
         if (RequiredUdonSharpCompilerVersion.Value?.IsFulfill(CurrentUdonSharpCompilerVersion(context)) != true)
             return;
 
-        if (IsRequireUdonSharpBehaviourInherit(context) && IsSyntaxNodeInsideOfClassNotInheritedFromSpecifiedClass(context))
+        if (!IsEnableWorkspaceAnalyzing(context) && IsSyntaxNodeInsideOfClassNotInheritedFromSpecifiedClass(context))
             return;
 
         if (IsSyntaxNodeInsideOfIgnoringPreprocessor(context))
@@ -90,9 +90,9 @@ public abstract class BaseDiagnosticAnalyzer : DiagnosticAnalyzer
         return v == "auto" ? CSharpSolutionContext.FetchUdonSharpCompilerVersion(context) : v;
     }
 
-    private static bool IsRequireUdonSharpBehaviourInherit(SyntaxNodeAnalysisContext context)
+    private static bool IsEnableWorkspaceAnalyzing(SyntaxNodeAnalysisContext context)
     {
-        return context.GetEditorConfigValue(AnalyzerOptionDescriptors.RequireBehaviourInherit);
+        return context.GetEditorConfigValue(AnalyzerOptionDescriptors.EnableWorkspaceAnalyzing);
     }
 
     private static string CurrentSpecifiedBehaviourInheritFullName(SyntaxNodeAnalysisContext context)

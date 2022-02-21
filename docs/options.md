@@ -27,7 +27,6 @@ udon_analyzer.network_dictionary_mode = reflection
 # This is used if you cannot access to the VRChat SDK for some reason.
 udon_analyzer.network_dictionary_mode = internal
 
-
-# If set to True, the Analyzer will run only for UdonSharpBehaviour inherited classes, otherwise; it will run for all classes.
-udon_analyzer.require_inherit = true
+# If set to False, the Analyzer will run only for UdonSharpBehaviour inherited classes, otherwise; it will run for all classes.
+udon_analyzer.enable_workspace_analyzing = true
 ```
