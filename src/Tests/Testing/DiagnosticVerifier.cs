@@ -17,7 +17,9 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Testing;
 
 public abstract class DiagnosticVerifier<TAnalyzer, TProject> where TAnalyzer : DiagnosticAnalyzer, new() where TProject : StandaloneProject, new()
 {
-    protected virtual ImmutableArray<string> FilteredDiagnosticIds { get; } = ImmutableArray.Create<string>();
+    protected virtual ImmutableArray<string> FilteredDiagnosticIds { get; } = ImmutableArray<string>.Empty;
+
+    protected virtual ImmutableArray<(string, string)> AdditionalFiles { get; } = ImmutableArray<(string, string)>.Empty;
 
     protected virtual DiagnosticResult ExpectDiagnostic()
     {
@@ -27,12 +29,30 @@ public abstract class DiagnosticVerifier<TAnalyzer, TProject> where TAnalyzer : 
     protected async Task VerifyAnalyzerAsync(string annotatedSource)
     {
         var (source, diagnostics) = ParseAnnotatedSource(annotatedSource);
-        await VerifyAnalyzerAsync(source, diagnostics);
+        await VerifyAnalyzerAsync(source, new Dictionary<string, string>(), diagnostics);
     }
 
-    protected async Task VerifyAnalyzerAsync(string source, params DiagnosticResult[] expected)
+    protected async Task VerifyAnalyzerAsync(string annotatedSource, Dictionary<string, string> editorconfig)
+    {
+        var (source, diagnostics) = ParseAnnotatedSource(annotatedSource);
+        await VerifyAnalyzerAsync(source, editorconfig, diagnostics);
+    }
+
+    protected async Task VerifyAnalyzerAsync(string source, Dictionary<string, string> editorconfig, params DiagnosticResult[] expected)
     {
         var project = StandaloneProject.CreateProject<TProject>(new[] { source });
+
+        foreach (var (filename, content) in AdditionalFiles)
+            project.AddAdditionalFile(filename, content);
+
+        var sb = new StringBuilder();
+        sb.AppendLine("root = true");
+        sb.AppendLine();
+        sb.AppendLine("[*.*]");
+        foreach (var config in editorconfig)
+            sb.Append(config.Key).Append(" = ").AppendLine(config.Value);
+
+        project.AddAnalyzerConfigFile(".editorconfig", sb.ToString());
 
         await project.RunAnalyzerAsync<TAnalyzer>(expected, FilteredDiagnosticIds, CancellationToken.None);
     }

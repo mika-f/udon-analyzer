@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -68,6 +69,18 @@ public class StandaloneProject
         return new List<string>();
     }
 
+    public void AddAdditionalFile(string filename, string content)
+    {
+        Solution = Solution!.AddAdditionalDocument(DocumentId.CreateNewId(Project!.Id), filename, content);
+        Project = Solution.GetProject(Project!.Id);
+    }
+
+    public void AddAnalyzerConfigFile(string filename, string content)
+    {
+        Solution = Solution!.AddAnalyzerConfigDocument(DocumentId.CreateNewId(Project!.Id), Path.GetFileName(filename), SourceText.From(content), null, "/root");
+        Project = Solution.GetProject(Project!.Id);
+    }
+
     public async Task RunAnalyzerAsync<TAnalyzer>(DiagnosticResult[] expectedDiagnostics, ImmutableArray<string> allowedDiagnosticIds, CancellationToken cancellationToken) where TAnalyzer : DiagnosticAnalyzer, new()
     {
         Assert.NotNull(Project);
@@ -75,10 +88,11 @@ public class StandaloneProject
         var compilation = await Project.GetCompilationAsync(cancellationToken);
         Assert.NotNull(compilation);
 
-        var compilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, true);
-        var compilationWithAnalyzers = compilation.WithOptions(compilationOptions).WithAnalyzers(ImmutableArray.Create<DiagnosticAnalyzer>(new TAnalyzer()));
+        var compilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary);
+        var compilationWithAnalyzersOptions = new CompilationWithAnalyzersOptions(Project.AnalyzerOptions, default, true, false, false, null);
+        var compilationWithAnalyzers = compilation.WithOptions(compilationOptions).WithAnalyzers(ImmutableArray.Create<DiagnosticAnalyzer>(new TAnalyzer()), compilationWithAnalyzersOptions);
 
-        var allDiagnostics = await compilationWithAnalyzers.GetAllDiagnosticsAsync(cancellationToken);
+        var allDiagnostics = await compilationWithAnalyzers.GetAnalyzerDiagnosticsAsync(cancellationToken);
         var allowedDiagnostics = allDiagnostics.Where(w => allowedDiagnosticIds.Contains(w.Id));
         var actualDiagnostics = new List<Diagnostic>();
 
