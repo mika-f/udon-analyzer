@@ -22,7 +22,7 @@ static async Task WriteTemplateAsync(string path, string id, string category, st
 
 static async Task<int> RunDefaultAsync(CommandLineParameters args)
 {
-    var metadata = new UdonAnalyzerMetadata(args.Path);
+    var metadata = new UdonAnalyzerMetadata(Path.Combine(args.Path, "src"));
     var isAnalyzeSuccess = await metadata.TryAnalyzingAllAsync();
     if (isAnalyzeSuccess)
     {
