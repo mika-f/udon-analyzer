@@ -93,7 +93,7 @@ public abstract class DiagnosticVerifier<TAnalyzer, TProject> where TAnalyzer : 
 
                     var message = new StringBuilder();
                     while (sr.Peek() != ']')
-                        message.Append(sr.Read());
+                        message.Append((char)sr.Read());
                     sr.Read();
 
                     diagnostics.Add(ExpectDiagnostic().WithSpan(expectedLine, expectedColumn, line, column).WithMessage(message.ToString()));
