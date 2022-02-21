@@ -1,7 +1,7 @@
-﻿// -------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
 //  Copyright (c) Natsuneko. All rights reserved.
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
-// -------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
 
 using Microsoft.CodeAnalysis;
 
@@ -19,6 +19,16 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor BehavioursMustInheritFromSpecifiedClassInsteadOfMonoBehaviour = DiagnosticDescriptorFactory.Create(
+        "VSC0002",
+        "UdonSharp behaviours must inherit from 'UdonSharpBehaviour' instead of 'MonoBehaviour'",
+        "UdonSharp behaviours must inherit from 'UdonSharpBehaviour' instead of 'MonoBehaviour'",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+
+    // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
 
@@ -39,6 +49,8 @@ internal static class DiagnosticDescriptors
         DiagnosticCategories.Compiler,
         DiagnosticSeverity.Error
     );
+
+    // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
 }

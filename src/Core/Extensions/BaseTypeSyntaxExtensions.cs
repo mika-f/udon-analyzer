@@ -14,4 +14,20 @@ public static class BaseTypeSyntaxExtensions
     {
         return obj.Type.IsInterface(model);
     }
+
+    public static bool IsClassOf<T>(this BaseTypeSyntax obj, SemanticModel model)
+    {
+        var symbol = model.Compilation.GetTypeByMetadataName(typeof(T).FullName);
+        if (symbol == null)
+            return false;
+        return obj.IsClassOf(symbol, model);
+    }
+
+    public static bool IsClassOf(this BaseTypeSyntax obj, INamedTypeSymbol symbol, SemanticModel model)
+    {
+        var info = model.GetSymbolInfo(obj);
+        if (info.Symbol is not INamedTypeSymbol t)
+            return false;
+        return t.Equals(symbol, SymbolEqualityComparer.Default);
+    }
 }
