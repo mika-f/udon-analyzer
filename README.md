@@ -1,6 +1,6 @@
 # Udon Analyzer
 
-A collection of [analyzers](./src/Analyzers/README.md), [refactorings](./src/Refactorings/README.md), and [code-fixes](./src/CodeFixes/README.md) for [UdonSharp](https://github.com/MerlinVR/UdonSharp), powered by [Roslyn](https://github.com/dotnet/roslyn).
+A collection of [analyzers](./src/Analyzers/README.md), [refactorings](./src/Refactorings/README.md), and [code-fixes](./src/CodeFixes/README.md) for [UdonSharp](https://github.com/vrchat-community/UdonSharp), powered by [Roslyn](https://github.com/dotnet/roslyn).
 
 ## Features
 
