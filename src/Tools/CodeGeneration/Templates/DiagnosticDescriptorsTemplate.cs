@@ -50,7 +50,7 @@ public class DiagnosticDescriptorsTemplate : ITemplate
             var sb = new StringBuilder();
             sb.AppendLine(_declaration.NormalizeWhitespace().ToFullString());
             sb.AppendLine();
-            sb.Append("    // ").AppendLine(key);
+            sb.Append("    // ").Append(key);
 
             return sb.ToString();
         }

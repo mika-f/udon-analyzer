@@ -64,6 +64,6 @@ public class TemplateGenerator
     {
         var content = Generate(variable);
         using var sw = new StreamWriter(_outPath);
-        sw.WriteLine(content);
+        sw.Write(content);
     }
 }
