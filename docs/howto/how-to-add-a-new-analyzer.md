@@ -26,6 +26,10 @@ $ codegen.exe analyzer compiler
   --compiler-min-version 1.0.0 \
   --description "This is a sample analyzer."
 
+
+# ...or JSON
+$ codegen.exe analyzer compiler --src $REPOSITORY_ROOT/src --json analyzer.json
+
 # for CodeFix
 $ codegen.exe codefix
   --src $REPOSITORY_ROOT/src \
