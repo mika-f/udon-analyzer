@@ -48,7 +48,7 @@ static async Task<int> RunDefaultAsync(CommandLineParameters args)
 
             await WriteTemplateAsync(path, id, category, content);
 
-            Console.Write($"Writing UdonAnalyzer documentation for {category}:{id} to {category.ToLower()}/{id}.md");
+            Console.WriteLine($"Writing UdonAnalyzer documentation for {category}:{id} to {category.ToLower()}/{id}.md");
         }
 
         await WriteTemplateAsync(path, "README", "Udon", UdonAnalyzerMarkdown.CreateIndexDocument(runtimeAnalyzers));
