@@ -32,7 +32,7 @@ public class GenerateDiagnosticTestParameters
             return ExitCodes.Failure;
 
         var category = Id.StartsWith("VRC") ? "Udon" : "UdonSharp";
-        var compilation = UdonSharpAnalyzerTestGenerator.CreateGeneratedTestCode(Id, metadata.ClassName!, category);
+        var compilation = UdonSharpAnalyzerTestGenerator.CreateGeneratedTestCode(metadata.ClassName!, category);
         await CodeGenerationHelper.WriteCompilationUnit(Path.Combine(Source, "Tests", "Analyzers.Tests", category, $"{metadata.ClassName!}Test.cs"), compilation);
 
         if (WithCodeFix)

@@ -20,7 +20,7 @@ namespace NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp;
 
 public static class UdonSharpAnalyzerTestGenerator
 {
-    public static CompilationUnitSyntax CreateGeneratedTestCode(string id, string title, string category)
+    public static CompilationUnitSyntax CreateGeneratedTestCode(string title, string category)
     {
         Contract.Assert(category is "Udon" or "UdonSharp");
 
