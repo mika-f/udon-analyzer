@@ -17,6 +17,16 @@ namespace Analyzers.Tests.UdonSharp;
 public class DoesNotSupportInheritingFromInterfacesAnalyzerTest : UdonSharpDiagnosticVerifier<DoesNotSupportInheritingFromInterfacesAnalyzer>
 {
     [Fact]
+    public async Task TestNoDiagnostic_InheritingFromUdonSharpBehaviourOnly()
+    {
+        await VerifyAnalyzerAsync(@"
+using UdonSharp;
+
+class TestBehaviour : UdonSharpBehaviour {}
+");
+    }
+
+    [Fact]
     [Example]
     public async Task TestDiagnostic_InheritingFromInterface()
     {
