@@ -6,5 +6,5 @@ Run `docgen.exe` or `DocumentGenerator` project in `UdonAnalyzer.sln` to generat
 Example:
 
 ```bash
-$ docgen.exe $REPOSITORY_ROOT/src
+$ docgen.exe $REPOSITORY_ROOT
 ```
