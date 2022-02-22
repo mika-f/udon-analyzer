@@ -27,10 +27,10 @@ public class TryCatchFinallyIsNotSupportedAnalyzer : BaseDiagnosticAnalyzer
         context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, AnalyzeTryStatement), SyntaxKind.TryStatement);
     }
 
-    private static void AnalyzeTryStatement(SyntaxNodeAnalysisContext context)
+    private void AnalyzeTryStatement(SyntaxNodeAnalysisContext context)
     {
         var tryStatement = (TryStatementSyntax)context.Node;
 
-        DiagnosticHelper.ReportDiagnostic(context, DiagnosticDescriptors.TryCatchFinallyIsNotSupported, tryStatement);
+        DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, tryStatement);
     }
 }

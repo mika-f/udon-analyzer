@@ -28,17 +28,17 @@ public class DoesNotSupportThrowingExceptionsAnalyzer : BaseDiagnosticAnalyzer
         context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, AnalyzeThrowStatement), SyntaxKind.ThrowStatement);
     }
 
-    private static void AnalyzeThrowExpression(SyntaxNodeAnalysisContext context)
+    private void AnalyzeThrowExpression(SyntaxNodeAnalysisContext context)
     {
         var throwExpression = (ThrowExpressionSyntax)context.Node;
 
-        DiagnosticHelper.ReportDiagnostic(context, DiagnosticDescriptors.DoesNotSupportThrowingExceptions, throwExpression);
+        DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, throwExpression);
     }
 
-    private static void AnalyzeThrowStatement(SyntaxNodeAnalysisContext context)
+    private void AnalyzeThrowStatement(SyntaxNodeAnalysisContext context)
     {
         var throwStatement = (ThrowStatementSyntax)context.Node;
 
-        DiagnosticHelper.ReportDiagnostic(context, DiagnosticDescriptors.DoesNotSupportThrowingExceptions, throwStatement);
+        DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, throwStatement);
     }
 }

@@ -30,11 +30,11 @@ public class BehavioursMustInheritFromSpecifiedClassInsteadOfMonoBehaviourAnalyz
         context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, AnalyzeBaseList), SyntaxKind.BaseList);
     }
 
-    private static void AnalyzeBaseList(SyntaxNodeAnalysisContext context)
+    private void AnalyzeBaseList(SyntaxNodeAnalysisContext context)
     {
         var bases = (BaseListSyntax)context.Node;
         var inheritance = bases.Types.Where(w => w.IsClassOf("UnityEngine.MonoBehaviour", context.SemanticModel)).ToList();
         if (inheritance.Count > 0)
-            DiagnosticHelper.ReportDiagnostic(context, DiagnosticDescriptors.BehavioursMustInheritFromSpecifiedClassInsteadOfMonoBehaviour, inheritance[0]);
+            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, inheritance[0]);
     }
 }

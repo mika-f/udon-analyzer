@@ -30,7 +30,7 @@ public class DoesNotSupportInheritingFromInterfacesAnalyzer : BaseDiagnosticAnal
         context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, AnalyzeBaseList), SyntaxKind.BaseList);
     }
 
-    private static void AnalyzeBaseList(SyntaxNodeAnalysisContext context)
+    private void AnalyzeBaseList(SyntaxNodeAnalysisContext context)
     {
         var bases = (BaseListSyntax)context.Node;
 
@@ -39,6 +39,6 @@ public class DoesNotSupportInheritingFromInterfacesAnalyzer : BaseDiagnosticAnal
             return;
 
         foreach (var @interface in interfaces)
-            DiagnosticHelper.ReportDiagnostic(context, DiagnosticDescriptors.DoesNotSupportInheritingFromInterfaces, @interface);
+            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, @interface);
     }
 }
