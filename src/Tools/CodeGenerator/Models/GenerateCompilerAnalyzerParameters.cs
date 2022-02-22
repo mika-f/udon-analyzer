@@ -3,6 +3,12 @@
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // ------------------------------------------------------------------------------------------
 
+using System.Text.Encodings.Web;
+using System.Text.Json;
+
+using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp;
+using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.Templates;
+using NatsunekoLaboratory.UdonAnalyzer.CodeGenerator.Extensions;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore.Attributes;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore.Helpers;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore.Interfaces;
@@ -41,8 +47,38 @@ public class GenerateCompilerAnalyzerParameters : GenerateRuntimeAnalyzerParamet
 
     public async Task<int> GenerateCompilerAnalyzerCode()
     {
-        var path = Path.GetFullPath(Path.Combine(Source, "src"));
+        if (!string.IsNullOrWhiteSpace(JsonPath))
+        {
+            using var sr = new StreamReader(JsonPath);
+            var options = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                WriteIndented = false,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+            var json = JsonSerializer.Deserialize<GenerateCompilerAnalyzerParameters>(await sr.ReadToEndAsync(), options);
+            if (json == null)
+            {
+                Console.WriteLine("failed to parse JSON string");
+                return ExitCodes.Failure;
+            }
 
+            if (!json.Validate(out var errors))
+            {
+                foreach (var error in errors)
+                    Console.WriteLine(error.ToMessageString());
+                return ExitCodes.Failure;
+            }
+
+            json.CopyTo(this);
+        }
+
+        var compilation = UdonSharpAnalyzerGenerator.CreateGeneratedAnalyzerCode(Name, RuntimeMinVersion, RuntimeMaxVersion, CompilerMinVersion, CompilerMaxVersion);
+        await CodeGenerationHelper.WriteCompilationUnit(Path.Combine(Source, "Analyzers", "UdonSharp", $"{Name}.cs"), compilation);
+
+        var descriptor = UdonSharpAnalyzerGenerator.CreateGeneratedDescriptorCode($"VSC{Id.ToString().PadLeft(4, '0')}", Name, Title, Description, Category, Severity);
+        var template = TemplateGenerator.CreateFromTemplate(new DiagnosticDescriptorsTemplate(Source));
+        template.GenerateAndFlush(new DiagnosticDescriptorsTemplate.VariableAccessor(DiagnosticDescriptorsTemplate.VariableAccessor.UdonSharpCompilerDescriptorKey, descriptor));
 
         return ExitCodes.Success;
     }
