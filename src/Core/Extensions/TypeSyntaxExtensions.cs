@@ -21,6 +21,15 @@ public static class TypeSyntaxExtensions
         return symbol.TypeKind == TypeKind.Interface;
     }
 
+    public static bool IsClass(this TypeSyntax obj, SemanticModel model)
+    {
+        var info = model.GetSymbolInfo(obj);
+        if (info.Symbol is not INamedTypeSymbol symbol)
+            return false;
+
+        return symbol.TypeKind == TypeKind.Class;
+    }
+
     public static bool IsClassOf(this TypeSyntax obj, string fullyQualifiedClassName, SemanticModel model)
     {
         var info = model.GetSymbolInfo(obj);
