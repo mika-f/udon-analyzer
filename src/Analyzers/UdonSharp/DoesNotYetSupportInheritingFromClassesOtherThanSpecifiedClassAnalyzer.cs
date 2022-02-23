@@ -3,8 +3,6 @@
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // ------------------------------------------------------------------------------------------
 
-using System.Linq;
-
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -27,17 +25,13 @@ public class DoesNotYetSupportInheritingFromClassesOtherThanSpecifiedClassAnalyz
     {
         base.Initialize(context);
 
-        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, AnalyzeBaseList), SyntaxKind.BaseList);
+        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, AnalyzeBaseType), SyntaxKind.SimpleBaseType);
     }
 
-    private void AnalyzeBaseList(SyntaxNodeAnalysisContext context)
+    private void AnalyzeBaseType(SyntaxNodeAnalysisContext context)
     {
-        var bases = (BaseListSyntax)context.Node;
-        var @class = bases.Types.FirstOrDefault(w => w.IsClass(context.SemanticModel));
-        if (@class == null)
-            return;
-
-        if (!@class.IsClassOf("UdonSharp.UdonSharpBehaviour", context.SemanticModel))
-            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, @class);
+        var @base = (BaseTypeSyntax)context.Node;
+        if (!@base.IsClassOf("UdonSharp.UdonSharpBehaviour", context.SemanticModel))
+            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, @base);
     }
 }
