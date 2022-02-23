@@ -3,8 +3,6 @@
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // ------------------------------------------------------------------------------------------
 
-using System.Linq;
-
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -27,18 +25,13 @@ public class DoesNotSupportInheritingFromInterfacesAnalyzer : BaseDiagnosticAnal
     {
         base.Initialize(context);
 
-        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, AnalyzeBaseList), SyntaxKind.BaseList);
+        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, AnalyzeBaseType), SyntaxKind.SimpleBaseType);
     }
 
-    private void AnalyzeBaseList(SyntaxNodeAnalysisContext context)
+    private void AnalyzeBaseType(SyntaxNodeAnalysisContext context)
     {
-        var bases = (BaseListSyntax)context.Node;
-
-        var interfaces = bases.Types.Where(w => w.IsInterface(context.SemanticModel)).ToList();
-        if (interfaces.None())
-            return;
-
-        foreach (var @interface in interfaces)
-            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, @interface);
+        var @base = (BaseTypeSyntax)context.Node;
+        if (@base.IsInterface(context.SemanticModel))
+            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, @base);
     }
 }
