@@ -65,6 +65,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportTheAwakeEvent = DiagnosticDescriptorFactory.Create(
+        "VRC0003",
+        "Udon does not support the 'Awake' event, use 'Start' instead",
+        "Udon does not support the 'Awake' event, use 'Start' instead",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
