@@ -4,6 +4,7 @@
 // ------------------------------------------------------------------------------------------
 
 using System;
+using System.Linq;
 
 using Microsoft.CodeAnalysis;
 
@@ -15,5 +16,11 @@ public static class INamedTypeSymbolExtensions
     public static Type? InvokeAsType(this INamedTypeSymbol symbol)
     {
         return Type.GetType($"{symbol.ToDisplayString()}, {symbol.ContainingAssembly.ToDisplayString()}");
+    }
+
+    public static AttributeData? GetAttribute<T>(this INamedTypeSymbol symbol, SemanticModel model)
+    {
+        var t = model.Compilation.GetTypeByMetadataName(typeof(T).FullName ?? throw new InvalidOperationException());
+        return symbol.GetAttributes().FirstOrDefault(w => w.AttributeClass?.Equals(t, SymbolEqualityComparer.Default) == true);
     }
 }
