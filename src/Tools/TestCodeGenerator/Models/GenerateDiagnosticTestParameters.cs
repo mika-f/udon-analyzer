@@ -25,11 +25,17 @@ public class GenerateDiagnosticTestParameters
     {
         var analyzer = new UdonAnalyzerMetadata(Source);
         if (!await analyzer.TryAnalyzingImplementationsOnlyAsync())
+        {
+            await Console.Error.WriteLineAsync("failed to analyze source code");
             return ExitCodes.Failure;
+        }
 
         var metadata = analyzer.Metadata.FirstOrDefault(w => w.Id == Id);
         if (metadata == null)
+        {
+            await Console.Error.WriteLineAsync($"could not find analyzer metadata for {Id}");
             return ExitCodes.Failure;
+        }
 
         var category = Id.StartsWith("VRC") ? "Udon" : "UdonSharp";
         var compilation = UdonSharpAnalyzerTestGenerator.CreateGeneratedTestCode(metadata.ClassName!, category);
