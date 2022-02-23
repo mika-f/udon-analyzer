@@ -35,6 +35,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportConstructorsOnBehaviours = DiagnosticDescriptorFactory.Create(
+        "VSC0004",
+        "UdonSharp does not currently support constructors on UdonSharpBehaviours, use the Start() event to initialize instead",
+        "UdonSharp does not currently support constructors on UdonSharpBehaviours, use the Start() event to initialize instead",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
