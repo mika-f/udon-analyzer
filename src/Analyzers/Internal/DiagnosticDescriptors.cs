@@ -43,6 +43,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor OnlySupportsClassesThatInheritFromUdonSharpBehaviour = DiagnosticDescriptorFactory.Create(
+        "VSC0005",
+        "UdonSharp only supports classes that inherit from 'UdonSharpBehaviour' at the moment",
+        "UdonSharp only supports classes that inherit from 'UdonSharpBehaviour' at the moment",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
