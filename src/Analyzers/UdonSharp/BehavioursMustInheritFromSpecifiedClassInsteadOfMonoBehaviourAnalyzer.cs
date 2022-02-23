@@ -25,7 +25,7 @@ public class BehavioursMustInheritFromSpecifiedClassInsteadOfMonoBehaviourAnalyz
     {
         base.Initialize(context);
 
-        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, AnalyzeBaseType), SyntaxKind.SimpleBaseType);
+        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, false, AnalyzeBaseType), SyntaxKind.SimpleBaseType);
     }
 
     private void AnalyzeBaseType(SyntaxNodeAnalysisContext context)

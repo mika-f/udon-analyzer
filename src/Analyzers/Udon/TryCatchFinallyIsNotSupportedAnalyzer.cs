@@ -24,7 +24,7 @@ public class TryCatchFinallyIsNotSupportedAnalyzer : BaseDiagnosticAnalyzer
     {
         base.Initialize(context);
 
-        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, AnalyzeTryStatement), SyntaxKind.TryStatement);
+        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, true, AnalyzeTryStatement), SyntaxKind.TryStatement);
     }
 
     private void AnalyzeTryStatement(SyntaxNodeAnalysisContext context)

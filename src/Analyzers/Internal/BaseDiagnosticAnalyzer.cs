@@ -1,7 +1,7 @@
-﻿// -------------------------------------------------------------------------------------------
+﻿// ------------------------------------------------------------------------------------------
 //  Copyright (c) Natsuneko. All rights reserved.
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
-// -------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Immutable;
@@ -33,7 +33,7 @@ public abstract class BaseDiagnosticAnalyzer : DiagnosticAnalyzer
         context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
     }
 
-    protected void RunAnalyzer(SyntaxNodeAnalysisContext context, Action<SyntaxNodeAnalysisContext> callback)
+    protected void RunAnalyzer(SyntaxNodeAnalysisContext context, bool isRequireInherit, Action<SyntaxNodeAnalysisContext> callback)
     {
         if (RequiredUdonVersion.Value?.IsFulfill(CurrentUdonRuntimeVersion(context)) != true)
             return;
@@ -41,11 +41,19 @@ public abstract class BaseDiagnosticAnalyzer : DiagnosticAnalyzer
         if (RequiredUdonSharpCompilerVersion.Value?.IsFulfill(CurrentUdonSharpCompilerVersion(context)) != true)
             return;
 
-        if (!IsEnableWorkspaceAnalyzing(context) && IsSyntaxNodeInsideOfClassNotInheritedFromSpecifiedClass(context))
-            return;
-
         if (IsSyntaxNodeInsideOfIgnoringPreprocessor(context))
             return;
+
+        if (IsEnableWorkspaceAnalyzing(context))
+        {
+            if (isRequireInherit && IsSyntaxNodeInsideOfClassNotInheritedFromSpecifiedClass(context))
+                return;
+        }
+        else
+        {
+            if (IsSyntaxNodeInsideOfClassNotInheritedFromSpecifiedClass(context))
+                return;
+        }
 
         callback.Invoke(context);
     }

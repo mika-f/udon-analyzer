@@ -24,7 +24,7 @@ public class DoesNotCurrentlySupportConstructorsOnBehavioursAnalyzer : BaseDiagn
     {
         base.Initialize(context);
 
-        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, AnalyzeConstructorDeclaration), SyntaxKind.ConstructorDeclaration);
+        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, true, AnalyzeConstructorDeclaration), SyntaxKind.ConstructorDeclaration);
     }
 
     private void AnalyzeConstructorDeclaration(SyntaxNodeAnalysisContext context)

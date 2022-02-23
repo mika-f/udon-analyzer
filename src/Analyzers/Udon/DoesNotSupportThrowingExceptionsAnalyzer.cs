@@ -24,8 +24,8 @@ public class DoesNotSupportThrowingExceptionsAnalyzer : BaseDiagnosticAnalyzer
     {
         base.Initialize(context);
 
-        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, AnalyzeThrowExpression), SyntaxKind.ThrowExpression);
-        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, AnalyzeThrowStatement), SyntaxKind.ThrowStatement);
+        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, true, AnalyzeThrowExpression), SyntaxKind.ThrowExpression);
+        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, true, AnalyzeThrowStatement), SyntaxKind.ThrowStatement);
     }
 
     private void AnalyzeThrowExpression(SyntaxNodeAnalysisContext context)
