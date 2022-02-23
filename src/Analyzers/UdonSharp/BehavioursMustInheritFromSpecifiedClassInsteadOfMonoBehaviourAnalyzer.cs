@@ -3,8 +3,6 @@
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // ------------------------------------------------------------------------------------------
 
-using System.Linq;
-
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -27,14 +25,13 @@ public class BehavioursMustInheritFromSpecifiedClassInsteadOfMonoBehaviourAnalyz
     {
         base.Initialize(context);
 
-        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, AnalyzeBaseList), SyntaxKind.BaseList);
+        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, AnalyzeBaseType), SyntaxKind.SimpleBaseType);
     }
 
-    private void AnalyzeBaseList(SyntaxNodeAnalysisContext context)
+    private void AnalyzeBaseType(SyntaxNodeAnalysisContext context)
     {
-        var bases = (BaseListSyntax)context.Node;
-        var inheritance = bases.Types.Where(w => w.IsClassOf("UnityEngine.MonoBehaviour", context.SemanticModel)).ToList();
-        if (inheritance.Count > 0)
-            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, inheritance[0]);
+        var @base = (BaseTypeSyntax)context.Node;
+        if (@base.IsClassOf("UnityEngine.MonoBehaviour", context.SemanticModel))
+            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, @base);
     }
 }
