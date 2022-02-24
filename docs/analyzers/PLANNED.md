@@ -25,7 +25,6 @@ List of planned analyzers in the future release.
 
 ## UdonSharp Compiler
 
-- `ERR: UdonSharp does not currently support initializers on properties`
 - `ERR: Base type calling is not yet supported by UdonSharp`
 - `ERR: Default expressions are not yet supported by UdonSharp`
 - `ERR: UdonSharp does not support multidimensional arrays at the moment, use jagged arrays instead for now`

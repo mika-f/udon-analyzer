@@ -59,6 +59,15 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportInitializersOnProperties = DiagnosticDescriptorFactory.Create(
+        "VSC0007",
+        "UdonSharp does not currently support initializers on properties",
+        "UdonSharp does not currently support initializers on properties",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

@@ -8,5 +8,6 @@
 | VSC0004 | UdonSharp does not currently support constructors on UdonSharpBehaviours, use the Start() event to initialize instead | Error    | 
 | VSC0005 | UdonSharp only supports classes that inherit from 'UdonSharpBehaviour' at the moment                                  | Error    | 
 | VSC0006 | UdonSharp does not currently support static user-defined property declarations                                        | Error    | 
+| VSC0007 | UdonSharp does not currently support initializers on properties                                                       | Error    | 
 
 
