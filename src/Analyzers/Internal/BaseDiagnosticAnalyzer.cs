@@ -88,13 +88,13 @@ public abstract class BaseDiagnosticAnalyzer : DiagnosticAnalyzer
 
     private static string CurrentUdonRuntimeVersion(SyntaxNodeAnalysisContext context)
     {
-        var v = context.GetEditorConfigValue(AnalyzerOptionDescriptors.UdonVirtualMachineVersion)!;
+        var v = context.GetEditorConfigValue(AnalyzerOptionDescriptors.UdonVirtualMachineVersion);
         return v == "auto" ? CSharpSolutionContext.FetchUdonRuntimeVersion(context) : v;
     }
 
     private static string CurrentUdonSharpCompilerVersion(SyntaxNodeAnalysisContext context)
     {
-        var v = context.GetEditorConfigValue(AnalyzerOptionDescriptors.UdonSharpCompilerVersion)!;
+        var v = context.GetEditorConfigValue(AnalyzerOptionDescriptors.UdonSharpCompilerVersion);
         return v == "auto" ? CSharpSolutionContext.FetchUdonSharpCompilerVersion(context) : v;
     }
 
@@ -105,11 +105,11 @@ public abstract class BaseDiagnosticAnalyzer : DiagnosticAnalyzer
 
     private static string CurrentSpecifiedBehaviourInheritFullName(SyntaxNodeAnalysisContext context)
     {
-        return context.GetEditorConfigValue(AnalyzerOptionDescriptors.BehaviourInheritFrom)!;
+        return context.GetEditorConfigValue(AnalyzerOptionDescriptors.BehaviourInheritFrom);
     }
 
     private static string CurrentUdonSharpCompilerPreprocessor(SyntaxNodeAnalysisContext context)
     {
-        return context.GetEditorConfigValue(AnalyzerOptionDescriptors.UdonSharpCompilerIgnoringPreprocessor)!;
+        return context.GetEditorConfigValue(AnalyzerOptionDescriptors.UdonSharpCompilerIgnoringPreprocessor);
     }
 }
