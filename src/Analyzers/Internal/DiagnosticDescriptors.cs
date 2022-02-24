@@ -51,6 +51,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportStaticUserDefinedProperties = DiagnosticDescriptorFactory.Create(
+        "VSC0006",
+        "UdonSharp does not currently support static user-defined property declarations",
+        "UdonSharp does not currently support static user-defined property declarations",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

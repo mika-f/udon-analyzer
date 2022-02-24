@@ -13,3 +13,4 @@ VSC0002 | Compiler | Error | [Document](../../docs/analyzers/udonsharp/VSC0002.m
 VSC0003 | Compiler | Error | [Document](../../docs/analyzers/udonsharp/VSC0003.md)
 VSC0004 | Compiler | Error | [Document](../../docs/analyzers/udonsharp/VSC0004.md)
 VSC0005 | Compiler | Error | [Document](../../docs/analyzers/udonsharp/VSC0005.md)
+VSC0006 | Compiler | Error | [Document](../../docs/analyzers/udonsharp/VSC0006.md)
