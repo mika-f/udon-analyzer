@@ -67,6 +67,13 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor BaseTypeCallingIsNotYetSupported = DiagnosticDescriptorFactory.Create(
+        "VSC0008",
+        "Base type calling is not yet supported by UdonSharp",
+        "Base type calling is not yet supported by UdonSharp",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
 
     // INSERT_VSC_DESCRIPTOR_HERE
 
