@@ -25,7 +25,6 @@ List of planned analyzers in the future release.
 
 ## UdonSharp Compiler
 
-- `ERR: UdonSharp does not currently support constructors on UdonSharpBehaviours, use the Start() event to initialize instead`
 - `ERR: UdonSharp does not currently support static user-defined property declarations`
 - `ERR: UdonSharp does not currently support initializers on properties`
 - `ERR: Base type calling is not yet supported by UdonSharp`

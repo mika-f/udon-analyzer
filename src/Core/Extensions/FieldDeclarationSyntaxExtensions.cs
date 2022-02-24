@@ -12,8 +12,13 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Extensions;
 
 public static class FieldDeclarationSyntaxExtensions
 {
-    public static bool HasModifiers(this FieldDeclarationSyntax node, params SyntaxKind[] modifiers)
+    public static bool HasModifiersExact(this FieldDeclarationSyntax node, params SyntaxKind[] modifiers)
     {
         return node.Modifiers.All(w => modifiers.Contains(w.Kind()));
+    }
+
+    public static bool HasModifier(this FieldDeclarationSyntax node, params SyntaxKind[] modifiers)
+    {
+        return node.Modifiers.Any(w => modifiers.Contains(w.Kind()));
     }
 }

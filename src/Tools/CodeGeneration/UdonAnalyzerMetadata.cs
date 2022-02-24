@@ -108,7 +108,7 @@ public class UdonAnalyzerMetadata
         var classDecl = SyntaxNodeHelper.EnumerateClassDeclarations(syntax).First();
         var fields = classDecl.Members
                               .OfType<FieldDeclarationSyntax>()
-                              .Where(w => w.HasModifiers(SyntaxKind.PublicKeyword, SyntaxKind.StaticKeyword, SyntaxKind.ReadOnlyKeyword))
+                              .Where(w => w.HasModifiersExact(SyntaxKind.PublicKeyword, SyntaxKind.StaticKeyword, SyntaxKind.ReadOnlyKeyword))
                               .Where(w =>
                               {
                                   var info = model.GetSymbolInfo(w.Declaration.Type);
