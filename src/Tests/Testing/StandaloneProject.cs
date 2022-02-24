@@ -124,6 +124,8 @@ public class StandaloneProject
         Assert.NotNull(document);
 
         var trees = await document.GetSyntaxTreeAsync(cancellationToken);
+        Assert.NotNull(trees);
+
         var nodes = await Diagnostics.ToAsyncEnumerable()
                                      .SelectAwait(async w => await document.FindNodeAsync(w.Location.SourceSpan, cancellationToken))
                                      .ToListAsync(cancellationToken);
