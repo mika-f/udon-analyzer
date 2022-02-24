@@ -121,10 +121,7 @@ public class UdonAnalyzerMetadata
         foreach (var field in fields)
         {
             var initializer = field.Declaration.Variables.First().Initializer;
-            if (initializer == null)
-                continue;
-
-            var invocation = initializer.Value as InvocationExpressionSyntax;
+            var invocation = initializer?.Value as InvocationExpressionSyntax;
             if (invocation == null)
                 continue;
 
@@ -160,7 +157,10 @@ public class UdonAnalyzerMetadata
         }
     }
 
-    private async Task TryLoadCodeFixesAsync() { }
+    private Task TryLoadCodeFixesAsync()
+    {
+        return Task.CompletedTask;
+    }
 
     private async Task TryLoadAnalyzerTestsAsync()
     {
