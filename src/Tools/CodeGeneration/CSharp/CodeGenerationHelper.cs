@@ -24,10 +24,10 @@ public static class CodeGenerationHelper
         var unit = compilationUnit.NormalizeWhitespace();
         var header = new List<SyntaxTrivia>
         {
-            SingleLineComment(" ------------------------------------------------------------------------------------------"),
-            SingleLineComment("  Copyright (c) Natsuneko. All rights reserved."),
-            SingleLineComment("  Licensed under the MIT License. See LICENSE in the project root for license information."),
-            SingleLineComment(" ------------------------------------------------------------------------------------------")
+            SingleLineComment("------------------------------------------------------------------------------------------"),
+            SingleLineComment(" Copyright (c) Natsuneko. All rights reserved."),
+            SingleLineComment(" Licensed under the MIT License. See LICENSE in the project root for license information."),
+            SingleLineComment("------------------------------------------------------------------------------------------")
         }.Aggregate(SyntaxFactory.TriviaList(), (current, next) => current.Add(next).Add(SyntaxFactory.CarriageReturnLineFeed));
 
         var finalized = unit.WithLeadingTrivia(header);
