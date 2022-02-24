@@ -205,7 +205,7 @@ public class StandaloneProject
     private static async Task<Document> ApplyCodeFixAsync(DocumentId documentId, CodeAction action, CancellationToken cancellationToken = default)
     {
         var operation = await action.GetOperationsAsync(cancellationToken);
-        return operation.OfType<ApplyChangesOperation>().First().ChangedSolution.GetDocument(documentId);
+        return operation.OfType<ApplyChangesOperation>().First().ChangedSolution.GetDocument(documentId)!;
     }
 
     private static void AssertFailure(string message, object actual, object expected, params Diagnostic[] actualDiagnostics)
