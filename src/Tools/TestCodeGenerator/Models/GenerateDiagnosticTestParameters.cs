@@ -15,7 +15,7 @@ public class GenerateDiagnosticTestParameters
     [Option("src", IsRequired = false)]
     public string Source { get; set; } = GetDefaultPath();
 
-    [Option("id")]
+    [Option("id", IsRequired = true)]
     public string Id { get; set; }
 
     [Option("with-code-fix")]
