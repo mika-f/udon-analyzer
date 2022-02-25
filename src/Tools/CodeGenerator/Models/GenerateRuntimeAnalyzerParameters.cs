@@ -126,7 +126,9 @@ public class GenerateRuntimeAnalyzerParameters : IValidatableEntity
         }
 
         var compilation = UdonRuntimeAnalyzerGenerator.CreateGeneratedAnalyzerCode(Name, RuntimeMinVersion, RuntimeMaxVersion);
-        await CodeGenerationHelper.WriteCompilationUnit(Path.Combine(Source, "Analyzers", "Udon", $"{Name}.cs"), compilation);
+        var path = Path.Combine(Source, "Analyzers", "Udon", $"{Name}.cs");
+        await CodeGenerationHelper.WriteCompilationUnit(path, compilation);
+        Console.WriteLine($"Writing analyzer C# source code to {path}");
 
         var descriptor = UdonRuntimeAnalyzerGenerator.CreateGeneratedDescriptorCode($"VRC{Id.ToString().PadLeft(4, '0')}", Name, Title, Description, Category, Severity);
         var template = TemplateGenerator.CreateFromTemplate(new DiagnosticDescriptorsTemplate(Source));

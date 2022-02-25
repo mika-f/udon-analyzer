@@ -74,7 +74,9 @@ public class GenerateCompilerAnalyzerParameters : GenerateRuntimeAnalyzerParamet
         }
 
         var compilation = UdonSharpAnalyzerGenerator.CreateGeneratedAnalyzerCode(Name, RuntimeMinVersion, RuntimeMaxVersion, CompilerMinVersion, CompilerMaxVersion);
-        await CodeGenerationHelper.WriteCompilationUnit(Path.Combine(Source, "Analyzers", "UdonSharp", $"{Name}.cs"), compilation);
+        var path = Path.Combine(Source, "Analyzers", "UdonSharp", $"{Name}.cs");
+        await CodeGenerationHelper.WriteCompilationUnit(path, compilation);
+        Console.WriteLine($"Writing analyzer C# source code to {path}");
 
         var descriptor = UdonSharpAnalyzerGenerator.CreateGeneratedDescriptorCode($"VSC{Id.ToString().PadLeft(4, '0')}", Name, Title, Description, Category, Severity);
         var template = TemplateGenerator.CreateFromTemplate(new DiagnosticDescriptorsTemplate(Source));

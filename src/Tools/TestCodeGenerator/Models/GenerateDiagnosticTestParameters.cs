@@ -39,7 +39,9 @@ public class GenerateDiagnosticTestParameters
 
         var category = Id.StartsWith("VRC") ? "Udon" : "UdonSharp";
         var compilation = UdonSharpAnalyzerTestGenerator.CreateGeneratedTestCode(metadata.ClassName!, category);
-        await CodeGenerationHelper.WriteCompilationUnit(Path.Combine(Source, "Tests", "Analyzers.Tests", category, $"{metadata.ClassName!}Test.cs"), compilation);
+        var path = Path.Combine(Source, "Tests", "Analyzers.Tests", category, $"{metadata.ClassName!}Test.cs");
+        await CodeGenerationHelper.WriteCompilationUnit(path, compilation);
+        Console.WriteLine($"Writing analyzer test C# source code to {path}");
 
         if (WithCodeFix)
         {
