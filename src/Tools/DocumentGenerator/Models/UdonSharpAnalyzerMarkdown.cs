@@ -39,7 +39,7 @@ internal static class UdonSharpAnalyzerMarkdown
 
     public static string CreateIndexDocument(List<AnalyzerMetadata> metadata)
     {
-        var items = metadata.OrderBy(w => w.Id).Select(w => TableBody(w.Id, w.Title, w.Severity.ToString()));
+        var items = metadata.OrderBy(w => w.Id).Select(w => TableBody(w.Id, Hyperlink($"./{w.Id}.md", w.Title), w.Severity.ToString()));
 
         return Document(
             Heading2("List of Compiler Analyzers in UdonAnalyzers"),

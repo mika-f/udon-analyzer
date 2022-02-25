@@ -5,7 +5,7 @@
 
 namespace NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.Markdown.Syntax;
 
-public sealed class HyperlinkNode : SyntaxNode
+public sealed class HyperlinkNode : InlineNode
 {
     private readonly SyntaxNode _node;
     private readonly string _url;
