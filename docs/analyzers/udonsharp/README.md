@@ -12,5 +12,6 @@
 | VSC0008 | [Base type calling is not yet supported by UdonSharp](./VSC0008.md)                                                                   | Error    | 
 | VSC0009 | [Default expressions are not yet supported by UdonSharp](./VSC0009.md)                                                                | Error    | 
 | VSC0010 | [Default literal expressions are not yet supported by UdonSharp](./VSC0010.md)                                                        | Error    | 
+| VSC0011 | [UdonSharp does not support multidimensional arrays at the moment, use jagged arrays instead for now](./VSC0011.md)                   | Error    | 
 
 

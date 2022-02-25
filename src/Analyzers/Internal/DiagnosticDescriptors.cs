@@ -91,6 +91,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportMultidimensionalArrays = DiagnosticDescriptorFactory.Create(
+        "VSC0011",
+        "UdonSharp does not support multidimensional arrays at the moment, use jagged arrays instead for now",
+        "UdonSharp does not support multidimensional arrays at the moment, use jagged arrays instead for now",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
