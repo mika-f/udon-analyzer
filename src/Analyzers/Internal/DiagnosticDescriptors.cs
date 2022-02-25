@@ -75,6 +75,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DefaultExpressionsAreNotYetSupported = DiagnosticDescriptorFactory.Create(
+        "VSC0009",
+        "Default expressions are not yet supported by UdonSharp",
+        "Default expressions are not yet supported by UdonSharp",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

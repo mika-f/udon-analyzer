@@ -10,5 +10,6 @@
 | VSC0006 | UdonSharp does not currently support static user-defined property declarations                                        | Error    | 
 | VSC0007 | UdonSharp does not currently support initializers on properties                                                       | Error    | 
 | VSC0008 | Base type calling is not yet supported by UdonSharp                                                                   | Error    | 
+| VSC0009 | Default expressions are not yet supported by UdonSharp                                                                | Error    | 
 
 
