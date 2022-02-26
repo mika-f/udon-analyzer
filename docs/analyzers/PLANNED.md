@@ -25,8 +25,6 @@ List of planned analyzers in the future release.
 
 ## UdonSharp Compiler
 
-- `ERR: UdonSharp does not support multidimensional arrays at the moment, use jagged arrays instead for now`
-- `ERR: UdonSharp does not support multidimensional array accesses yet`
 - `ERR: UdonSharp does not currently support null conditional operators`
 - `ERR: UdonSharp does not currently support static method declarations`
 - `ERR: UdonSharp does not yet support 'out' parameters on user-defined methods`

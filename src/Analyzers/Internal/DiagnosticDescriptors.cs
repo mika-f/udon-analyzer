@@ -99,6 +99,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportMultidimensionalArrayAccesses = DiagnosticDescriptorFactory.Create(
+        "VSC0012",
+        "UdonSharp does not support multidimensional array accesses yet",
+        "UdonSharp does not support multidimensional array accesses yet",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
