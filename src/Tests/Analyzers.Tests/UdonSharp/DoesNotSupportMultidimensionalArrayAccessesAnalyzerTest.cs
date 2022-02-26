@@ -45,7 +45,7 @@ class TestBehaviour : MonoBehaviour
     public void TestMethod()
     {
         var a = new [1,1];
-        |a[0,0]= 1;
+        a[0,0]= 1;
     }
 }
 ");
