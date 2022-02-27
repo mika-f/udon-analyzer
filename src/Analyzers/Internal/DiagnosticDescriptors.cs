@@ -107,6 +107,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportNullConditionalOperators = DiagnosticDescriptorFactory.Create(
+        "VSC0013",
+        "UdonSharp does not currently support null conditional operators",
+        "UdonSharp does not currently support null conditional operators",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

@@ -14,5 +14,6 @@
 | VSC0010 | [Default literal expressions are not yet supported by UdonSharp](./VSC0010.md)                                                        | Error    | 
 | VSC0011 | [UdonSharp does not support multidimensional arrays at the moment, use jagged arrays instead for now](./VSC0011.md)                   | Error    | 
 | VSC0012 | [UdonSharp does not support multidimensional array accesses yet](./VSC0012.md)                                                        | Error    | 
+| VSC0013 | [UdonSharp does not currently support null conditional operators](./VSC0013.md)                                                       | Error    | 
 
 
