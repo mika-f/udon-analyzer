@@ -23,7 +23,7 @@ namespace NatsunekoLaboratory.UdonAnalyzer.CodeGenerator.Models;
 
 public class GenerateRuntimeAnalyzerParameters : IValidatableEntity
 {
-    private readonly Regex _nameRegex = new("^[A-Z][A-Za-z]+Analyzer$", RegexOptions.Compiled);
+    private readonly Regex _nameRegex = new("^[A-Z][A-Za-z0-9]+Analyzer$", RegexOptions.Compiled);
 
     [Option("src", IsRequired = false)]
     public string Source { get; set; } = GetDefaultPath();
