@@ -171,6 +171,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotYetSupportLabeledStatements = DiagnosticDescriptorFactory.Create(
+        "VSC0021",
+        "UdonSharp does not yet support labeled statements",
+        "UdonSharp does not yet support labeled statements",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
