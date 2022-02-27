@@ -147,6 +147,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportReadonlyReferenceLocalVariableDeclaration = DiagnosticDescriptorFactory.Create(
+        "VSC0018",
+        "UdonSharp does not support 'readonly references' local variable declarations",
+        "UdonSharp does not support 'readonly references' local variable declarations",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
