@@ -115,6 +115,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportStaticMethodDeclarations = DiagnosticDescriptorFactory.Create(
+        "VSC0014",
+        "UdonSharp does not currently support static method declarations",
+        "UdonSharp does not currently support static method declarations",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
