@@ -203,6 +203,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor OnlyOneClassDeclarationPerFileIsCurrentlySupported = DiagnosticDescriptorFactory.Create(
+        "VSC0025",
+        "Only one class declaration per file is currently supported by UdonSharp",
+        "Only one class declaration per file is currently supported by UdonSharp",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
