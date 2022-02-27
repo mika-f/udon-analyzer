@@ -13,6 +13,8 @@ public static class DiagnosticDescriptorFactory
 
     public static DiagnosticDescriptor Create(string id, string title, string messageFormat, string category, DiagnosticSeverity defaultSeverity, bool isEnabledByDefault = true, string? description = null)
     {
+        if (string.IsNullOrWhiteSpace(description))
+            description = messageFormat;
         return new DiagnosticDescriptor(id, title, messageFormat, category, defaultSeverity, isEnabledByDefault, description, HelpLinkBaseUri + id);
     }
 }
