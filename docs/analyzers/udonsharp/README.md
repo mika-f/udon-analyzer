@@ -24,5 +24,6 @@
 | VSC0020 | [UdonSharp does not yet support goto](./VSC0020.md)                                                                                   | Error    | 
 | VSC0021 | [UdonSharp does not yet support labeled statements](./VSC0021.md)                                                                     | Error    | 
 | VSC0022 | [Object initializers are not yet supported by UdonSharp](./VSC0022.md)                                                                | Error    | 
+| VSC0023 | [UdonSharp does not yet support goto case statement](./VSC0023.md)                                                                    | Error    | 
 
 

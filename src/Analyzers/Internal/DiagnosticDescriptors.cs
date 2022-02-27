@@ -187,6 +187,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotYetSupportGotoCase = DiagnosticDescriptorFactory.Create(
+        "VSC0023",
+        "UdonSharp does not yet support goto case statement",
+        "UdonSharp does not yet support goto case statement",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
