@@ -31,3 +31,4 @@ VSC0020 | Compiler | Error | [Document](../../docs/analyzers/udonsharp/VSC0020.m
 VSC0021 | Compiler | Error | [Document](../../docs/analyzers/udonsharp/VSC0021.md)
 VSC0022 | Compiler | Error | [Document](../../docs/analyzers/udonsharp/VSC0022.md)
 VSC0023 | Compiler | Error | [Document](../../docs/analyzers/udonsharp/VSC0023.md)
+VSC0024 | Compiler | Error | [Document](../../docs/analyzers/udonsharp/VSC0024.md)
