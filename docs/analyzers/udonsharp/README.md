@@ -18,5 +18,6 @@
 | VSC0014 | [UdonSharp does not currently support static method declarations](./VSC0014.md)                                                       | Error    | 
 | VSC0015 | [UdonSharp does not yet support 'out' parameters on user-defined methods](./VSC0015.md)                                               | Error    | 
 | VSC0016 | [UdonSharp does not yet support 'in' parameters on user-defined methods](./VSC0016.md)                                                | Error    | 
+| VSC0017 | [UdonSharp does not yet support 'ref' parameters on user-defined methods](./VSC0017.md)                                               | Error    | 
 
 

@@ -139,6 +139,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotYetSupportRefParametersOnUserDefinedMethods = DiagnosticDescriptorFactory.Create(
+        "VSC0017",
+        "UdonSharp does not yet support 'ref' parameters on user-defined methods",
+        "UdonSharp does not yet support 'ref' parameters on user-defined methods",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
