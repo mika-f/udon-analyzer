@@ -29,4 +29,7 @@ udon_analyzer.network_dictionary_mode = internal
 
 # If set to False, the Analyzer will run only for UdonSharpBehaviour inherited classes, otherwise; it will run for all classes.
 udon_analyzer.enable_workspace_analyzing = true
+
+# If set this value explicitly, the Analyzer will use the specified version for the C# language features (default: 7.2)
+udon_analyzer.csharp_version = 7.2
 ```

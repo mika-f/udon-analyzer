@@ -27,6 +27,8 @@ public abstract class BaseDiagnosticAnalyzer : DiagnosticAnalyzer
 
     protected Lazy<RequireUdonSharpCompilerVersionAttribute?> RequiredUdonSharpCompilerVersion => new(FetchRequiredCustomAttribute<RequireUdonSharpCompilerVersionAttribute>);
 
+    protected Lazy<RequireCSharpLanguageFeatureAttribute?> RequiredCSharpLanguageFeature => new(FetchRequiredCustomAttribute<RequireCSharpLanguageFeatureAttribute>);
+
     public override void Initialize(AnalysisContext context)
     {
         context.EnableConcurrentExecution();
@@ -39,6 +41,9 @@ public abstract class BaseDiagnosticAnalyzer : DiagnosticAnalyzer
             return;
 
         if (RequiredUdonSharpCompilerVersion.Value?.IsFulfill(CurrentUdonSharpCompilerVersion(context)) != true)
+            return;
+
+        if (RequiredCSharpLanguageFeature.Value != null && !RequiredCSharpLanguageFeature.Value.IsFulfill(CurrentCSharpLanguageFeature(context)))
             return;
 
         if (IsSyntaxNodeInsideOfIgnoringPreprocessor(context))
@@ -96,6 +101,11 @@ public abstract class BaseDiagnosticAnalyzer : DiagnosticAnalyzer
     {
         var v = context.GetEditorConfigValue(AnalyzerOptionDescriptors.UdonSharpCompilerVersion);
         return v == "auto" ? CSharpSolutionContext.FetchUdonSharpCompilerVersion(context) : v;
+    }
+
+    private static string CurrentCSharpLanguageFeature(SyntaxNodeAnalysisContext context)
+    {
+        return context.GetEditorConfigValue(AnalyzerOptionDescriptors.CSharpLanguageFeature);
     }
 
     private static bool IsEnableWorkspaceAnalyzing(SyntaxNodeAnalysisContext context)
