@@ -315,11 +315,9 @@ public class UdonAnalyzerMetadata
 
                     var str = esb.ToString();
                     if (!string.IsNullOrWhiteSpace(str))
-                    {
-                        sb.AppendLine(str);
-                        esb.Clear();
-                    }
+                        sb.AppendLine(str.TrimEnd());
 
+                    esb.Clear();
                     column = 1;
                     break;
 
@@ -328,8 +326,6 @@ public class UdonAnalyzerMetadata
 
                 case '[' when sr.Peek() == '|':
                     sr.Read();
-
-                    (column - 1).Times(() => esb.Append(' '));
                     isReadingAnnotation = true;
                     break;
 
@@ -348,16 +344,14 @@ public class UdonAnalyzerMetadata
                     isReadingAnnotation = false;
                     break;
 
-                case ' ' when isReadingAnnotation:
+                case ' ':
                     sb.Append(c);
-
-                    esb.Append(string.IsNullOrWhiteSpace(esb.ToString()) ? ' ' : '~');
+                    esb.Append(isReadingAnnotation && !string.IsNullOrWhiteSpace(esb.ToString()) ? '~' : ' ');
                     break;
 
                 default:
                     sb.Append(c);
-                    if (isReadingAnnotation)
-                        esb.Append('~');
+                    esb.Append(isReadingAnnotation ? '~' : ' ');
                     column++;
                     break;
             }
