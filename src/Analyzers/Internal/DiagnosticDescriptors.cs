@@ -155,6 +155,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportReturnsReadonlyReferenceOnUserDefinedMethodDeclaration = DiagnosticDescriptorFactory.Create(
+        "VSC0019",
+        "UdonSharp does not support returns 'readonly references' on user defined method declarations",
+        "UdonSharp does not support 'readonly references' on user defined method declarations",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

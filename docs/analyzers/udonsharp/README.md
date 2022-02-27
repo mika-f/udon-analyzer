@@ -20,5 +20,6 @@
 | VSC0016 | [UdonSharp does not yet support 'in' parameters on user-defined methods](./VSC0016.md)                                                | Error    | 
 | VSC0017 | [UdonSharp does not yet support 'ref' parameters on user-defined methods](./VSC0017.md)                                               | Error    | 
 | VSC0018 | [UdonSharp does not support 'readonly references' local variable declarations](./VSC0018.md)                                          | Error    | 
+| VSC0019 | [UdonSharp does not support returns 'readonly references' on user defined method declarations](./VSC0019.md)                          | Error    | 
 
 
