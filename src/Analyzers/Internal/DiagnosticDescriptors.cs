@@ -131,6 +131,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotYetSupportInParametersOnUserDefinedMethods = DiagnosticDescriptorFactory.Create(
+        "VSC0016",
+        "UdonSharp does not yet support 'in' parameters on user-defined methods",
+        "UdonSharp does not yet support 'in' parameters on user-defined methods",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
