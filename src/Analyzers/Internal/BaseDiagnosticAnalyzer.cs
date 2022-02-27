@@ -37,13 +37,13 @@ public abstract class BaseDiagnosticAnalyzer : DiagnosticAnalyzer
 
     protected void RunAnalyzer(SyntaxNodeAnalysisContext context, bool isRequireInherit, Action<SyntaxNodeAnalysisContext> callback)
     {
-        if (RequiredUdonVersion.Value?.IsFulfill(CurrentUdonRuntimeVersion(context)) != true)
+        if (RequiredUdonVersion.Value?.IsFulfill(CurrentUdonRuntimeVersion(context)) == false)
             return;
 
-        if (RequiredUdonSharpCompilerVersion.Value?.IsFulfill(CurrentUdonSharpCompilerVersion(context)) != true)
+        if (RequiredUdonSharpCompilerVersion.Value?.IsFulfill(CurrentUdonSharpCompilerVersion(context)) == false)
             return;
 
-        if (RequiredCSharpLanguageFeature.Value != null && !RequiredCSharpLanguageFeature.Value.IsFulfill(CurrentCSharpLanguageFeature(context)))
+        if (RequiredCSharpLanguageFeature.Value?.IsFulfill(CurrentCSharpLanguageFeature(context)) == false)
             return;
 
         if (IsSyntaxNodeInsideOfIgnoringPreprocessor(context))
