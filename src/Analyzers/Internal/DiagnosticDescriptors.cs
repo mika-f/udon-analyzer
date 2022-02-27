@@ -179,6 +179,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotYetSupportObjectInitializers = DiagnosticDescriptorFactory.Create(
+        "VSC0022",
+        "Object initializers are not yet supported by UdonSharp",
+        "Object initializers are not yet supported by UdonSharp",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
