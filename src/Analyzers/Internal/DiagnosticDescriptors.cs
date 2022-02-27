@@ -123,6 +123,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotYetSupportOutParametersOnUserDefinedMethods = DiagnosticDescriptorFactory.Create(
+        "VSC0015",
+        "UdonSharp does not yet support 'out' parameters on user-defined methods",
+        "UdonSharp does not yet support 'out' parameters on user-defined methods",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

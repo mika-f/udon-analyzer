@@ -25,7 +25,6 @@ List of planned analyzers in the future release.
 
 ## UdonSharp Compiler
 
-- `ERR: UdonSharp does not yet support 'out' parameters on user-defined methods`
 - `ERR: UdonSharp does not yet support 'in' parameters on user-defined methods`
 - `ERR: UdonSharp does not yet support 'ref' parameters on user-defined methods`
 - `ERR: UdonSharp does not currently support type checking with the \"is\" keyword since Udon does not yet expose the proper functionality for type checking.`
