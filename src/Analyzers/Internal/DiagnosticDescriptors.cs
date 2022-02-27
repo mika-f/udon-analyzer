@@ -163,6 +163,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotYetSupportGoto = DiagnosticDescriptorFactory.Create(
+        "VSC0020",
+        "UdonSharp does not yet support goto",
+        "UdonSharp does not yet support goto",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
