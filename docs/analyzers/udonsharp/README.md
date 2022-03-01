@@ -27,5 +27,6 @@
 | VSC0023 | [UdonSharp does not yet support goto case statement](./VSC0023.md)                                                                    | Error    | 
 | VSC0024 | [UdonSharp does not yet support goto default statement](./VSC0024.md)                                                                 | Error    | 
 | VSC0025 | [Only one class declaration per file is currently supported by UdonSharp](./VSC0025.md)                                               | Error    | 
+| VSC0026 | [GetComponent<T> is currently broken in Udon for SDK3 components](./VSC0026.md)                                                       | Error    | 
 
 

@@ -211,6 +211,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor GetComponentIsCurrentlyBrokenInUdonForSDK3Components = DiagnosticDescriptorFactory.Create(
+        "VSC0026",
+        "GetComponent<T> is currently broken in Udon for SDK3 components",
+        "GetComponent<T> is currently broken in Udon for SDK3 components",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
