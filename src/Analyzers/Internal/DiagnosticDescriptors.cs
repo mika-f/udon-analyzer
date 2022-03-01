@@ -211,6 +211,7 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    // ReSharper disable once InconsistentNaming
     public static readonly DiagnosticDescriptor GetComponentIsCurrentlyBrokenInUdonForSDK3Components = DiagnosticDescriptorFactory.Create(
         "VSC0026",
         "GetComponent<T> is currently broken in Udon for SDK3 components",
