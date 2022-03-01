@@ -24,7 +24,7 @@ public sealed class HyperlinkNode : InlineNode
 
     public HyperlinkNode(string url, ImageNode text) : this(url, (SyntaxNode)text) { }
 
-    public HyperlinkNode(string url, string text) : this(url, new StringNode(text)) { }
+    public HyperlinkNode(string url, string text) : this(url, new StringNode(text, true)) { }
 
     public override void WriteTo(MarkdownWriter writer)
     {

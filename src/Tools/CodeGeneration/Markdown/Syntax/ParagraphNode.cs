@@ -18,7 +18,7 @@ public class ParagraphNode : BlockNode
 
     public ParagraphNode(InlineNode node) : this((SyntaxNode)node) { }
 
-    public ParagraphNode(string text) : this(new StringNode(text)) { }
+    public ParagraphNode(string text) : this(new StringNode(text, true)) { }
 
     public override void WriteTo(MarkdownWriter writer)
     {
