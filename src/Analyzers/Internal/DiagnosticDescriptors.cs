@@ -30,7 +30,7 @@ internal static class DiagnosticDescriptors
     public static readonly DiagnosticDescriptor DoesNotYetSupportInheritingFromClassesOtherThanSpecifiedClass = DiagnosticDescriptorFactory.Create(
         "VSC0003",
         "UdonSharp does not yet support inheriting from classes other than 'UdonSharpBehaviour'",
-        "UdonSharp does not yet support inheriting from classes other than '{0}'",
+        "UdonSharp does not yet support inheriting from classes other than 'UdonSharpBehaviour'",
         DiagnosticCategories.Compiler,
         DiagnosticSeverity.Error
     );
