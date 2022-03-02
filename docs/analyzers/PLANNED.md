@@ -26,7 +26,6 @@ List of planned analyzers in the future release.
 
 ## UdonSharp Compiler
 
-- `ERR: UdonSharp custom methods currently do not support default arguments or params arguments`
 - `ERR: Static fields are not yet supported by UdonSharp`
 - `ERR: Only one field may target property {variable}`
 - `ERR: Invalid target property for {variable}`
