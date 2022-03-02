@@ -220,6 +220,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportDefaultArgumentsOrParamsArguments = DiagnosticDescriptorFactory.Create(
+        "VSC0027",
+        "UdonSharp custom methods currently do not support default arguments or params arguments",
+        "UdonSharp custom methods currently do not support default arguments or params arguments",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
