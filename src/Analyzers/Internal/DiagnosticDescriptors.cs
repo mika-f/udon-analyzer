@@ -228,6 +228,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotYetSupportedStaticFields = DiagnosticDescriptorFactory.Create(
+        "VSC0028",
+        "Static fields are not yet supported by UdonSharp",
+        "Static fields are not yet supported by UdonSharp",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

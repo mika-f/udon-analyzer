@@ -29,5 +29,6 @@
 | VSC0025 | [Only one class declaration per file is currently supported by UdonSharp](./VSC0025.md)                                                 | Error    | 
 | VSC0026 | [GetComponent&lt;T&gt; is currently broken in Udon for SDK3 components](./VSC0026.md)                                                   | Error    | 
 | VSC0027 | [UdonSharp custom methods currently do not support default arguments or params arguments](./VSC0027.md)                                 | Error    | 
+| VSC0028 | [Static fields are not yet supported by UdonSharp](./VSC0028.md)                                                                        | Error    | 
 
 
