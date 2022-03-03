@@ -146,6 +146,14 @@ public class UdonAnalyzerMetadata
                     case 4:
                         arguments.Add((DiagnosticSeverity)value.Value!);
                         break;
+
+                    case 5:
+                        arguments.Add(true); // always true
+                        break;
+
+                    case 6:
+                        arguments.Add(value.Value!);
+                        break;
                 }
             }
 
@@ -153,6 +161,12 @@ public class UdonAnalyzerMetadata
             {
                 var name = $"{field.Declaration.Variables.First().Identifier.ToFullString().Trim()}Analyzer";
                 _metadata.Add(new AnalyzerMetadata((string)arguments[0], (string)arguments[1], (string)arguments[2], (string)arguments[3], (DiagnosticSeverity)arguments[4], null, null, null, null, name));
+            }
+
+            if (arguments.Count == 7)
+            {
+                var name = $"{field.Declaration.Variables.First().Identifier.ToFullString().Trim()}Analyzer";
+                _metadata.Add(new AnalyzerMetadata((string)arguments[0], (string)arguments[1], (string)arguments[6], (string)arguments[3], (DiagnosticSeverity)arguments[4], null, null, null, null, name));
             }
         }
     }
