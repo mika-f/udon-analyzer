@@ -26,7 +26,6 @@ List of planned analyzers in the future release.
 
 ## UdonSharp Compiler
 
-- `ERR: Only one field may target property {variable}`
 - `ERR: Invalid target property for {variable}`
 - `ERR: Property not found for {variable}`
 - `ERR: Types must match between property and variable change field`

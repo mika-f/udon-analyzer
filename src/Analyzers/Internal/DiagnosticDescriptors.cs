@@ -236,6 +236,16 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor OnlyOneFieldMayTargetPropertyOnThisProperty = DiagnosticDescriptorFactory.Create(
+        "VSC0029",
+        "Only one field may target property",
+        "Only one field may target property '{0}'",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error,
+        true,
+        "Only one field may target property."
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
