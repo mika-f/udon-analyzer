@@ -96,7 +96,8 @@ public abstract class DiagnosticVerifier<TAnalyzer, TProject> where TAnalyzer : 
                         message.Append((char)sr.Read());
                     sr.Read();
 
-                    diagnostics.Add(ExpectDiagnostic().WithSpan(expectedLine, expectedColumn, line, column).WithMessage(message.ToString()));
+                    // ReSharper disable once CoVariantArrayConversion
+                    diagnostics.Add(ExpectDiagnostic().WithSpan(expectedLine, expectedColumn, line, column).WithArguments(message.ToString().Split(",")));
                     isReadingAnnotation = false;
                     break;
 

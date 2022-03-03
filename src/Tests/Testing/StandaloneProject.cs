@@ -111,6 +111,8 @@ public class StandaloneProject
                     actualDiagnostics.Add(diagnostic);
             }
 
+        actualDiagnostics = actualDiagnostics.OrderBy(w => w.Location.GetLineSpan().StartLinePosition.Line).ToList();
+
         Diagnostics = actualDiagnostics.AsReadOnly();
 
         VerifyDiagnostics(actualDiagnostics.ToArray(), expectedDiagnostics);
