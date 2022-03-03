@@ -54,6 +54,9 @@ public class GenerateRuntimeAnalyzerParameters : IValidatableEntity
     [Option("description", IsRequired = false)]
     public string Description { get; set; }
 
+    [Option("message-format", IsRequired = false)]
+    public string? MessageFormat { get; set; }
+
     [Option("json", IsRequired = false)]
     [JsonIgnore]
     public string? JsonPath { get; set; }
@@ -130,7 +133,7 @@ public class GenerateRuntimeAnalyzerParameters : IValidatableEntity
         await CodeGenerationHelper.WriteCompilationUnit(path, compilation);
         Console.WriteLine($"Writing analyzer C# source code to {path}");
 
-        var descriptor = UdonRuntimeAnalyzerGenerator.CreateGeneratedDescriptorCode($"VRC{Id.ToString().PadLeft(4, '0')}", Name, Title, Description, Category, Severity);
+        var descriptor = UdonRuntimeAnalyzerGenerator.CreateGeneratedDescriptorCode($"VRC{Id.ToString().PadLeft(4, '0')}", Name, Title, MessageFormat ?? Description, Category, Severity, Description);
         var template = TemplateGenerator.CreateFromTemplate(new DiagnosticDescriptorsTemplate(Source));
         template.GenerateAndFlush(new DiagnosticDescriptorsTemplate.VariableAccessor(DiagnosticDescriptorsTemplate.VariableAccessor.UdonRuntimeDescriptorKey, descriptor));
 

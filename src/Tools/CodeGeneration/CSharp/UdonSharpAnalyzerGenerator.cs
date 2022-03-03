@@ -157,16 +157,22 @@ public static class UdonSharpAnalyzerGenerator
                .WithBody(Block(body.ToArray()));
     }
 
-    public static FieldDeclarationSyntax CreateGeneratedDescriptorCode(string id, string name, string title, string description, string category, DiagnosticSeverity severity)
+    public static FieldDeclarationSyntax CreateGeneratedDescriptorCode(string id, string name, string title, string messageFormat, string category, DiagnosticSeverity severity, string description)
     {
         var arguments = new List<ExpressionSyntax>
         {
             LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(id)).WithNewLineTrivia(),
             LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(title)).WithNewLineTrivia(),
-            LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(description)).WithNewLineTrivia(),
+            LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(messageFormat)).WithNewLineTrivia(),
             MemberAccessExpression(SyntaxKind.SimpleMemberAccessExpression, IdentifierName("DiagnosticCategories"), IdentifierName(category)).WithNewLineTrivia(),
             MemberAccessExpression(SyntaxKind.SimpleMemberAccessExpression, IdentifierName("DiagnosticSeverity"), IdentifierName(severity.ToString())).WithNewLineTrivia()
         };
+
+        if (messageFormat != description)
+        {
+            arguments.Add(LiteralExpression(SyntaxKind.TrueLiteralExpression).WithNewLineTrivia());
+            arguments.Add(LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(description)).WithNewLineTrivia());
+        }
 
         var expression = InvocationExpression(
             MemberAccessExpression(SyntaxKind.SimpleMemberAccessExpression, IdentifierName("DiagnosticDescriptorFactory"), IdentifierName("Create"))
