@@ -32,5 +32,6 @@
 | VSC0028 | [Static fields are not yet supported by UdonSharp](./VSC0028.md)                                                                        | Error    | 
 | VSC0029 | [Only one field may target property](./VSC0029.md)                                                                                      | Error    | 
 | VSC0030 | [Invalid target property](./VSC0030.md)                                                                                                 | Error    | 
+| VSC0031 | [Types must match between property and variable change field](./VSC0031.md)                                                             | Error    | 
 
 

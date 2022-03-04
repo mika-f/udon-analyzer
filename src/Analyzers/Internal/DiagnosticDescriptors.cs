@@ -256,6 +256,14 @@ internal static class DiagnosticDescriptors
         "Invalid target property."
     );
 
+    public static readonly DiagnosticDescriptor TypesMustMatchBetweenPropertyAndVariableChangeField = DiagnosticDescriptorFactory.Create(
+        "VSC0031",
+        "Types must match between property and variable change field",
+        "Types must match between property and variable change field",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
