@@ -246,6 +246,16 @@ internal static class DiagnosticDescriptors
         "Only one field may target property."
     );
 
+    public static readonly DiagnosticDescriptor InvalidTargetProperty = DiagnosticDescriptorFactory.Create(
+        "VSC0030",
+        "Invalid target property",
+        "Invalid target property for '{0}'",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error,
+        true,
+        "Invalid target property."
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

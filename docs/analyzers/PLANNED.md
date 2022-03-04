@@ -26,7 +26,6 @@ List of planned analyzers in the future release.
 
 ## UdonSharp Compiler
 
-- `ERR: Invalid target property for {variable}`
 - `ERR: Types must match between property and variable change field`
 - `ERR: Cannot define method with the same name as built-in UdonSharpBehaviour methods`
 - `ERR: UdonSharp only supports 1 type generic methods at the moment`
