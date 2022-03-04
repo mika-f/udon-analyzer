@@ -17,6 +17,22 @@ namespace Analyzers.Tests.UdonSharp;
 public class OnlyOneFieldMayTargetPropertyOnThisPropertyAnalyzerTest : UdonSharpDiagnosticVerifier<OnlyOneFieldMayTargetPropertyOnThisPropertyAnalyzer>
 {
     [Fact]
+    public async Task TestDiagnostic_MultipleFieldDeclarationHasFieldChangeCallback()
+    {
+        await VerifyAnalyzerAsync(@"
+using UdonSharp;
+
+class TestBehaviour : UdonSharpBehaviour
+{
+    [|[FieldChangeCallback(nameof(SomeProperty))]
+    private string _foo, _bar;|@SomeProperty]
+
+    public string SomeProperty { get; set; }
+}
+");
+    }
+
+    [Fact]
     [Example]
     public async Task TestDiagnostic_MultipleFieldSpecifiedFieldChangeCallbackToSameProperty()
     {
@@ -33,7 +49,6 @@ class TestBehaviour : UdonSharpBehaviour
 
     public string SomeProperty { get; set; }
 }
-
 ");
     }
 
@@ -56,7 +71,6 @@ class TestBehaviour : UdonSharpBehaviour
     public string AnotherProperty { get; set; }
 
 }
-
 ");
     }
 }

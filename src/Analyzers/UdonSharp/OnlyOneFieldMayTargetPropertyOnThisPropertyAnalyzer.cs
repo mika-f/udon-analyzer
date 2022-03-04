@@ -43,6 +43,11 @@ public class OnlyOneFieldMayTargetPropertyOnThisPropertyAnalyzer : BaseDiagnosti
         var targetProperty = GetTargetPropertyNameFromSyntax(context, declaration);
         if (string.IsNullOrWhiteSpace(targetProperty))
             return;
+        if (declaration.Declaration.Variables.Count > 1)
+        {
+            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, declaration, targetProperty!);
+            return;
+        }
 
         var fields = classDecl.Members.OfType<FieldDeclarationSyntax>();
         foreach (var field in fields.Where(w => w.HasAttribute(FieldChangeCallbackAttributeFullyQualifiedName, context.SemanticModel)))
