@@ -264,6 +264,16 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor CannotDefineMethodWithSameNameAsBuiltinUdonSharpBehaviourMethods = DiagnosticDescriptorFactory.Create(
+        "VSC0032",
+        "Cannot define method with the same name as built-in UdonSharpBehaviour methods",
+        "Cannot define method '{0}' with the same name as built-in UdonSharpBehaviour methods",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error,
+        true,
+        "Cannot define method with the same name as built-in UdonSharpBehaviour methods."
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
