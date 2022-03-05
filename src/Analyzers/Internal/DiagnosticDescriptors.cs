@@ -298,6 +298,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotYetSupportUserDefinedEnums = DiagnosticDescriptorFactory.Create(
+        "VSC0036",
+        "UdonSharp does not yet support user defined enums",
+        "UdonSharp does not yet support user defined enums",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
