@@ -282,6 +282,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportGenericsMethodDeclaration = DiagnosticDescriptorFactory.Create(
+        "VSC0034",
+        "UdonSharp does not support generics method declarations",
+        "UdonSharp does not support generics method declarations",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
