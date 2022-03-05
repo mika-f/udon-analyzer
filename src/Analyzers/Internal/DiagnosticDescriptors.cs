@@ -290,6 +290,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportNullableTypes = DiagnosticDescriptorFactory.Create(
+        "VSC0035",
+        "Nullable types are not currently supported by UdonSharp",
+        "Nullable types are not currently supported by UdonSharp",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
