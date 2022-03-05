@@ -34,5 +34,6 @@
 | VSC0030 | [Invalid target property](./VSC0030.md)                                                                                                 | Error    | 
 | VSC0031 | [Types must match between property and variable change field](./VSC0031.md)                                                             | Error    | 
 | VSC0032 | [Cannot define method with the same name as built\-in UdonSharpBehaviour methods](./VSC0032.md)                                         | Error    | 
+| VSC0033 | [UdonSharp only supports 1 type generic methods at the moment](./VSC0033.md)                                                            | Error    | 
 
 

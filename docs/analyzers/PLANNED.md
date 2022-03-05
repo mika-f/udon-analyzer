@@ -26,7 +26,6 @@ List of planned analyzers in the future release.
 
 ## UdonSharp Compiler
 
-- `ERR: UdonSharp only supports 1 type generic methods at the moment`
 - `ERR: Nullable types are not currently supported by UdonSharp`
 - `ERR: UdonSharp does not yet support user defined enums`
 - `` ERR: UdonSharp does not currently support using `typeof` on user defined types ``

@@ -274,6 +274,14 @@ internal static class DiagnosticDescriptors
         "Cannot define method with the same name as built-in UdonSharpBehaviour methods."
     );
 
+    public static readonly DiagnosticDescriptor OnlySupports1TypeGenericMethodsAtTheMoment = DiagnosticDescriptorFactory.Create(
+        "VSC0033",
+        "UdonSharp only supports 1 type generic methods at the moment",
+        "UdonSharp only supports 1 type generic methods at the moment",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
