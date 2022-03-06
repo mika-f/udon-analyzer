@@ -45,3 +45,4 @@ VSC0034 | Compiler | Error | [Document](../../docs/analyzers/udonsharp/VSC0034.m
 VSC0035 | Compiler | Error | [Document](../../docs/analyzers/udonsharp/VSC0035.md)
 VSC0036 | Compiler | Error | [Document](../../docs/analyzers/udonsharp/VSC0036.md)
 VSC0037 | Compiler | Error | [Document](../../docs/analyzers/udonsharp/VSC0037.md)
+VSC0038 | Compiler | Error | [Document](../../docs/analyzers/udonsharp/VSC0038.md)

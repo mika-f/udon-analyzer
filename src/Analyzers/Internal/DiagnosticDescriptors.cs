@@ -314,6 +314,15 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+
+    public static readonly DiagnosticDescriptor DoesNotYetSupportStaticUsingDirectives = DiagnosticDescriptorFactory.Create(
+        "VSC0038",
+        "UdonSharp does not yet support static using directives",
+        "UdonSharp does not yet support static using directives",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

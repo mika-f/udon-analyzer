@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Immutable;
+using System.Linq;
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -51,12 +52,12 @@ public abstract class BaseDiagnosticAnalyzer : DiagnosticAnalyzer
 
         if (IsEnableWorkspaceAnalyzing(context))
         {
-            if (isRequireInherit && IsSyntaxNodeInsideOfClassNotInheritedFromSpecifiedClass(context))
+            if (isRequireInherit && IsSyntaxNodeInsideOfClassNotInheritedFromSpecifiedClass(context) && IsSyntaxNodeOutsideOfClassNotInheritedFromSpecifiedClass(context))
                 return;
         }
         else
         {
-            if (IsSyntaxNodeInsideOfClassNotInheritedFromSpecifiedClass(context))
+            if (IsSyntaxNodeInsideOfClassNotInheritedFromSpecifiedClass(context) && IsSyntaxNodeOutsideOfClassNotInheritedFromSpecifiedClass(context))
                 return;
         }
 
@@ -67,6 +68,14 @@ public abstract class BaseDiagnosticAnalyzer : DiagnosticAnalyzer
     {
         var attr = Attribute.GetCustomAttribute(GetType(), typeof(T));
         return attr as T;
+    }
+
+    private static bool IsSyntaxNodeOutsideOfClassNotInheritedFromSpecifiedClass(SyntaxNodeAnalysisContext context)
+    {
+        var declarations = SyntaxNodeHelper.EnumerateClassDeclarations(context.SemanticModel.SyntaxTree.GetRoot());
+        if (declarations.Any(w => w.IsInheritOf(CurrentSpecifiedBehaviourInheritFullName(context), context.SemanticModel)))
+            return false;
+        return true;
     }
 
     private static bool IsSyntaxNodeInsideOfClassNotInheritedFromSpecifiedClass(SyntaxNodeAnalysisContext context)

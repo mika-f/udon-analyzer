@@ -39,5 +39,6 @@
 | VSC0035 | [Nullable types are not currently supported by UdonSharp](./VSC0035.md)                                                                 | Error    | 
 | VSC0036 | [UdonSharp does not yet support user defined enums](./VSC0036.md)                                                                       | Error    | 
 | VSC0037 | [UdonSharp does not currently support using 'typeof' on user defined types](./VSC0037.md)                                               | Error    | 
+| VSC0038 | [UdonSharp does not yet support static using directives](./VSC0038.md)                                                                  | Error    | 
 
 
