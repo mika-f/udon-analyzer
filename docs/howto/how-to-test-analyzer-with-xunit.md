@@ -9,7 +9,7 @@ If you want to test this analyzer with xUnit, please follow the steps below:
    - To find out which version of Unity Editor should install, please refer to [the VRChat documentation](https://docs.vrchat.com/docs/current-unity-version)
 3. Create a new project in Unity
 4. Add the VRChat SDK (World) to the project
-5. Add the [UdonSharp](https://github.com/MerlinVR/UdonSharp) to the project
+5. Add the [UdonSharp](https://github.com/vrchat-community/UdonSharp) to the project
 
 ## Testing
 
