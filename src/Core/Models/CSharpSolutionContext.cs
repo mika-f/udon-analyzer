@@ -22,7 +22,7 @@ public static class CSharpSolutionContext
     private const string UdonSharpCompilerVersionGuid = "cb4c25a39519c854fbe183f6a7ec08f7";
 
     // ReSharper disable once InconsistentNaming
-    private const string SDKAssemblyName = "VRC.Udon.dll";
+    private const string SDKAssemblyName = "VRC.Udon.Wrapper.dll";
 
     private static string? _udonRuntimeVersion;
     private static string? _udonSharpCompilerVersion;
@@ -70,16 +70,16 @@ public static class CSharpSolutionContext
 
     private static IEnumerable<string> FindUnityRootDirectory(string path)
     {
-        const string unityLibraryDirectory = "Library";
+        const string unityAssetsDirectory = "Assets";
         var paths = new List<string>();
         var lastIndex = 0;
 
-        while (path.IndexOf(unityLibraryDirectory, lastIndex, StringComparison.InvariantCulture) >= 0)
+        while (path.IndexOf(unityAssetsDirectory, lastIndex, StringComparison.InvariantCulture) >= 0)
         {
-            var i = path.IndexOf(unityLibraryDirectory, lastIndex, StringComparison.InvariantCulture);
+            var i = path.IndexOf(unityAssetsDirectory, lastIndex, StringComparison.InvariantCulture);
             paths.Add(path[..i]);
 
-            lastIndex = i + unityLibraryDirectory.Length;
+            lastIndex = i + unityAssetsDirectory.Length;
         }
 
         paths.Reverse();
