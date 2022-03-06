@@ -26,7 +26,6 @@ List of planned analyzers in the future release.
 
 ## UdonSharp Compiler
 
-- `` ERR: UdonSharp does not currently support using `typeof` on user defined types ``
 - `ERR: UdonSharp does not yet support static using directives`
 - `ERR: UdonSharp does not yet support namespace alias directives`
 - `` WRN: Use the `nameof` operator instead of directly specifying the method name in SendCustomEvent ``

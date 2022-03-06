@@ -56,4 +56,18 @@ public static class TypeSyntaxExtensions
 
         return t.Equals(symbol, SymbolEqualityComparer.Default);
     }
+
+    public static bool IsSubClassOf(this TypeSyntax obj, string fullyQualifiedClassName, SemanticModel model)
+    {
+        var symbol = model.Compilation.GetTypeByMetadataName(fullyQualifiedClassName);
+        var info = model.GetSymbolInfo(obj);
+        if (info.Symbol is not INamedTypeSymbol t)
+        {
+            if (info.CandidateSymbols.None())
+                return false;
+            return info.CandidateSymbols.OfType<ITypeSymbol>().Any(w => w.BaseType?.Equals(symbol, SymbolEqualityComparer.Default) == true);
+        }
+
+        return t.BaseType?.Equals(symbol, SymbolEqualityComparer.Default) == true;
+    }
 }

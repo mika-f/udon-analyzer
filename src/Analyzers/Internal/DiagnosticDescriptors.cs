@@ -306,6 +306,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportUsingTypeofOnUserDefinedTypes = DiagnosticDescriptorFactory.Create(
+        "VSC0037",
+        "UdonSharp does not currently support using 'typeof' on user defined types",
+        "UdonSharp does not currently support using 'typeof' on user defined types",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
