@@ -26,9 +26,9 @@ $ codegen.exe analyzer compiler
   --compiler-min-version 1.0.0 \
   --description "This is a sample analyzer."
 
-
-# ...or JSON
+# ...or JSON (recommended)
 $ codegen.exe analyzer compiler --json analyzer.json
+
 
 # for CodeFix
 $ codegen.exe codefix
@@ -44,11 +44,12 @@ If you want to generate analyzer from JSON, you can use `--json` option with the
 ```json
 {
   "source": "../src",
-  "id": 3,
-  "name": "DoesNotYetSupportInheritingFromClassesOtherThanSpecifiedClassAnalyzer",
-  "title": "UdonSharp does not yet support inheriting from classes other than 'UdonSharpBehaviour'",
+  "id": 37,
+  "name": "DoesNotCurrentlySupportUsingTypeofOnUserDefinedTypesAnalyzer",
+  "title": "UdonSharp does not currently support using 'typeof' on user defined types",
   "category": "Compiler",
   "severity": "Error",
-  "description": "UdonSharp does not yet support inheriting from classes other than 'UdonSharpBehaviour'"
+  "description": "UdonSharp does not currently support using 'typeof' on user defined types",
+  "messageFormat": null
 }
 ```
