@@ -323,6 +323,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotYetSupportNamespaceAliasDirectives = DiagnosticDescriptorFactory.Create(
+        "VSC0039",
+        "UdonSharp does not yet support namespace alias directives",
+        "UdonSharp does not yet support namespace alias directives",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
