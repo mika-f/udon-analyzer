@@ -29,6 +29,9 @@ public class UdonSharpStandaloneProject : UnityStandaloneProject
         var sdk = Path.Combine(variable, "Assets", "VRCSDK", "Plugins");
         yield return Path.Combine(sdk, "VRCSDK3.dll");
 
+        var external = Path.Combine(variable, "Assets", "Udon", "External");
+        yield return Path.Combine(external, "VRC.Udon.Wrapper.dll");
+
         var assemblies = Path.Combine(variable, "Library", "ScriptAssemblies");
 
         yield return Path.Combine(assemblies, "VRC.Udon.dll");
