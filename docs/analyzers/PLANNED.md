@@ -4,7 +4,6 @@ List of planned analyzers in the future release.
 
 ## Udon Runtime
 
-- `ERR: UdonSharp does not currently support type checking with the \"is\" keyword since Udon does not yet expose the proper functionality for type checking.`
 - `` ERR: The `is` keyword is not yet supported by UdonSharp since Udon does not expose what is necessary ``
 - `` ERR: The `as` keyword is not yet supported by UdonSharp since Udon does not expose what is necessary ``
 - `ERR: Method {signature} is not exposed in Udon`

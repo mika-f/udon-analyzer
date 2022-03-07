@@ -361,6 +361,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportTypeCheckingWithTheIsKeyword = DiagnosticDescriptorFactory.Create(
+        "VRC0004",
+        "UdonSharp does not currently support type checking with the \"is\" keyword since Udon does not yet expose the proper functionality for type checking",
+        "UdonSharp does not currently support type checking with the \"is\" keyword since Udon does not yet expose the proper functionality for type checking",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
