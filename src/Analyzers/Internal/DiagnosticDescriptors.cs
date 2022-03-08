@@ -377,6 +377,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportTypeCasting = DiagnosticDescriptorFactory.Create(
+        "VRC0006",
+        "The 'as' keyword is not yet supported by UdonSharp since Udon does not expose what is necessary",
+        "The 'as' keyword is not yet supported by UdonSharp since Udon does not expose what is necessary",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
