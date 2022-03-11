@@ -16,9 +16,4 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Udon\" />
-    <Folder Include="UdonSharp\" />
-  </ItemGroup>
-
 </Project>
