@@ -22,11 +22,9 @@ This is the same format as BannedApiAnalyzers and can be used outside of VRChat 
 | `class AllowedType`                | `T:N.AllowedType`                                  |
 | `class AllowedType<T>`             | `` T:N.AllowedType`1 ``                            |
 | `AllowedType()`                    | `M:N.AllowedType#ctor`                             |
-| `AllowedType(int i)`               | `M:N.AllowedType#ctor(System.Int32)`               |
 | `int AllowedMethod()`              | `M:N.AllowedType.AllowedMethod`                    |
 | `void AllowedMethod(int i)`        | `M:N.AllowedType.AllowedMethod(System.Int32)`      |
 | `void AllowedMethod<T>(T t)`       | ``` M:N.AllowedType.AllowedMethod`1(``0) ```       |
 | `void AllowedMethod<T>(Func<T> f)` | ``` M:N.AllowedType.AllowedMethod`1(Func{``0}) ``` |
 | `string AllowedField`              | `F:N.AllowedType.AllowedField`                     |
-| `string AllowedProperty { get; } ` | `P:N.AllowedType.AllowedProperty.get`              |
-| `string AllowedProperty { set; } ` | `P:N.AllowedType.AllowedProperty.set`              |
+| `string AllowedProperty { get; } ` | `P:N.AllowedType.AllowedProperty`                  |
