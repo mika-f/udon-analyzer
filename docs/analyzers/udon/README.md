@@ -8,5 +8,6 @@
 | VRC0004 | [UdonSharp does not currently support type checking with the \"is\" keyword since Udon does not yet expose the proper functionality for type checking](./VRC0004.md) | Error    | 
 | VRC0005 | [The 'is' keyword is not yet supported by UdonSharp since Udon does not expose what is necessary](./VRC0005.md)                                                      | Error    | 
 | VRC0006 | [The 'as' keyword is not yet supported by UdonSharp since Udon does not expose what is necessary](./VRC0006.md)                                                      | Error    | 
+| VRC0007 | [Method is not exposed in Udon](./VRC0007.md)                                                                                                                        | Error    | 
 
 
