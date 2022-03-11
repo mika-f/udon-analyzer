@@ -17,13 +17,17 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Testing;
 
 public abstract class DiagnosticVerifier<TAnalyzer, TProject> where TAnalyzer : DiagnosticAnalyzer, new() where TProject : StandaloneProject, new()
 {
+    private readonly Dictionary<string, string> _additionalFiles = new();
     protected virtual ImmutableArray<string> FilteredDiagnosticIds { get; } = ImmutableArray<string>.Empty;
-
-    protected virtual ImmutableArray<(string, string)> AdditionalFiles { get; } = ImmutableArray<(string, string)>.Empty;
 
     protected virtual DiagnosticResult ExpectDiagnostic()
     {
         return new DiagnosticResult(new TAnalyzer().SupportedDiagnostics[0]);
+    }
+
+    protected void AddAdditionalFile(string filename, string content)
+    {
+        _additionalFiles.Add(filename, content);
     }
 
     protected async Task VerifyAnalyzerAsync(string annotatedSource)
@@ -42,8 +46,9 @@ public abstract class DiagnosticVerifier<TAnalyzer, TProject> where TAnalyzer : 
     {
         var project = StandaloneProject.CreateProject<TProject>(new[] { source });
 
-        foreach (var (filename, content) in AdditionalFiles)
-            project.AddAdditionalFile(filename, content);
+        foreach (var file in _additionalFiles)
+            project.AddAdditionalFile(file.Key, file.Value);
+        _additionalFiles.Clear();
 
         var sb = new StringBuilder();
         sb.AppendLine("root = true");
