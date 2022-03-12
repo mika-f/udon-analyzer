@@ -3,6 +3,7 @@
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // ------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -30,10 +31,23 @@ public class SymbolDictionary
 
     public bool IsSymbolIsAllowed(ISymbol symbol, SyntaxNodeAnalysisContext context)
     {
+        if (IsUserDefinedSymbol(symbol))
+            return true;
+
         LoadDictionaryFromAdditionalFiles(context);
 
         var declarationId = DocumentationCommentId.CreateDeclarationId(symbol);
         return _symbols.SelectMany(w => w.Value).Any(w => w == declarationId);
+    }
+
+    private static bool IsUserDefinedSymbol(ISymbol symbol)
+    {
+        return symbol switch
+        {
+            INamedTypeSymbol t => t.BaseType?.ToDisplayString() == "UdonSharp.UdonSharpBehaviour",
+            IMethodSymbol m => IsUserDefinedSymbol(m.ReceiverType ?? throw new InvalidOperationException()),
+            _ => false
+        };
     }
 
     private void LoadDictionaryFromAdditionalFiles(SyntaxNodeAnalysisContext context)
