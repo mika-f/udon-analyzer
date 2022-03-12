@@ -86,7 +86,6 @@ public class SymbolDictionary
 
         var symbols = _symbols[text.Path];
         symbols.Clear();
-        foreach (var line in source.Lines)
-            symbols.Add(line.ToString());
+        symbols.AddRange(source.Lines.Select(line => line.ToString()));
     }
 }
