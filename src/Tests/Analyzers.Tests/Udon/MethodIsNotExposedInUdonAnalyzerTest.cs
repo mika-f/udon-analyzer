@@ -3,6 +3,7 @@
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // ------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using NatsunekoLaboratory.UdonAnalyzer.AnalyzerSpec.Attributes;
@@ -20,8 +21,6 @@ public class MethodIsNotExposedInUdonAnalyzerTest : UdonSharpDiagnosticVerifier<
     [Example]
     public async Task TestDiagnostic_DisallowedMethodOnUdonSharpBehaviour()
     {
-        AddAdditionalFile("PublicAPI.Shipped.test.txt", "");
-
         await VerifyAnalyzerAsync(@"
 using UdonSharp;
 
@@ -43,7 +42,11 @@ class TestBehaviour : UdonSharpBehaviour
     [InlineData("name.ToString()", "M:System.String.ToString~System.String")]
     public async Task TestNoDiagnostic_AllowedMethodOnUdonSharpBehaviour(string invocation, string declaration)
     {
-        AddAdditionalFile("PublicAPI.Shipped.test.txt", declaration);
+        var additionals = new List<(string Filename, string Content)>
+        {
+            ("PublicAPI.Shipped.test.txt", declaration)
+        };
+
 
         await VerifyAnalyzerAsync(@$"
 using UdonSharp;
@@ -57,7 +60,7 @@ class TestBehaviour : UdonSharpBehaviour
         {invocation};
     }}
 }}
-");
+", additionals);
     }
 
     [Fact]

@@ -3,6 +3,7 @@
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // ------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using NatsunekoLaboratory.UdonAnalyzer.AnalyzerSpec.Attributes;
@@ -20,8 +21,6 @@ public class FieldAccessorIsNotExposedInUdonAnalyzerTest : UdonSharpDiagnosticVe
     [Example]
     public async Task TestDiagnostic_DisallowedFieldAccessorOnUdonSharpBehaviour()
     {
-        AddAdditionalFile("PublicAPI.Shipped.test.txt", "");
-
         await VerifyAnalyzerAsync(@"
 using UdonSharp;
 
@@ -43,7 +42,11 @@ class TestBehaviour : UdonSharpBehaviour
     [Fact]
     public async Task TestNoDiagnostic_AllowedFieldAccessorOnUdonSharpBehaviour()
     {
-        AddAdditionalFile("PublicAPI.Shipped.test.txt", "F:UnityEngine.Vector3.one");
+        var additionals = new List<(string Filename, string Content)>
+        {
+            ("PublicAPI.Shipped.test.txt", "F:UnityEngine.Vector3.one")
+        };
+
 
         await VerifyAnalyzerAsync(@"
 using UdonSharp;
@@ -57,7 +60,7 @@ class TestBehaviour : UdonSharpBehaviour
         var go = Vector3.one;
     }
 }
-");
+", additionals);
     }
 
     [Fact]

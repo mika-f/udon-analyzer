@@ -6,6 +6,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,7 +18,6 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Testing;
 
 public abstract class DiagnosticVerifier<TAnalyzer, TProject> where TAnalyzer : DiagnosticAnalyzer, new() where TProject : StandaloneProject, new()
 {
-    private readonly Dictionary<string, string> _additionalFiles = new();
     protected virtual ImmutableArray<string> FilteredDiagnosticIds { get; } = ImmutableArray<string>.Empty;
 
     protected virtual DiagnosticResult ExpectDiagnostic()
@@ -25,30 +25,33 @@ public abstract class DiagnosticVerifier<TAnalyzer, TProject> where TAnalyzer : 
         return new DiagnosticResult(new TAnalyzer().SupportedDiagnostics[0]);
     }
 
-    protected void AddAdditionalFile(string filename, string content)
-    {
-        _additionalFiles.Add(filename, content);
-    }
-
     protected async Task VerifyAnalyzerAsync(string annotatedSource)
     {
-        var (source, diagnostics) = ParseAnnotatedSource(annotatedSource);
-        await VerifyAnalyzerAsync(source, new Dictionary<string, string>(), diagnostics);
+        await VerifyAnalyzerAsync(annotatedSource, new Dictionary<string, string>());
     }
 
     protected async Task VerifyAnalyzerAsync(string annotatedSource, Dictionary<string, string> editorconfig)
     {
-        var (source, diagnostics) = ParseAnnotatedSource(annotatedSource);
-        await VerifyAnalyzerAsync(source, editorconfig, diagnostics);
+        await VerifyAnalyzerAsync(annotatedSource, Enumerable.Empty<(string Filename, string Content)>(), editorconfig);
     }
 
-    protected async Task VerifyAnalyzerAsync(string source, Dictionary<string, string> editorconfig, params DiagnosticResult[] expected)
+    protected async Task VerifyAnalyzerAsync(string annotatedSource, IEnumerable<(string Filename, string Content)> additionalFiles)
+    {
+        await VerifyAnalyzerAsync(annotatedSource, additionalFiles, new Dictionary<string, string>());
+    }
+
+    protected async Task VerifyAnalyzerAsync(string annotatedSource, IEnumerable<(string Filename, string Content)> additionalFiles, Dictionary<string, string> editorconfig)
+    {
+        var (source, diagnostics) = ParseAnnotatedSource(annotatedSource);
+        await VerifyAnalyzerAsync(source, additionalFiles, editorconfig, diagnostics);
+    }
+
+    protected async Task VerifyAnalyzerAsync(string source, IEnumerable<(string Filename, string Content)> additionalFiles, Dictionary<string, string> editorconfig, params DiagnosticResult[] expected)
     {
         var project = StandaloneProject.CreateProject<TProject>(new[] { source });
 
-        foreach (var file in _additionalFiles)
-            project.AddAdditionalFile(file.Key, file.Value);
-        _additionalFiles.Clear();
+        foreach (var file in additionalFiles)
+            project.AddAdditionalFile(file.Filename, file.Content);
 
         var sb = new StringBuilder();
         sb.AppendLine("root = true");
