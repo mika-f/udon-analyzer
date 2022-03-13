@@ -31,7 +31,7 @@ class TestBehaviour : UdonSharpBehaviour
 {
     public void TestMethod()
     {
-        [|GetComponent<Rigidbody>()|];
+        [|GetComponent<Rigidbody>()|@UnityEngine.Component.GetComponent<UnityEngine.Rigidbody>()];
     }
 }
 ");

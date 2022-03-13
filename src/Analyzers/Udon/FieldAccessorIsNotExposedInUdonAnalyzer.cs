@@ -37,7 +37,7 @@ public class FieldAccessorIsNotExposedInUdonAnalyzer : BaseDiagnosticAnalyzer
             return;
 
         if (!SymbolDictionary.Instance.IsSymbolIsAllowed(info.Symbol.OriginalDefinition, context))
-            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, expression);
+            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, expression, info.Symbol.ToDisplayString());
     }
 
     private void AnalyzeIdentifierName(SyntaxNodeAnalysisContext context)
@@ -48,6 +48,6 @@ public class FieldAccessorIsNotExposedInUdonAnalyzer : BaseDiagnosticAnalyzer
             return;
 
         if (!SymbolDictionary.Instance.IsSymbolIsAllowed(info.Symbol.OriginalDefinition, context))
-            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, identifier);
+            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, identifier, info.Symbol.ToDisplayString());
     }
 }

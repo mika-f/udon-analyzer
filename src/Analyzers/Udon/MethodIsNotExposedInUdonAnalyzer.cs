@@ -36,6 +36,6 @@ public class MethodIsNotExposedInUdonAnalyzer : BaseDiagnosticAnalyzer
             return;
 
         if (!SymbolDictionary.Instance.IsSymbolIsAllowed(info.Symbol.OriginalDefinition, context))
-            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, expression);
+            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, expression, info.Symbol.ToDisplayString());
     }
 }

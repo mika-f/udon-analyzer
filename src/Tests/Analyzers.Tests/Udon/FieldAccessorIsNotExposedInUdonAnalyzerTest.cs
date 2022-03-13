@@ -34,7 +34,7 @@ class TestBehaviour : UdonSharpBehaviour
 
     public void TestMethod()
     {
-        var go = [|_field.gameObject|];
+        var go = [|_field.gameObject|@UnityEngine.Component.gameObject];
     }
 }
 ");
