@@ -4,7 +4,6 @@ List of planned analyzers in the future release.
 
 ## Udon Runtime
 
-- `ERR: Udon does not support return values of type {type} yet`
 - `ERR: Udon does not support method parameters of type {type} yet`
 - `ERR: Udon does not support variable of type {type} yet`
 - `ERR: Cannot sync variable because behaviour is set to NoVariableSync, change the behaviour sync mode to sync variables`

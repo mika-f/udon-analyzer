@@ -405,6 +405,16 @@ internal static class DiagnosticDescriptors
         "Field accessor is not exposed in Udon."
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportReturnValuesOfType = DiagnosticDescriptorFactory.Create(
+        "VRC0009",
+        "Udon does not support return values of type yet",
+        "Udon does not support return values of type {type} yet",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error,
+        true,
+        "Udon does not support return values of type yet."
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
