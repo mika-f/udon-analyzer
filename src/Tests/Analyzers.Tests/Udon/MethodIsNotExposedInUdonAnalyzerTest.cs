@@ -59,4 +59,45 @@ class TestBehaviour : UdonSharpBehaviour
 }}
 ");
     }
+
+    [Fact]
+    public async Task TestNoDiagnostic_UserDefinedMethodOnUdonSharpBehaviour()
+    {
+        await VerifyAnalyzerAsync(@"
+using UdonSharp;
+
+class TestBehaviour : UdonSharpBehaviour
+{
+    public void TestMethod()
+    {
+        SomeMethod();
+    }
+
+    public void SomeMethod() {}
+}
+");
+    }
+
+    [Fact]
+    public async Task TestNoDiagnostic_UserDefinedMethodInOtherBehaviourOnUdonSharpBehaviour()
+    {
+        await VerifyAnalyzerAsync(@"
+using UdonSharp;
+
+class TestBehaviour : UdonSharpBehaviour
+{
+    private SomeBehaviour _behaviour;
+
+    public void TestMethod()
+    {
+        _behaviour.TestMethod();
+    }
+}
+
+class SomeBehaviour : UdonSharpBehaviour
+{
+    public void TestMethod() {}
+}
+");
+    }
 }
