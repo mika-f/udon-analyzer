@@ -60,6 +60,12 @@ public class SymbolDictionary
                                  .Where(w => w.Path.StartsWith("PublicAPI.Shipped.") && w.Path.EndsWith(".txt"))
                                  .ToList();
 
+            if (sources.Count != _cached.Count)
+            {
+                _cached.Clear();
+                _symbols.Clear();
+            }
+
             foreach (var source in sources)
                 if (_cached.ContainsKey(source.Path))
                 {
