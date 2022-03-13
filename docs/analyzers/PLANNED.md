@@ -4,7 +4,6 @@ List of planned analyzers in the future release.
 
 ## Udon Runtime
 
-- `ERR: Field accessor {signature} is not exposed in Udon`
 - `ERR: Udon does not support return values of type {type} yet`
 - `ERR: Udon does not support method parameters of type {type} yet`
 - `ERR: Udon does not support variable of type {type} yet`

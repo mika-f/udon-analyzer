@@ -9,5 +9,6 @@
 | VRC0005 | [The 'is' keyword is not yet supported by UdonSharp since Udon does not expose what is necessary](./VRC0005.md)                                                      | Error    | 
 | VRC0006 | [The 'as' keyword is not yet supported by UdonSharp since Udon does not expose what is necessary](./VRC0006.md)                                                      | Error    | 
 | VRC0007 | [Method is not exposed in Udon](./VRC0007.md)                                                                                                                        | Error    | 
+| VRC0008 | [Field accessor is not exposed in Udon](./VRC0008.md)                                                                                                                | Error    | 
 
 
