@@ -26,10 +26,10 @@ public class UdonSharpStandaloneProject : UnityStandaloneProject
         if (string.IsNullOrWhiteSpace(variable))
             throw new ArgumentNullException(variable);
 
-        var sdk = Path.Combine(variable, "Assets", "VRCSDK", "Plugins");
+        var sdk = Path.Combine(variable, "Packages", "com.vrchat.worlds", "Runtime", "VRCSDK", "Plugins");
         yield return Path.Combine(sdk, "VRCSDK3.dll");
 
-        var external = Path.Combine(variable, "Assets", "Udon", "External");
+        var external = Path.Combine(variable, "Packages", "com.vrchat.worlds", "Runtime", "Udon", "External");
         yield return Path.Combine(external, "VRC.Udon.Wrapper.dll");
 
         var assemblies = Path.Combine(variable, "Library", "ScriptAssemblies");
