@@ -9,8 +9,8 @@ namespace NatsunekoLaboratory.UdonAnalyzer.CodeGenerator.Models;
 
 public class GenerateCodeFixesParameters
 {
-    public async Task<int> GenerateCodeFixCode()
+    public Task<int> GenerateCodeFixCode()
     {
-        return ExitCodes.Success;
+        return Task.FromResult(ExitCodes.Success);
     }
 }

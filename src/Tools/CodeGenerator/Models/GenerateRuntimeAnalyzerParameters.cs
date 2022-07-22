@@ -19,6 +19,8 @@ using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore.Interfaces;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore.Models;
 using NatsunekoLaboratory.UdonAnalyzer.Models;
 
+#pragma warning disable CS8618
+
 namespace NatsunekoLaboratory.UdonAnalyzer.CodeGenerator.Models;
 
 public class GenerateRuntimeAnalyzerParameters : IValidatableEntity
