@@ -50,9 +50,9 @@ public class StandaloneProject
 
         standalone.Solution = solution;
 
-        foreach (var source in sources)
+        foreach (var (source, i) in sources.Select((w, i) => (w, i)))
         {
-            var filename = $"{Guid.NewGuid()}.cs";
+            var filename = $"TestSource{i}.cs";
             var documentId = DocumentId.CreateNewId(projectId, filename);
 
             solution = solution.AddDocument(documentId, filename, SourceText.From(source), filePath: $"/{filename}");
