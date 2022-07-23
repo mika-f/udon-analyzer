@@ -19,6 +19,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor LocalMethodDeclarationsAreNotCurrentlySupported = DiagnosticDescriptorFactory.Create(
+        "VSC0002",
+        "Local method declarations are not currently supported",
+        "Local method declarations are not currently supported",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
