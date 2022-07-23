@@ -97,6 +97,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor PartialMethodDeclarationsAreNotYetSupported = DiagnosticDescriptorFactory.Create(
+        "VSC0008",
+        "Partial method declarations are not yet supported",
+        "Partial method declarations are not yet supported",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

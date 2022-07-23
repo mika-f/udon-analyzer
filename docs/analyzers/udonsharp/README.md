@@ -9,5 +9,6 @@
 | VSC0005 | [Does not yet support initializer lists](./VSC0005.md)                     | Error    | 
 | VSC0006 | [Multidimensional arrays are not yet supported](./VSC0006.md)              | Error    | 
 | VSC0007 | [Static fields are not yet supported on user\-defined types](./VSC0007.md) | Error    | 
+| VSC0008 | [Partial method declarations are not yet supported](./VSC0008.md)          | Error    | 
 
 
