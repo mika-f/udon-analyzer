@@ -104,7 +104,7 @@ public static class UdonSharpAnalyzerGenerator
         if (!string.IsNullOrWhiteSpace(minRuntimeVersion) && !string.IsNullOrWhiteSpace(maxRuntimeVersion)) // max only
             args.Add(LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(new VersionRangeGreaterThanOrEqualsAndLessThanOrEquals(minRuntimeVersion, maxRuntimeVersion).ToRangeString())));
         if (string.IsNullOrWhiteSpace(minRuntimeVersion) && string.IsNullOrWhiteSpace(maxRuntimeVersion)) // not provided
-            args.Add(LiteralExpression(SyntaxKind.StringLiteralExpression, Literal("[2021.11.24.16.19,)")));
+            args.Add(LiteralExpression(SyntaxKind.StringLiteralExpression, Literal("[3.1.0,)")));
 
         return Attribute("RequireUdonVersion", args.ToArray());
     }
@@ -119,7 +119,7 @@ public static class UdonSharpAnalyzerGenerator
         if (!string.IsNullOrWhiteSpace(minCompilerVersion) && !string.IsNullOrWhiteSpace(maxCompilerVersion)) // max only
             args.Add(LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(new VersionRangeGreaterThanOrEqualsAndLessThanOrEquals(minCompilerVersion, maxCompilerVersion).ToRangeString())));
         if (string.IsNullOrWhiteSpace(minCompilerVersion) && string.IsNullOrWhiteSpace(maxCompilerVersion)) // not provided
-            args.Add(LiteralExpression(SyntaxKind.StringLiteralExpression, Literal("[0.20.3,)")));
+            args.Add(LiteralExpression(SyntaxKind.StringLiteralExpression, Literal("[1.0.0,)")));
 
 
         return Attribute("RequireUdonSharpCompilerVersion", args.ToArray());
