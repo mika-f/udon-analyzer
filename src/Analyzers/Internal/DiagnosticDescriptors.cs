@@ -65,6 +65,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotYetSupportInitializerLists = DiagnosticDescriptorFactory.Create(
+        "VSC0005",
+        "Does not yet support initializer lists",
+        "Does not yet support initializer lists",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
