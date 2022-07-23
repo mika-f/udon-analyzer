@@ -19,6 +19,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportThrowingExceptions = DiagnosticDescriptorFactory.Create(
+        "VRC0002",
+        "Does not support throwing exceptions",
+        "Does not support throwing exceptions",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
