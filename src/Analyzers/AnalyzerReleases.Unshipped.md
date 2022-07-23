@@ -13,3 +13,4 @@ VSC0003 | Compiler | Error | DiagnosticDescriptors
 VSC0004 | Compiler | Error | DiagnosticDescriptors
 VSC0005 | Compiler | Error | DiagnosticDescriptors
 VSC0006 | Compiler | Error | DiagnosticDescriptors
+VSC0007 | Compiler | Error | DiagnosticDescriptors

@@ -89,6 +89,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor StaticFieldsAreNotYetSupportedOnUserDefinedTypes = DiagnosticDescriptorFactory.Create(
+        "VSC0007",
+        "Static fields are not yet supported on user-defined types",
+        "Static fields are not yet supported on user-defined types",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
