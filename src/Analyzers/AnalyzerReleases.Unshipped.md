@@ -7,6 +7,7 @@ Rule ID | Category | Severity | Notes
 VRC0001 | Compiler | Error | DiagnosticDescriptors
 VRC0002 | Compiler | Error | DiagnosticDescriptors
 VRC0003 | Usage | Error | DiagnosticDescriptors
+VRC0004 | Usage | Error | DiagnosticDescriptors
 VRC0008 | Compiler | Error | DiagnosticDescriptors
 VSC0001 | Compiler | Error | DiagnosticDescriptors
 VSC0002 | Compiler | Error | DiagnosticDescriptors

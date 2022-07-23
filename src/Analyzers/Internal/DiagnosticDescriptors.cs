@@ -35,6 +35,17 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    // ReSharper disable once InconsistentNaming
+    public static readonly DiagnosticDescriptor SpecifiedEventIsDeprecatedUseTheVersionWithTheVRCPlayerApi = DiagnosticDescriptorFactory.Create(
+        "VRC0004",
+        "The specified event is deprecated use the version with VRCPlayerApi",
+        "The {0}() event is deprecated use the version with the VRCPlayerApi '{0}(VRCPlayerApi player)' instead",
+        DiagnosticCategories.Usage,
+        DiagnosticSeverity.Error,
+        true,
+        "The specified event is deprecated use the version with VRCPlayerApi."
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
