@@ -7,5 +7,6 @@
 | VSC0003 | [Nested type declarations are not currently supported](./VSC0003.md)      | Error    | 
 | VSC0004 | [Cannot use typeof on user\-defined types](./VSC0004.md)                  | Error    | 
 | VSC0005 | [Does not yet support initializer lists](./VSC0005.md)                    | Error    | 
+| VSC0006 | [Multidimensional arrays are not yet supported](./VSC0006.md)             | Error    | 
 
 

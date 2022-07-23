@@ -73,6 +73,8 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor MultidimensionalArraysAreNotYetSupported = DiagnosticDescriptorFactory.Create("VSC0006", "Multidimensional arrays are not yet supported", "Multidimensional arrays are not yet supported", DiagnosticCategories.Compiler, DiagnosticSeverity.Error);
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
