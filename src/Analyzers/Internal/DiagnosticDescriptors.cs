@@ -113,6 +113,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor GenericMethodDeclarationsAreNotCurrentlySupported = DiagnosticDescriptorFactory.Create(
+        "VSC0010",
+        "Generic method declarations on UdonSharpBehaviours are not currently supported, consider using a non-UdonSharpBehaviour class",
+        "Generic method declarations on UdonSharpBehaviours are not currently supported, consider using a non-UdonSharpBehaviour class",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
