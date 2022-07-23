@@ -27,6 +27,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportInstantiatingNonGameObjectTypes = DiagnosticDescriptorFactory.Create(
+        "VRC0003",
+        "Udon does not support instantiating non-GameObject types",
+        "Udon does not support instantiating non-GameObject types",
+        DiagnosticCategories.Usage,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
@@ -73,7 +81,13 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
-    public static readonly DiagnosticDescriptor MultidimensionalArraysAreNotYetSupported = DiagnosticDescriptorFactory.Create("VSC0006", "Multidimensional arrays are not yet supported", "Multidimensional arrays are not yet supported", DiagnosticCategories.Compiler, DiagnosticSeverity.Error);
+    public static readonly DiagnosticDescriptor MultidimensionalArraysAreNotYetSupported = DiagnosticDescriptorFactory.Create(
+        "VSC0006",
+        "Multidimensional arrays are not yet supported",
+        "Multidimensional arrays are not yet supported",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
 
     // INSERT_VSC_DESCRIPTOR_HERE
 
