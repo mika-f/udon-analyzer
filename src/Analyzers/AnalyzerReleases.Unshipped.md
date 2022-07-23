@@ -16,3 +16,4 @@ VSC0005 | Compiler | Error | DiagnosticDescriptors
 VSC0006 | Compiler | Error | DiagnosticDescriptors
 VSC0007 | Compiler | Error | DiagnosticDescriptors
 VSC0008 | Compiler | Error | DiagnosticDescriptors
+VSC0009 | Compiler | Error | DiagnosticDescriptors

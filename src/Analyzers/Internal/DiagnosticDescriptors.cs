@@ -105,6 +105,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor ConstructorsAreNotCurrentlySupported = DiagnosticDescriptorFactory.Create(
+        "VSC0009",
+        "Constructors are not currently supported",
+        "Constructors are not currently supported",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
