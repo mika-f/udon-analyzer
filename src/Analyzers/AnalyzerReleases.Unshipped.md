@@ -9,3 +9,4 @@ VRC0002 | Compiler | Error | DiagnosticDescriptors
 VSC0001 | Compiler | Error | DiagnosticDescriptors
 VSC0002 | Compiler | Error | DiagnosticDescriptors
 VSC0003 | Compiler | Error | DiagnosticDescriptors
+VSC0004 | Compiler | Error | DiagnosticDescriptors

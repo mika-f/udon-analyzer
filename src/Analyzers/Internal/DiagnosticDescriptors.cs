@@ -57,6 +57,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor CannotUseTypeofOnUserDefinedTypes = DiagnosticDescriptorFactory.Create(
+        "VSC0004",
+        "Cannot use typeof on user-defined types",
+        "Cannot use typeof on user-defined types",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
