@@ -9,6 +9,20 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Internal;
 
 internal static class DiagnosticDescriptors
 {
+    #region VRC - VRChat SDK
+
+    public static readonly DiagnosticDescriptor TryCatchFinallyIsNotSupported = DiagnosticDescriptorFactory.Create(
+        "VRC0001",
+        "Try-Catch-Finally is not supported",
+        "Try-Catch-Finally is not supported",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    // INSERT_VRC_DESCRIPTOR_HERE
+
+    #endregion
+
     #region VSC - UdonSharp Compiler
 
     public static readonly DiagnosticDescriptor UdonSharpBehaviourClassesMustBeSameNameAsCsharpFile = DiagnosticDescriptorFactory.Create(
@@ -36,12 +50,6 @@ internal static class DiagnosticDescriptors
     );
 
     // INSERT_VSC_DESCRIPTOR_HERE
-
-    #endregion
-
-    #region VRC - VRChat SDK
-
-    // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
 }
