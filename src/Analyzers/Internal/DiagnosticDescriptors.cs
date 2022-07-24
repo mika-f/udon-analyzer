@@ -156,6 +156,16 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotYetSupportHidingBaseMethods = DiagnosticDescriptorFactory.Create(
+        "VSC0012",
+        "Does not yet support hiding base methods",
+        "does not yet support hiding base methods, did you intend to override '{0}'?",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error,
+        true,
+        "Does not yet support hiding base methods."
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

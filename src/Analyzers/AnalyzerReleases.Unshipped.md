@@ -22,3 +22,4 @@ VSC0008 | Compiler | Error | DiagnosticDescriptors
 VSC0009 | Compiler | Error | DiagnosticDescriptors
 VSC0010 | Compiler | Error | DiagnosticDescriptors
 VSC0011 | Compiler | Error | DiagnosticDescriptors
+VSC0012 | Compiler | Error | DiagnosticDescriptors

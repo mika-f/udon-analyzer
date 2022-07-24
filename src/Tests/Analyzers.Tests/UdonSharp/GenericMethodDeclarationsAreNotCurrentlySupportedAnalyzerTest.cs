@@ -3,7 +3,6 @@
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // ------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using NatsunekoLaboratory.UdonAnalyzer.AnalyzerSpec.Attributes;
@@ -34,16 +33,11 @@ class TestBehaviour0 : UdonSharpBehaviour
     [Fact]
     public async Task TestNoDiagnostic_GenericMethodDeclarationOnNonUdonSharpBehaviourOnGlobalWorkspaceAnalyzingTest()
     {
-        var editorconfig = new Dictionary<string, string>
-        {
-            { "udon_analyzer.enable_workspace_analyzing", "true" }
-        };
-
         await VerifyAnalyzerAsync(@"
 class TestBehaviour0
 {
     public void TestMethod<T>() {}
 }
-", editorconfig);
+");
     }
 }
