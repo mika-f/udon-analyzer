@@ -242,6 +242,14 @@ internal static class DiagnosticDescriptors
         "Types must be match between property and VariableChangeField."
     );
 
+    public static readonly DiagnosticDescriptor NullableTypesAreNotCurrentlySupported = DiagnosticDescriptorFactory.Create(
+        "VSC0022",
+        "Nullable types are not currently supported",
+        "Nullable types are not currently supported",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
