@@ -18,7 +18,7 @@ public class StaticFieldsAreNotYetSupportedOnUserDefinedTypesAnalyzerTest : Udon
 {
     [Fact]
     [Example]
-    public async Task TestDiagnostic_StaticFieldDeclarationTest()
+    public async Task TestDiagnostic_StaticFieldDeclarationsTest()
     {
         await VerifyAnalyzerAsync(@"
 using UdonSharp;
@@ -26,6 +26,8 @@ using UdonSharp;
 class TestBehaviour0 : UdonSharpBehaviour
 {
     [|public static string _field;|]
+
+    [|public static string Property { get; set; }|]
 }
 ");
     }
@@ -38,7 +40,20 @@ using UdonSharp;
 
 class TestBehaviour0 : UdonSharpBehaviour
 {
-    public string _field;
+    public string Field;
+}
+");
+    }
+
+    [Fact]
+    public async Task TestDiagnostic_InstancePropertyDeclarationTest()
+    {
+        await VerifyAnalyzerAsync(@"
+using UdonSharp;
+
+class TestBehaviour0 : UdonSharpBehaviour
+{
+    public string Property { get; set; }
 }
 ");
     }

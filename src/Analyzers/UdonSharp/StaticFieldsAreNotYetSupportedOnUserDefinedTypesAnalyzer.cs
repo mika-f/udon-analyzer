@@ -25,11 +25,19 @@ public class StaticFieldsAreNotYetSupportedOnUserDefinedTypesAnalyzer : BaseDiag
         base.Initialize(context);
 
         context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, true, AnalyzeFieldDeclaration), SyntaxKind.FieldDeclaration);
+        context.RegisterSyntaxNodeAction(w => RunAnalyzer(w, true, AnalyzePropertyDeclaration), SyntaxKind.PropertyDeclaration);
     }
 
     private void AnalyzeFieldDeclaration(SyntaxNodeAnalysisContext context)
     {
         var declaration = (FieldDeclarationSyntax)context.Node;
+        if (declaration.Modifiers.Any(SyntaxKind.StaticKeyword))
+            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, declaration);
+    }
+
+    private void AnalyzePropertyDeclaration(SyntaxNodeAnalysisContext context)
+    {
+        var declaration = (PropertyDeclarationSyntax)context.Node;
         if (declaration.Modifiers.Any(SyntaxKind.StaticKeyword))
             DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, declaration);
     }
