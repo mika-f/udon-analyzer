@@ -16,5 +16,6 @@
 | VSC0012 | [Does not yet support hiding base methods](./VSC0012.md)                                                                                       | Error    | 
 | VSC0013 | [Does not support multidimensional array access](./VSC0013.md)                                                                                 | Error    | 
 | VSC0014 | [Does not support null conditional operators](./VSC0014.md)                                                                                    | Error    | 
+| VSC0015 | [Does not support goto statement](./VSC0015.md)                                                                                                | Error    | 
 
 

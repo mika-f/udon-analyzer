@@ -182,6 +182,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportGotoStatement = DiagnosticDescriptorFactory.Create(
+        "VSC0015",
+        "Does not support goto statement",
+        "Does not support goto statement",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
