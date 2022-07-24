@@ -190,6 +190,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportLabeledStatement = DiagnosticDescriptorFactory.Create(
+        "VSC0016",
+        "Does not support labeled statement",
+        "Does not support labeled statement",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

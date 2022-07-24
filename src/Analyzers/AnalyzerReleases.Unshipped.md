@@ -26,3 +26,4 @@ VSC0012 | Compiler | Error | DiagnosticDescriptors
 VSC0013 | Compiler | Error | DiagnosticDescriptors
 VSC0014 | Compiler | Error | DiagnosticDescriptors
 VSC0015 | Compiler | Error | DiagnosticDescriptors
+VSC0016 | Compiler | Error | DiagnosticDescriptors
