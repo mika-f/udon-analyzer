@@ -25,7 +25,7 @@ using UdonSharp;
 
 public class TestBehaviour : UdonSharpBehaviour
 {
-    [[|FieldChangeCallback(""MissingProperty"")|]]
+    [[|FieldChangeCallback(""MissingProperty"")|@MissingProperty]]
     private string _str1;
 }
 ");
@@ -39,7 +39,7 @@ using UdonSharp;
 
 public class TestBehaviour : UdonSharpBehaviour
 {
-    [[|FieldChangeCallback(""MissingProperty"")|]]
+    [[|FieldChangeCallback(""MissingProperty"")|@MissingProperty]]
     private string _str1;
 
     private string MissingProperty;

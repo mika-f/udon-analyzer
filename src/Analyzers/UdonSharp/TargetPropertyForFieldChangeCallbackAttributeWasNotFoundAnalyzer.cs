@@ -48,7 +48,7 @@ public class TargetPropertyForFieldChangeCallbackAttributeWasNotFoundAnalyzer : 
         var attr = declaration.GetAttributes(FieldChangeCallbackAttributeFullyQualifiedName, context.SemanticModel).First();
         var fields = cls.Members.OfType<PropertyDeclarationSyntax>();
         if (fields.None(w => w.Identifier.ValueText == targetProperty))
-            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, attr);
+            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, attr, targetProperty!);
     }
 
     private static string? GetTargetPropertyNameFromSyntax(SyntaxNodeAnalysisContext context, FieldDeclarationSyntax field)
