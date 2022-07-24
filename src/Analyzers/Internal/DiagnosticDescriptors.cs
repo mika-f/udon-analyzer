@@ -214,6 +214,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DuplicateFieldChangeCallbackTarget = DiagnosticDescriptorFactory.Create(
+        "VSC0019",
+        "Duplicate FieldChangeCallbackAttribute targets may be cause unexpected behaviour",
+        "Duplicate FieldChangeCallbackAttribute targets may be cause unexpected behaviour",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

@@ -20,5 +20,6 @@
 | VSC0016 | [Does not support labeled statement](./VSC0016.md)                                                                                             | Error    | 
 | VSC0017 | [Does not support goto case statement](./VSC0017.md)                                                                                           | Error    | 
 | VSC0018 | [Does not support goto default statement](./VSC0018.md)                                                                                        | Error    | 
+| VSC0019 | [Duplicate FieldChangeCallbackAttribute targets may be cause unexpected behaviour](./VSC0019.md)                                               | Warning  | 
 
 
