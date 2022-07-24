@@ -222,6 +222,16 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Warning
     );
 
+    public static readonly DiagnosticDescriptor TargetPropertyForFieldChangeCallbackAttributeWasNotFound = DiagnosticDescriptorFactory.Create(
+        "VSC0020",
+        "Target property for FieldChangeCallbackAttribute was not found",
+        "Target property '{0}' for FieldChangeCallbackAttribute was not found",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error,
+        true,
+        "Target property for FieldChangeCallbackAttribute was not found."
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

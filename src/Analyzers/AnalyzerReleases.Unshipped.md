@@ -30,3 +30,4 @@ VSC0016 | Compiler | Error | DiagnosticDescriptors
 VSC0017 | Compiler | Error | DiagnosticDescriptors
 VSC0018 | Compiler | Error | DiagnosticDescriptors
 VSC0019 | Unexpected | Warning | DiagnosticDescriptors
+VSC0020 | Compiler | Error | DiagnosticDescriptors
