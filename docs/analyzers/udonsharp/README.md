@@ -14,5 +14,6 @@
 | VSC0010 | [Generic method declarations on UdonSharpBehaviours are not currently supported, consider using a non\-UdonSharpBehaviour class](./VSC0010.md) | Error    | 
 | VSC0011 | [Interfaces are not yet handled](./VSC0011.md)                                                                                                 | Error    | 
 | VSC0012 | [Does not yet support hiding base methods](./VSC0012.md)                                                                                       | Error    | 
+| VSC0013 | [Does not support multidimensional array access](./VSC0013.md)                                                                                 | Error    | 
 
 

@@ -166,6 +166,14 @@ internal static class DiagnosticDescriptors
         "Does not yet support hiding base methods."
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportMultidimensionalArrayAccess = DiagnosticDescriptorFactory.Create(
+        "VSC0013",
+        "Does not support multidimensional array access",
+        "Does not support multidimensional array access",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
