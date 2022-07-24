@@ -232,6 +232,16 @@ internal static class DiagnosticDescriptors
         "Target property for FieldChangeCallbackAttribute was not found."
     );
 
+    public static readonly DiagnosticDescriptor TypesMustMatchBetweenPropertyAndVariableChangeField = DiagnosticDescriptorFactory.Create(
+        "VSC0021",
+        "Types must be match between property and VariableChangeField",
+        "Target property type '{0}' did not match field type",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error,
+        true,
+        "Types must be match between property and VariableChangeField."
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

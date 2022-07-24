@@ -22,5 +22,6 @@
 | VSC0018 | [Does not support goto default statement](./VSC0018.md)                                                                                        | Error    | 
 | VSC0019 | [Duplicate FieldChangeCallbackAttribute targets may be cause unexpected behaviour](./VSC0019.md)                                               | Warning  | 
 | VSC0020 | [Target property for FieldChangeCallbackAttribute was not found](./VSC0020.md)                                                                 | Error    | 
+| VSC0021 | [Types must be match between property and VariableChangeField](./VSC0021.md)                                                                   | Error    | 
 
 
