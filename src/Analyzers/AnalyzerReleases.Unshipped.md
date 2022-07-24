@@ -28,3 +28,4 @@ VSC0014 | Compiler | Error | DiagnosticDescriptors
 VSC0015 | Compiler | Error | DiagnosticDescriptors
 VSC0016 | Compiler | Error | DiagnosticDescriptors
 VSC0017 | Compiler | Error | DiagnosticDescriptors
+VSC0018 | Compiler | Error | DiagnosticDescriptors
