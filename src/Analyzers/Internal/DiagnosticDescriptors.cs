@@ -54,6 +54,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor TheAsKeywordIsNotYetSupported = DiagnosticDescriptorFactory.Create(
+        "VRC0006",
+        "The `as` keyword is not yet supported by Udon",
+        "The `as` keyword is not yet supported by Udon",
+        DiagnosticCategories.Usage,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
