@@ -174,6 +174,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportNullConditionalOperators = DiagnosticDescriptorFactory.Create(
+        "VSC0014",
+        "Does not support null conditional operators",
+        "Does not support null conditional operators",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

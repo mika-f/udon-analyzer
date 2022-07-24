@@ -15,5 +15,6 @@
 | VSC0011 | [Interfaces are not yet handled](./VSC0011.md)                                                                                                 | Error    | 
 | VSC0012 | [Does not yet support hiding base methods](./VSC0012.md)                                                                                       | Error    | 
 | VSC0013 | [Does not support multidimensional array access](./VSC0013.md)                                                                                 | Error    | 
+| VSC0014 | [Does not support null conditional operators](./VSC0014.md)                                                                                    | Error    | 
 
 
