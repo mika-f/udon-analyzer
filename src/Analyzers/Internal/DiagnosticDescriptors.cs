@@ -46,6 +46,14 @@ internal static class DiagnosticDescriptors
         "The specified event is deprecated use the version with VRCPlayerApi."
     );
 
+    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportTypeCheckingWithTheIsKeyword = DiagnosticDescriptorFactory.Create(
+        "VRC0005",
+        "Udon does not currently support type checking with the `is` keyword",
+        "Udon does not currently support type checking with the `is` keyword",
+        DiagnosticCategories.Usage,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
