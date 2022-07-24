@@ -148,6 +148,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor InterfacesAreNotYetHandled = DiagnosticDescriptorFactory.Create(
+        "VSC0011",
+        "Interfaces are not yet handled",
+        "Interfaces are not yet handled",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

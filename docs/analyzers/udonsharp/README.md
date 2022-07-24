@@ -12,5 +12,6 @@
 | VSC0008 | [Partial method declarations are not yet supported](./VSC0008.md)                                                                              | Error    | 
 | VSC0009 | [Constructors are not currently supported](./VSC0009.md)                                                                                       | Error    | 
 | VSC0010 | [Generic method declarations on UdonSharpBehaviours are not currently supported, consider using a non\-UdonSharpBehaviour class](./VSC0010.md) | Error    | 
+| VSC0011 | [Interfaces are not yet handled](./VSC0011.md)                                                                                                 | Error    | 
 
 
