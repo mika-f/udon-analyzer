@@ -198,6 +198,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportGotoCaseStatement = DiagnosticDescriptorFactory.Create(
+        "VSC0017",
+        "Does not support goto case statement",
+        "Does not support goto case statement",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

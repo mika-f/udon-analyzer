@@ -18,5 +18,6 @@
 | VSC0014 | [Does not support null conditional operators](./VSC0014.md)                                                                                    | Error    | 
 | VSC0015 | [Does not support goto statement](./VSC0015.md)                                                                                                | Error    | 
 | VSC0016 | [Does not support labeled statement](./VSC0016.md)                                                                                             | Error    | 
+| VSC0017 | [Does not support goto case statement](./VSC0017.md)                                                                                           | Error    | 
 
 
