@@ -57,7 +57,11 @@ public class SymbolDictionary
         {
             var sources = context.Options
                                  .AdditionalFiles
-                                 .Where(w => w.Path.StartsWith("PublicAPI.Shipped.") && w.Path.EndsWith(".txt"))
+                                 .Where(w =>
+                                 {
+                                     var filename = Path.GetFileName(w.Path);
+                                     return filename.StartsWith("PublicAPI.Shipped.") && filename.EndsWith(".txt");
+                                 })
                                  .ToList();
 
             if (sources.Count != _cached.Count)
