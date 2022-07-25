@@ -6,6 +6,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml;
+using System.Xml.XPath;
 
 namespace NatsunekoLaboratory.UdonAnalyzer.Testing;
 
@@ -26,13 +28,23 @@ public class UdonSharpStandaloneProject : UnityStandaloneProject
         if (string.IsNullOrWhiteSpace(variable))
             throw new ArgumentNullException(variable);
 
-        var sdk = Path.Combine(variable, "Packages", "com.vrchat.worlds", "Runtime", "VRCSDK", "Plugins");
-        yield return Path.Combine(sdk, "VRCSDK3.dll");
+        if (File.Exists(variable))
+        {
+            using var sr = new StreamReader(variable);
+            var document = new XPathDocument(sr);
+            var navigator = document.CreateNavigator();
+            var @namespace = new XmlNamespaceManager(navigator.NameTable);
+            @namespace.AddNamespace("msbuild", "http://schemas.microsoft.com/developer/msbuild/2003");
 
-        var external = Path.Combine(variable, "Packages", "com.vrchat.worlds", "Runtime", "Udon", "External");
-        yield return Path.Combine(external, "VRC.Udon.Wrapper.dll");
+            var node = navigator.Select("//msbuild:HintPath", @namespace);
+            while (node.MoveNext())
+                if (Path.IsPathRooted(node.Current!.Value))
+                    yield return node.Current.Value;
+                else
+                    yield return Path.Combine(Path.GetDirectoryName(variable)!, node.Current!.Value);
+        }
 
-        var assemblies = Path.Combine(variable, "Library", "ScriptAssemblies");
+        var assemblies = Path.Combine(Path.GetDirectoryName(variable)!, "Library", "ScriptAssemblies");
 
         yield return Path.Combine(assemblies, "VRC.Udon.dll");
         yield return Path.Combine(assemblies, "UdonSharp.Runtime.dll");
