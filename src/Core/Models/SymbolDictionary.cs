@@ -22,7 +22,6 @@ public class SymbolDictionary
     private readonly Dictionary<string, ImmutableArray<byte>> _cached;
     private readonly object _lockObj;
     private readonly Dictionary<string, List<string>> _symbols;
-
     public static SymbolDictionary Instance => _instance ??= new SymbolDictionary();
 
     private SymbolDictionary()
