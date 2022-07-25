@@ -6,10 +6,13 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.IO;
 using System.Linq;
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
+
+using NatsunekoLaboratory.UdonAnalyzer.Extensions;
 
 namespace NatsunekoLaboratory.UdonAnalyzer.Models;
 
@@ -29,14 +32,25 @@ public class SymbolDictionary
         _symbols = new Dictionary<string, List<string>>();
     }
 
-    public bool IsSymbolIsAllowed(ISymbol symbol, SyntaxNodeAnalysisContext context)
+    public bool IsSymbolIsAllowed(ISymbol symbol, ISymbol? receiver, SyntaxNodeAnalysisContext context)
     {
         if (IsUserDefinedSymbol(symbol))
             return true;
 
         LoadDictionaryFromAdditionalFiles(context);
 
-        var declarationId = DocumentationCommentId.CreateDeclarationId(symbol);
+        var declarationId = symbol.ToVRChatDeclarationId(receiver);
+        return _symbols.SelectMany(w => w.Value).Any(w => w == declarationId);
+    }
+
+    public bool IsSymbolIsAllowed(ISymbol symbol, bool isGetterContext, SyntaxNodeAnalysisContext context)
+    {
+        if (IsUserDefinedSymbol(symbol))
+            return true;
+
+        LoadDictionaryFromAdditionalFiles(context);
+
+        var declarationId = symbol.ToVRChatDeclarationId(isGetterContext);
         return _symbols.SelectMany(w => w.Value).Any(w => w == declarationId);
     }
 
@@ -44,7 +58,7 @@ public class SymbolDictionary
     {
         return symbol switch
         {
-            INamedTypeSymbol t => t.BaseType?.ToDisplayString() == "UdonSharp.UdonSharpBehaviour",
+            INamedTypeSymbol t => t.BaseType?.ToDisplayString() == "UdonSharp.UdonSharpBehaviour" || t.Locations.All(w => w.IsInSource),
             IMethodSymbol m => IsUserDefinedSymbol(m.ReceiverType ?? throw new InvalidOperationException()),
             IFieldSymbol f => IsUserDefinedSymbol(f.ContainingType ?? throw new InvalidOperationException()),
             _ => false

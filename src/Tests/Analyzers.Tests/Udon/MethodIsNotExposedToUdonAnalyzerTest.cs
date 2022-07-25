@@ -37,9 +37,15 @@ class TestBehaviour0 : UdonSharpBehaviour
     }
 
     [Theory]
-    [InlineData("GetComponent<Rigidbody>()", "M:UnityEngine.Component.GetComponent``1~``0")]
-    [InlineData("Invoke(\"SomeMethod\")", "M:UnityEngine.MonoBehaviour.Invoke(System.String)")]
-    [InlineData("name.ToString()", "M:System.String.ToString~System.String")]
+    [InlineData("RequestSerialization", "VRCUdonCommonInterfacesIUdonEventReceiver.__RequestSerialization__SystemVoid")]
+    [InlineData("GetProgramVariable(\"SomeMethod\")", "VRCUdonCommonInterfacesIUdonEventReceiver.__GetProgramVariable__SystemString__SystemObject")]
+    [InlineData("name.ToString()", "SystemString.__ToString__SystemString")]
+    [InlineData("_ps.Play()", "UnityEngineParticleSystem.__Play__SystemVoid")]
+    [InlineData("new StopWatch()", "SystemDiagnosticsStopwatch.__ctor____SystemDiagnosticsStopwatch")]
+    [InlineData("VideoError.Unknown.ToString()", "VRCSDK3ComponentsVideoVideoError.__ToString__SystemString")]
+    [InlineData("_err.ToString()", "VRCSDK3ComponentsVideoVideoError.__ToString__SystemString")]
+    [InlineData("transform.GetComponentsInChildren<Transform>()", "UnityEngineTransform.__GetComponentsInChildren__TArray")]
+    [InlineData("_pickup.Drop()", "VRCSDK3ComponentsVRCPickup.__Drop__SystemVoid")]
     public async Task TestNoDiagnostic_AllowedMethodOnUdonSharpBehaviour(string invocation, string declaration)
     {
         var additionals = new List<(string Filename, string Content)>
@@ -49,12 +55,21 @@ class TestBehaviour0 : UdonSharpBehaviour
 
 
         await VerifyAnalyzerAsync(@$"
+using System;
+
 using UdonSharp;
 
 using UnityEngine;
 
+using VRC.SDKBase;
+using VRC.SDK3.Components.Video;
+
 class TestBehaviour : UdonSharpBehaviour
 {{
+    private ParticleSystem _ps;
+    private VideoError _err;
+    private VRC_Pickup _pickup;
+
     public void TestMethod()
     {{
         {invocation};
