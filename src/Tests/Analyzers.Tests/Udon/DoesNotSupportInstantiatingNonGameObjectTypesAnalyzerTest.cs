@@ -16,7 +16,7 @@ namespace Analyzers.Tests.Udon;
 [Describe(typeof(DoesNotSupportInstantiatingNonGameObjectTypesAnalyzer), "VRC")]
 public class DoesNotSupportInstantiatingNonGameObjectTypesAnalyzerTest : UdonSharpDiagnosticVerifier<DoesNotSupportInstantiatingNonGameObjectTypesAnalyzer>
 {
-    [Fact(Skip = "Skip this test because UdonSharpDiagnosticVerifier does not resolves some assemblies????")]
+    [Fact]
     [Example]
     public async Task TestDiagnostic_InstantiatingNonGameObjectTest()
     {
@@ -35,7 +35,7 @@ class TestBehaviour0 : UdonSharpBehaviour
 ");
     }
 
-    [Fact(Skip = "Skip this test because UdonSharpDiagnosticVerifier does not resolves some assemblies????")]
+    [Fact]
     public async Task TestDiagnostic_InstantiatingNullObjectTest()
     {
         await VerifyAnalyzerAsync(@"
@@ -53,7 +53,7 @@ class TestBehaviour0 : UdonSharpBehaviour
 ");
     }
 
-    [Fact(Skip = "Skip this test because UdonSharpDiagnosticVerifier does not resolves some assemblies????")]
+    [Fact]
     public async Task TestNoDiagnostic_InstantiatingGameObjectTest()
     {
         await VerifyAnalyzerAsync(@"
