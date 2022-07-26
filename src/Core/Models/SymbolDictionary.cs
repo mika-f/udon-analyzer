@@ -19,7 +19,7 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Models;
 public class SymbolDictionary
 {
     private static SymbolDictionary? _instance;
-    private static List<string> WhitelistRegistry;
+    private static readonly List<string> WhitelistRegistry;
     private readonly Dictionary<string, ImmutableArray<byte>> _cached;
     private readonly object _lockObj;
     private readonly Dictionary<string, List<string>> _symbols;
@@ -32,7 +32,8 @@ public class SymbolDictionary
         {
             "VRCUdonCommonInterfacesIUdonEventReceiver.__get_gameObject__UnityEngineGameObject",
             "VRCUdonCommonInterfacesIUdonEventReceiver.__GetProgramVariable__SystemString__T",
-            "VRCUdonCommonInterfacesIUdonEventReceiver.__SetProgramVariable__SystemString_T__SystemVoid"
+            "VRCUdonCommonInterfacesIUdonEventReceiver.__SetProgramVariable__SystemString_T__SystemVoid",
+            "Type_SystemVoid"
         };
     }
 
@@ -83,7 +84,9 @@ public class SymbolDictionary
     {
         return symbol switch
         {
-            INamedTypeSymbol t => t.BaseType?.ToDisplayString() == "UdonSharp.UdonSharpBehaviour" || t.Locations.All(w => w.IsInSource),
+            IArrayTypeSymbol a => IsUserDefinedSymbol(a.ElementType),
+            // UdonSharp.UdonSharpBehaviour is located in source, but specified in this line for tests
+            INamedTypeSymbol t => t.BaseType?.ToDisplayString() == "UdonSharp.UdonSharpBehaviour" || t.ToDisplayString() == "UdonSharp.UdonSharpBehaviour" || t.Locations.All(w => w.IsInSource),
             IMethodSymbol m => IsUserDefinedSymbol(m.ReceiverType ?? throw new InvalidOperationException()),
             IFieldSymbol f => IsUserDefinedSymbol(f.ContainingType ?? throw new InvalidOperationException()),
             IPropertySymbol p => IsUserDefinedSymbol(p.ContainingType ?? throw new InvalidOperationException()),

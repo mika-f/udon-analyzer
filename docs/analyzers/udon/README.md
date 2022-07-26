@@ -10,5 +10,6 @@
 | VRC0006 | [The \`as\` keyword is not yet supported by Udon](./VRC0006.md)                       | Error    | 
 | VRC0007 | [Method is not exposed to Udon](./VRC0007.md)                                         | Error    | 
 | VRC0008 | [Field is not exposed to Udon](./VRC0008.md)                                          | Error    | 
+| VRC0009 | [Type is not exposed to Udon](./VRC0009.md)                                           | Error    | 
 
 

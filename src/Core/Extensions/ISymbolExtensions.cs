@@ -60,6 +60,8 @@ public static class ISymbolExtensions
                 return ps.Type.ToVRChatDeclarationId();
 
             case INamedTypeSymbol nts:
+                if (nts.ContainingType != null)
+                    return RemapInternalComponents($"{nts.ContainingType.ToVRChatDeclarationId()}{nts.Name}");
                 return RemapInternalComponents($"{FlattenNamespace(symbol)}{nts.Name}");
 
             case ITypeParameterSymbol tps:

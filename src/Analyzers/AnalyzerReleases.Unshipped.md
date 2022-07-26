@@ -12,6 +12,7 @@ VRC0005 | Usage | Error | DiagnosticDescriptors
 VRC0006 | Usage | Error | DiagnosticDescriptors
 VRC0007 | Usage | Error | DiagnosticDescriptors
 VRC0008 | Usage | Error | DiagnosticDescriptors
+VRC0009 | Usage | Error | DiagnosticDescriptors
 VSC0001 | Compiler | Error | DiagnosticDescriptors
 VSC0002 | Compiler | Error | DiagnosticDescriptors
 VSC0003 | Compiler | Error | DiagnosticDescriptors

@@ -53,7 +53,6 @@ class TestBehaviour0 : UdonSharpBehaviour
             ("PublicAPI.Shipped.test.txt", declaration)
         };
 
-
         await VerifyAnalyzerAsync(@$"
 using System;
 
