@@ -280,6 +280,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor UseTheNameOfOperatorInsteadOfDirectlySpecifyingTheMethodName = DiagnosticDescriptorFactory.Create(
+        "VSC0023",
+        "Use the `nameof` operator instead of directly specifying the method name in SendCustomEvent",
+        "Use the `nameof` operator instead of directly specifying the method name in SendCustomEvent",
+        DiagnosticCategories.Maintainability,
+        DiagnosticSeverity.Warning
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

@@ -35,3 +35,4 @@ VSC0019 | Unexpected | Warning | DiagnosticDescriptors
 VSC0020 | Compiler | Error | DiagnosticDescriptors
 VSC0021 | Compiler | Error | DiagnosticDescriptors
 VSC0022 | Compiler | Error | DiagnosticDescriptors
+VSC0023 | Maintainability | Warning | DiagnosticDescriptors
