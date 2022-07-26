@@ -72,6 +72,16 @@ internal static class DiagnosticDescriptors
         "Method is not exposed to Udon."
     );
 
+    public static readonly DiagnosticDescriptor FieldIsNotExposedToUdon = DiagnosticDescriptorFactory.Create(
+        "VRC0008",
+        "Field is not exposed to Udon",
+        "Field '{0}' is not exposed to Udon",
+        DiagnosticCategories.Usage,
+        DiagnosticSeverity.Error,
+        true,
+        "Field is not exposed to Udon."
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion

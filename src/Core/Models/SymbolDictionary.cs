@@ -19,16 +19,39 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Models;
 public class SymbolDictionary
 {
     private static SymbolDictionary? _instance;
+    private static List<string> WhitelistRegistry;
     private readonly Dictionary<string, ImmutableArray<byte>> _cached;
     private readonly object _lockObj;
     private readonly Dictionary<string, List<string>> _symbols;
+
     public static SymbolDictionary Instance => _instance ??= new SymbolDictionary();
+
+    static SymbolDictionary()
+    {
+        WhitelistRegistry = new List<string>
+        {
+            "VRCUdonCommonInterfacesIUdonEventReceiver.__get_gameObject__UnityEngineGameObject",
+            "VRCUdonCommonInterfacesIUdonEventReceiver.__GetProgramVariable__SystemString__T",
+            "VRCUdonCommonInterfacesIUdonEventReceiver.__SetProgramVariable__SystemString_T__SystemVoid"
+        };
+    }
 
     private SymbolDictionary()
     {
         _cached = new Dictionary<string, ImmutableArray<byte>>();
         _lockObj = new object();
         _symbols = new Dictionary<string, List<string>>();
+    }
+
+    public bool IsSymbolIsAllowed(ISymbol symbol, SyntaxNodeAnalysisContext context)
+    {
+        if (IsUserDefinedSymbol(symbol))
+            return true;
+
+        LoadDictionaryFromAdditionalFiles(context);
+
+        var declarationId = $"Type_{symbol.ToVRChatDeclarationId()}";
+        return _symbols.SelectMany(w => w.Value).Any(w => w == declarationId) || WhitelistRegistry.Contains(declarationId);
     }
 
     public bool IsSymbolIsAllowed(ISymbol symbol, ISymbol? receiver, SyntaxNodeAnalysisContext context)
@@ -39,18 +62,21 @@ public class SymbolDictionary
         LoadDictionaryFromAdditionalFiles(context);
 
         var declarationId = symbol.ToVRChatDeclarationId(receiver);
-        return _symbols.SelectMany(w => w.Value).Any(w => w == declarationId);
+        return _symbols.SelectMany(w => w.Value).Any(w => w == declarationId) || WhitelistRegistry.Contains(declarationId);
     }
 
-    public bool IsSymbolIsAllowed(ISymbol symbol, bool isGetterContext, SyntaxNodeAnalysisContext context)
+    public bool IsSymbolIsAllowed(ISymbol symbol, ISymbol? receiver, bool isGetterContext, SyntaxNodeAnalysisContext context)
     {
         if (IsUserDefinedSymbol(symbol))
             return true;
 
         LoadDictionaryFromAdditionalFiles(context);
 
-        var declarationId = symbol.ToVRChatDeclarationId(isGetterContext);
-        return _symbols.SelectMany(w => w.Value).Any(w => w == declarationId);
+        if (isGetterContext && receiver is INamedTypeSymbol { EnumUnderlyingType: not null })
+            return IsSymbolIsAllowed(receiver, context);
+
+        var declarationId = symbol.ToVRChatDeclarationId(receiver, isGetterContext);
+        return _symbols.SelectMany(w => w.Value).Any(w => w == declarationId) || WhitelistRegistry.Contains(declarationId);
     }
 
     private static bool IsUserDefinedSymbol(ISymbol symbol)
@@ -60,6 +86,7 @@ public class SymbolDictionary
             INamedTypeSymbol t => t.BaseType?.ToDisplayString() == "UdonSharp.UdonSharpBehaviour" || t.Locations.All(w => w.IsInSource),
             IMethodSymbol m => IsUserDefinedSymbol(m.ReceiverType ?? throw new InvalidOperationException()),
             IFieldSymbol f => IsUserDefinedSymbol(f.ContainingType ?? throw new InvalidOperationException()),
+            IPropertySymbol p => IsUserDefinedSymbol(p.ContainingType ?? throw new InvalidOperationException()),
             _ => false
         };
     }

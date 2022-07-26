@@ -3,6 +3,7 @@
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // ------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,7 +32,8 @@ public static class ISymbolExtensions
             { "VRC.SDKBase.VRC_VisualDamage", "VRC.SDK3.Components.VRCVisualDamage" },
             { "VRC.SDK3.Video.Components.VRCUnityVideoPlayer", "VRC.SDK3.Video.Components.Base.BaseVRCVideoPlayer" },
             { "VRC.SDK3.Video.Components.AVPro.VRCAVProVideoPlayer", "VRC.SDK3.Video.Components.Base.BaseVRCVideoPlayer" },
-            { "UdonSharp.UdonSharpBehaviour", "VRC.Udon.Common.Interfaces.IUdonEventReceiver" }
+            { "UdonSharp.UdonSharpBehaviour", "VRC.Udon.Common.Interfaces.IUdonEventReceiver" },
+            { "VRC.Udon.UdonBehaviour", "VRC.Udon.Common.Interfaces.IUdonEventReceiver" }
         };
     }
 
@@ -41,7 +43,10 @@ public static class ISymbolExtensions
         switch (symbol)
         {
             case IArrayTypeSymbol ats:
-                return $"{ats.ElementType.ToVRChatDeclarationId()}Array";
+            {
+                var sig = $"{ats.ElementType.ToVRChatDeclarationId()}Array";
+                return sig.CountOf("Array") >= 2 ? sig[..(sig.IndexOf("Array", StringComparison.InvariantCulture) + "Array".Length)] : sig;
+            }
 
             case IMethodSymbol ms:
             {
@@ -65,21 +70,27 @@ public static class ISymbolExtensions
     }
 
     // ReSharper disable once InconsistentNaming
-    public static string ToVRChatDeclarationId(this ISymbol symbol, bool isGetterContext)
+    public static string ToVRChatDeclarationId(this ISymbol symbol, ISymbol? receiver, bool isGetterContext)
     {
         switch (symbol)
         {
-            case INamedTypeSymbol:
-                return $"{FlattenNamespace(symbol)}";
+            case IArrayTypeSymbol ats:
+            {
+                var sig = $"{ats.ElementType.ToVRChatDeclarationId()}Array";
+                return sig.CountOf("Array") >= 2 ? sig[..(sig.IndexOf("Array", StringComparison.InvariantCulture) + "Array".Length)] : sig;
+            }
+
+            case IFieldSymbol fs:
+                return $"{(receiver ?? fs.ContainingType).ToVRChatDeclarationId()}.__{(isGetterContext ? "get" : "set")}_{fs.Name}__{fs.Type.ToVRChatDeclarationId()}";
+
+            case INamedTypeSymbol nts:
+                return RemapInternalComponents($"{FlattenNamespace(symbol)}{nts.Name}");
 
             case IParameterSymbol:
                 return $"{FlattenNamespace(symbol)}";
 
-            case IFieldSymbol:
-                return $"{FlattenNamespace(symbol)}";
-
-            case IPropertySymbol:
-                return $"{FlattenNamespace(symbol)}";
+            case IPropertySymbol ps:
+                return $"{(receiver ?? ps.ContainingType).ToVRChatDeclarationId()}.__{(isGetterContext ? "get" : "set")}_{ps.Name}__{ps.Type.ToVRChatDeclarationId()}";
         }
 
         return "INVALID";
