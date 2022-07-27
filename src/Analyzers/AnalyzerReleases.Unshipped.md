@@ -37,3 +37,4 @@ VSC0020 | Compiler | Error | DiagnosticDescriptors
 VSC0021 | Compiler | Error | DiagnosticDescriptors
 VSC0022 | Compiler | Error | DiagnosticDescriptors
 VSC0023 | Maintainability | Warning | DiagnosticDescriptors
+VSC0024 | Maintainability | Warning | DiagnosticDescriptors

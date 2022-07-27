@@ -296,6 +296,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Warning
     );
 
+    public static readonly DiagnosticDescriptor UseTheNamespaceDeclarationToAvoidClassNameConflicts = DiagnosticDescriptorFactory.Create(
+        "VSC0024",
+        "Use the namespace declaration to avoid class name conflicts",
+        "Use the namespace declaration to avoid class name conflicts",
+        DiagnosticCategories.Maintainability,
+        DiagnosticSeverity.Warning
+    );
+
     // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion

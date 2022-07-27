@@ -25,5 +25,6 @@
 | VSC0021 | [Types must be match between property and VariableChangeField](./VSC0021.md)                                                                   | Error    | 
 | VSC0022 | [Nullable types are not currently supported](./VSC0022.md)                                                                                     | Error    | 
 | VSC0023 | [Use the \`nameof\` operator instead of directly specifying the method name in SendCustomEvent](./VSC0023.md)                                  | Warning  | 
+| VSC0024 | [Use the namespace declaration to avoid class name conflicts](./VSC0024.md)                                                                    | Warning  | 
 
 
