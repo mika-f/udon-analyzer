@@ -20,6 +20,9 @@ public class SymbolDictionary
 {
     private static SymbolDictionary? _instance;
     private static readonly List<string> WhitelistRegistry;
+    private static readonly List<string> CanSyncRegistry;
+    private static readonly List<string> CanSyncLinearRegistry;
+    private static readonly List<string> CanSyncSmoothRegistry;
     private readonly Dictionary<string, ImmutableArray<byte>> _cached;
     private readonly object _lockObj;
     private readonly Dictionary<string, List<string>> _symbols;
@@ -35,6 +38,66 @@ public class SymbolDictionary
             "VRCUdonCommonInterfacesIUdonEventReceiver.__SetProgramVariable__SystemString_T__SystemVoid",
             "Type_SystemVoid"
         };
+
+        CanSyncRegistry = new List<string>
+        {
+            "bool",
+            "char",
+            "byte",
+            "uint",
+            "int",
+            "long",
+            "sbyte",
+            "ulong",
+            "float",
+            "double",
+            "short",
+            "ushort",
+            "string",
+            "UnityEngine.Color",
+            "UnityEngine.Color32",
+            "UnityEngine.Vector2",
+            "UnityEngine.Vector3",
+            "UnityEngine.Vector4",
+            "UnityEngine.Quaternion",
+            "VRC.SDKBase.VRCUrl"
+        };
+
+        CanSyncLinearRegistry = new List<string>
+        {
+            "byte",
+            "uint",
+            "int",
+            "long",
+            "sbyte",
+            "ulong",
+            "float",
+            "double",
+            "short",
+            "ushort",
+            "UnityEngine.Color",
+            "UnityEngine.Color32",
+            "UnityEngine.Vector2",
+            "UnityEngine.Vector3",
+            "UnityEngine.Quaternion"
+        };
+
+        CanSyncSmoothRegistry = new List<string>
+        {
+            "byte",
+            "uint",
+            "int",
+            "long",
+            "sbyte",
+            "ulong",
+            "float",
+            "double",
+            "short",
+            "ushort",
+            "UnityEngine.Vector2",
+            "UnityEngine.Vector3",
+            "UnityEngine.Quaternion"
+        };
     }
 
     private SymbolDictionary()
@@ -48,6 +111,8 @@ public class SymbolDictionary
     {
         if (IsUserDefinedSymbol(symbol))
             return true;
+        if (symbol is INamespaceSymbol)
+            return true;
 
         LoadDictionaryFromAdditionalFiles(context);
 
@@ -58,6 +123,8 @@ public class SymbolDictionary
     public bool IsSymbolIsAllowed(ISymbol symbol, ISymbol? receiver, SyntaxNodeAnalysisContext context)
     {
         if (IsUserDefinedSymbol(symbol))
+            return true;
+        if (symbol is INamespaceSymbol)
             return true;
 
         LoadDictionaryFromAdditionalFiles(context);
@@ -70,6 +137,8 @@ public class SymbolDictionary
     {
         if (IsUserDefinedSymbol(symbol))
             return true;
+        if (symbol is INamespaceSymbol)
+            return true;
 
         LoadDictionaryFromAdditionalFiles(context);
 
@@ -78,6 +147,40 @@ public class SymbolDictionary
 
         var declarationId = symbol.ToVRChatDeclarationId(receiver, isGetterContext);
         return _symbols.SelectMany(w => w.Value).Any(w => w == declarationId) || WhitelistRegistry.Contains(declarationId);
+    }
+
+    public bool IsSymbolCanSync(ISymbol symbol)
+    {
+        if (symbol is IArrayTypeSymbol arr)
+            return IsSymbolCanSync(arr.ElementType);
+
+        switch (symbol)
+        {
+            case INamedTypeSymbol t:
+                var str = t.ToDisplayString();
+                return CanSyncRegistry.Contains(str);
+
+            default:
+                return false;
+        }
+    }
+
+    public bool IsSymbolCanLinearSync(ISymbol symbol)
+    {
+        if (symbol is IArrayTypeSymbol)
+            return false;
+
+        var str = symbol.ToDisplayString();
+        return CanSyncLinearRegistry.Contains(str);
+    }
+
+    public bool IsSymbolCanSmoothSync(ISymbol symbol)
+    {
+        if (symbol is IArrayTypeSymbol)
+            return false;
+
+        var str = symbol.ToDisplayString();
+        return CanSyncSmoothRegistry.Contains(str);
     }
 
     private static bool IsUserDefinedSymbol(ISymbol symbol)

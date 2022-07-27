@@ -100,6 +100,15 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Warning
     );
 
+    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportSyncingOfTheType = DiagnosticDescriptorFactory.Create(
+        "VRC0011",
+        "Udon does not currently support syncing of the type",
+        "Udon does not currently support syncing of the type {type}",
+        DiagnosticCategories.Unexpected, DiagnosticSeverity.Warning,
+        true,
+        "Udon does not currently support syncing of the type."
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion

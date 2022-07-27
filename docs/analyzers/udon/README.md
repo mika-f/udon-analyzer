@@ -12,5 +12,6 @@
 | VRC0008 | [Field is not exposed to Udon](./VRC0008.md)                                                                                      | Error    | 
 | VRC0009 | [Type is not exposed to Udon](./VRC0009.md)                                                                                       | Error    | 
 | VRC0010 | [Cannot sync variable because behaviour is set to NoVariableSync, change the behaviour sync mode to sync variables](./VRC0010.md) | Warning  | 
+| VRC0011 | [Udon does not currently support syncing of the type](./VRC0011.md)                                                               | Warning  | 
 
 
