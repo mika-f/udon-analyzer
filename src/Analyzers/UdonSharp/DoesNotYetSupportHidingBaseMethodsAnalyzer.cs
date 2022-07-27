@@ -34,6 +34,10 @@ public class DoesNotYetSupportHidingBaseMethodsAnalyzer : BaseDiagnosticAnalyzer
     private void AnalyzeMethodDeclaration(SyntaxNodeAnalysisContext context)
     {
         var declaration = (MethodDeclarationSyntax)context.Node;
+
+        if (declaration.Modifiers.Any(SyntaxKind.OverrideKeyword))
+            return;
+
         var symbol = context.SemanticModel.GetDeclaredSymbol(declaration);
         if (symbol == null)
             return;

@@ -70,4 +70,20 @@ class TestBehaviour1 : TestBehaviour0
 }
 ", EnableWorkspaceAnalyzing());
     }
+
+    [Fact]
+    public async Task TestNoDiagnostic_NotHidingMethodWithOverrideModifiersTest()
+    {
+        await VerifyAnalyzerAsync(@"
+using UdonSharp;
+
+class TestBehaviour0 : UdonSharpBehaviour
+{
+    public override void OnPreSerialization()
+    {
+        base.OnPreSerialization();
+    }
+}
+");
+    }
 }
