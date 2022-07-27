@@ -92,6 +92,14 @@ internal static class DiagnosticDescriptors
         "Type is not exposed to Udon."
     );
 
+    public static readonly DiagnosticDescriptor CannotSyncVariableBecauseBehaviourIsSetToNoVariableSync = DiagnosticDescriptorFactory.Create(
+        "VRC0010",
+        "Cannot sync variable because behaviour is set to NoVariableSync, change the behaviour sync mode to sync variables",
+        "Cannot sync variable because behaviour is set to NoVariableSync, change the behaviour sync mode to sync variables",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
