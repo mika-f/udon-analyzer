@@ -189,7 +189,7 @@ internal static class DiagnosticDescriptors
     public static readonly DiagnosticDescriptor DoesNotYetSupportHidingBaseMethods = DiagnosticDescriptorFactory.Create(
         "VSC0012",
         "Does not yet support hiding base methods",
-        "does not yet support hiding base methods, did you intend to override '{0}'?",
+        "Does not yet support hiding base methods, did you intend to override '{0}'?",
         DiagnosticCategories.Compiler,
         DiagnosticSeverity.Error,
         true,
