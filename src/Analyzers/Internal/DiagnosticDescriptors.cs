@@ -118,6 +118,16 @@ internal static class DiagnosticDescriptors
         "Udon does not support linear interpolation of the synced type."
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportSmoothInterpolationOfTheSyncedType = DiagnosticDescriptorFactory.Create(
+        "VRC0013",
+        "Udon does not support smooth interpolation of the synced type",
+        "Udon does not support smooth interpolation of the synced type {0}",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning,
+        true,
+        "Udon does not support smooth interpolation of the synced type."
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
