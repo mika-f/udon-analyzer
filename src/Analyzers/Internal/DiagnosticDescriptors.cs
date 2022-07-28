@@ -104,7 +104,8 @@ internal static class DiagnosticDescriptors
         "VRC0011",
         "Udon does not currently support syncing of the type",
         "Udon does not currently support syncing of the type {0}",
-        DiagnosticCategories.Unexpected, DiagnosticSeverity.Warning,
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning,
         true,
         "Udon does not currently support syncing of the type."
     );
@@ -113,7 +114,8 @@ internal static class DiagnosticDescriptors
         "VRC0012",
         "Udon does not support linear interpolation of the synced type",
         "Udon does not support linear interpolation of the synced type {0}",
-        DiagnosticCategories.Unexpected, DiagnosticSeverity.Warning,
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning,
         true,
         "Udon does not support linear interpolation of the synced type."
     );
@@ -134,6 +136,16 @@ internal static class DiagnosticDescriptors
         "Udon does not support variable tweening when the behaviour is in Manual Sync Mode",
         DiagnosticCategories.Unexpected,
         DiagnosticSeverity.Warning
+    );
+
+    public static readonly DiagnosticDescriptor SyncingOfArrayTypesIsOnlySupportedInManualSyncMode = DiagnosticDescriptorFactory.Create(
+        "VRC0015",
+        "Syncing of array type is only supported in manual sync mode",
+        "Syncing of array type '{0}' is only supported in manual sync mode",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning,
+        true,
+        "Syncing of array type is only supported in manual sync mode."
     );
 
     // INSERT_VRC_DESCRIPTOR_HERE

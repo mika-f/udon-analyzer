@@ -18,6 +18,7 @@ VRC0011 | Unexpected | Warning | DiagnosticDescriptors
 VRC0012 | Unexpected | Warning | DiagnosticDescriptors
 VRC0013 | Unexpected | Warning | DiagnosticDescriptors
 VRC0014 | Unexpected | Warning | DiagnosticDescriptors
+VRC0015 | Unexpected | Warning | DiagnosticDescriptors
 VSC0001 | Compiler | Error | DiagnosticDescriptors
 VSC0002 | Compiler | Error | DiagnosticDescriptors
 VSC0003 | Compiler | Error | DiagnosticDescriptors
