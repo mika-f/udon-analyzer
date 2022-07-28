@@ -17,5 +17,6 @@
 | VRC0013 | [Udon does not support smooth interpolation of the synced type](./VRC0013.md)                                                     | Warning  | 
 | VRC0014 | [Udon does not support variable tweening when the behaviour is in Manual Sync Mode](./VRC0014.md)                                 | Warning  | 
 | VRC0015 | [Syncing of array type is only supported in manual sync mode](./VRC0015.md)                                                       | Warning  | 
+| VRC0016 | [The method specified for SendCustomEvent must be public](./VRC0016.md)                                                           | Warning  | 
 
 

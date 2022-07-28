@@ -148,6 +148,14 @@ internal static class DiagnosticDescriptors
         "Syncing of array type is only supported in manual sync mode."
     );
 
+    public static readonly DiagnosticDescriptor TheMethodSpecifiedForSendCustomEventMustBePublic = DiagnosticDescriptorFactory.Create(
+        "VRC0016",
+        "The method specified for SendCustomEvent must be public",
+        "The method specified for SendCustomEvent must be public",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
