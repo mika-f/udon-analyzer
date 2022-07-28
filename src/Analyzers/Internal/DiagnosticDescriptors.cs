@@ -103,10 +103,19 @@ internal static class DiagnosticDescriptors
     public static readonly DiagnosticDescriptor DoesNotCurrentlySupportSyncingOfTheType = DiagnosticDescriptorFactory.Create(
         "VRC0011",
         "Udon does not currently support syncing of the type",
-        "Udon does not currently support syncing of the type {type}",
+        "Udon does not currently support syncing of the type {0}",
         DiagnosticCategories.Unexpected, DiagnosticSeverity.Warning,
         true,
         "Udon does not currently support syncing of the type."
+    );
+
+    public static readonly DiagnosticDescriptor DoesNotSupportLinearInterpolationOfTheSyncedType = DiagnosticDescriptorFactory.Create(
+        "VRC0012",
+        "Udon does not support linear interpolation of the synced type",
+        "Udon does not support linear interpolation of the synced type {0}",
+        DiagnosticCategories.Unexpected, DiagnosticSeverity.Warning,
+        true,
+        "Udon does not support linear interpolation of the synced type."
     );
 
     // INSERT_VRC_DESCRIPTOR_HERE
