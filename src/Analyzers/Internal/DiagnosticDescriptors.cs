@@ -128,6 +128,14 @@ internal static class DiagnosticDescriptors
         "Udon does not support smooth interpolation of the synced type."
     );
 
+    public static readonly DiagnosticDescriptor DoesNotSupportVariableTweeningWhenTheBehaviourIsInManualSyncMode = DiagnosticDescriptorFactory.Create(
+        "VRC0014",
+        "Udon does not support variable tweening when the behaviour is in Manual Sync Mode",
+        "Udon does not support variable tweening when the behaviour is in Manual Sync Mode",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion

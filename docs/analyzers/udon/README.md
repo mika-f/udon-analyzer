@@ -15,5 +15,6 @@
 | VRC0011 | [Udon does not currently support syncing of the type](./VRC0011.md)                                                               | Warning  | 
 | VRC0012 | [Udon does not support linear interpolation of the synced type](./VRC0012.md)                                                     | Warning  | 
 | VRC0013 | [Udon does not support smooth interpolation of the synced type](./VRC0013.md)                                                     | Warning  | 
+| VRC0014 | [Udon does not support variable tweening when the behaviour is in Manual Sync Mode](./VRC0014.md)                                 | Warning  | 
 
 
