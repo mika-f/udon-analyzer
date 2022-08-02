@@ -156,6 +156,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Warning
     );
 
+    public static readonly DiagnosticDescriptor TheMethodSpecifiedForOverTheNetworkCannotStartWithAnUnderscore = DiagnosticDescriptorFactory.Create(
+        "VRC0017",
+        "The method specified for over the network cannot start with an underscore",
+        "The method specified for over the network cannot start with an underscore",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
