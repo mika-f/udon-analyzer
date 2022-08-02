@@ -164,6 +164,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Warning
     );
 
+    public static readonly DiagnosticDescriptor TheMethodSpecifiedForSendCustomEventIsNotDeclaredInTheBehaviour = DiagnosticDescriptorFactory.Create(
+        "VRC0018",
+        "The method specified for SendCustomEvent is not declared in the behaviour",
+        "The method specified for SendCustomEvent is not declared in the behaviour",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
