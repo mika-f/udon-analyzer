@@ -8,6 +8,8 @@ using NatsunekoLaboratory.UdonAnalyzer.CodeGeneration.CSharp;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore.Attributes;
 using NatsunekoLaboratory.UdonAnalyzer.ConsoleCore.Helpers;
 
+#pragma warning disable CS8618
+
 namespace NatsunekoLaboratory.UdonAnalyzer.TestCodeGenerator.Models;
 
 public class GenerateDiagnosticTestParameters

@@ -1,24 +1,3 @@
 # Planned Analyzers
 
 List of planned analyzers in the future release.
-
-## Udon Runtime
-
-- `ERR: Udon does not support method parameters of type {type} yet`
-- `ERR: Udon does not support variable of type {type} yet`
-- `ERR: Cannot sync variable because behaviour is set to NoVariableSync, change the behaviour sync mode to sync variables`
-- `ERR: Udon does not currently support syncing of the type {type}`
-- `ERR: Udon does not support linear interpolation of the synced type {type}`
-- `ERR: Udon does not support smooth interpolation of the synced type {type}`
-- `ERR: Udon does not support variable tweening when the behaviour is in Manual sync mode`
-- `ERR: Syncing of array type {type} is only supported in manual sync mode`
-- `WRN: The method called by SendCustomEvent must be public`
-- `WRN: The method specified for SendCustomEvent must be public`
-- `WRN: The method called over the network cannot start with an underscore`
-- `WRN: The method is not called over the network should be started with an underscore`
-- `WRN: The specified event is not declared in the behaviour`
-
-## UdonSharp Compiler
-
-- `` WRN: Use the `nameof` operator instead of directly specifying the method name in SendCustomEvent ``
-- `WRN: Use the namespace to avoid class name conflicts`

@@ -1,45 +1,30 @@
 ## List of Compiler Analyzers in UdonAnalyzers
 
-| ID      | Title                                                                                                                                   | Severity | 
-| ------- | --------------------------------------------------------------------------------------------------------------------------------------- | -------- | 
-| VSC0001 | [UdonSharp does not yet support inheriting from interfaces](./VSC0001.md)                                                               | Error    | 
-| VSC0002 | [UdonSharp behaviours must inherit from 'UdonSharpBehaviour' instead of 'MonoBehaviour'](./VSC0002.md)                                  | Error    | 
-| VSC0003 | [UdonSharp does not yet support inheriting from classes other than 'UdonSharpBehaviour'](./VSC0003.md)                                  | Error    | 
-| VSC0004 | [UdonSharp does not currently support constructors on UdonSharpBehaviours, use the Start\(\) event to initialize instead](./VSC0004.md) | Error    | 
-| VSC0005 | [UdonSharp only supports classes that inherit from 'UdonSharpBehaviour' at the moment](./VSC0005.md)                                    | Error    | 
-| VSC0006 | [UdonSharp does not currently support static user\-defined property declarations](./VSC0006.md)                                         | Error    | 
-| VSC0007 | [UdonSharp does not currently support initializers on properties](./VSC0007.md)                                                         | Error    | 
-| VSC0008 | [Base type calling is not yet supported by UdonSharp](./VSC0008.md)                                                                     | Error    | 
-| VSC0009 | [Default expressions are not yet supported by UdonSharp](./VSC0009.md)                                                                  | Error    | 
-| VSC0010 | [Default literal expressions are not yet supported by UdonSharp](./VSC0010.md)                                                          | Error    | 
-| VSC0011 | [UdonSharp does not support multidimensional arrays at the moment, use jagged arrays instead for now](./VSC0011.md)                     | Error    | 
-| VSC0012 | [UdonSharp does not support multidimensional array accesses yet](./VSC0012.md)                                                          | Error    | 
-| VSC0013 | [UdonSharp does not currently support null conditional operators](./VSC0013.md)                                                         | Error    | 
-| VSC0014 | [UdonSharp does not currently support static method declarations](./VSC0014.md)                                                         | Error    | 
-| VSC0015 | [UdonSharp does not yet support 'out' parameters on user\-defined methods](./VSC0015.md)                                                | Error    | 
-| VSC0016 | [UdonSharp does not yet support 'in' parameters on user\-defined methods](./VSC0016.md)                                                 | Error    | 
-| VSC0017 | [UdonSharp does not yet support 'ref' parameters on user\-defined methods](./VSC0017.md)                                                | Error    | 
-| VSC0018 | [UdonSharp does not support 'readonly references' local variable declarations](./VSC0018.md)                                            | Error    | 
-| VSC0019 | [UdonSharp does not support returns 'readonly references' on user defined method declarations](./VSC0019.md)                            | Error    | 
-| VSC0020 | [UdonSharp does not yet support goto](./VSC0020.md)                                                                                     | Error    | 
-| VSC0021 | [UdonSharp does not yet support labeled statements](./VSC0021.md)                                                                       | Error    | 
-| VSC0022 | [Object initializers are not yet supported by UdonSharp](./VSC0022.md)                                                                  | Error    | 
-| VSC0023 | [UdonSharp does not yet support goto case statement](./VSC0023.md)                                                                      | Error    | 
-| VSC0024 | [UdonSharp does not yet support goto default statement](./VSC0024.md)                                                                   | Error    | 
-| VSC0025 | [Only one class declaration per file is currently supported by UdonSharp](./VSC0025.md)                                                 | Error    | 
-| VSC0026 | [GetComponent&lt;T&gt; is currently broken in Udon for SDK3 components](./VSC0026.md)                                                   | Error    | 
-| VSC0027 | [UdonSharp custom methods currently do not support default arguments or params arguments](./VSC0027.md)                                 | Error    | 
-| VSC0028 | [Static fields are not yet supported by UdonSharp](./VSC0028.md)                                                                        | Error    | 
-| VSC0029 | [Only one field may target property](./VSC0029.md)                                                                                      | Error    | 
-| VSC0030 | [Invalid target property](./VSC0030.md)                                                                                                 | Error    | 
-| VSC0031 | [Types must match between property and variable change field](./VSC0031.md)                                                             | Error    | 
-| VSC0032 | [Cannot define method with the same name as built\-in UdonSharpBehaviour methods](./VSC0032.md)                                         | Error    | 
-| VSC0033 | [UdonSharp only supports 1 type generic methods at the moment](./VSC0033.md)                                                            | Error    | 
-| VSC0034 | [UdonSharp does not support generics method declarations](./VSC0034.md)                                                                 | Error    | 
-| VSC0035 | [Nullable types are not currently supported by UdonSharp](./VSC0035.md)                                                                 | Error    | 
-| VSC0036 | [UdonSharp does not yet support user defined enums](./VSC0036.md)                                                                       | Error    | 
-| VSC0037 | [UdonSharp does not currently support using 'typeof' on user defined types](./VSC0037.md)                                               | Error    | 
-| VSC0038 | [UdonSharp does not yet support static using directives](./VSC0038.md)                                                                  | Error    | 
-| VSC0039 | [UdonSharp does not yet support namespace alias directives](./VSC0039.md)                                                               | Error    | 
+| ID      | Title                                                                                                                                          | Severity | 
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------- | 
+| VSC0001 | [UdonSharpBehaviour classes must be same name as C\# files](./VSC0001.md)                                                                      | Error    | 
+| VSC0002 | [Local method declarations are not currently supported](./VSC0002.md)                                                                          | Error    | 
+| VSC0003 | [Nested type declarations are not currently supported](./VSC0003.md)                                                                           | Error    | 
+| VSC0004 | [Cannot use typeof on user\-defined types](./VSC0004.md)                                                                                       | Error    | 
+| VSC0005 | [Does not yet support initializer lists](./VSC0005.md)                                                                                         | Error    | 
+| VSC0006 | [Multidimensional arrays are not yet supported](./VSC0006.md)                                                                                  | Error    | 
+| VSC0007 | [Static fields are not yet supported on user\-defined types](./VSC0007.md)                                                                     | Error    | 
+| VSC0008 | [Partial method declarations are not yet supported](./VSC0008.md)                                                                              | Error    | 
+| VSC0009 | [Constructors are not currently supported](./VSC0009.md)                                                                                       | Error    | 
+| VSC0010 | [Generic method declarations on UdonSharpBehaviours are not currently supported, consider using a non\-UdonSharpBehaviour class](./VSC0010.md) | Error    | 
+| VSC0011 | [Interfaces are not yet handled](./VSC0011.md)                                                                                                 | Error    | 
+| VSC0012 | [Does not yet support hiding base methods](./VSC0012.md)                                                                                       | Error    | 
+| VSC0013 | [Does not support multidimensional array access](./VSC0013.md)                                                                                 | Error    | 
+| VSC0014 | [Does not support null conditional operators](./VSC0014.md)                                                                                    | Error    | 
+| VSC0015 | [Does not support goto statement](./VSC0015.md)                                                                                                | Error    | 
+| VSC0016 | [Does not support labeled statement](./VSC0016.md)                                                                                             | Error    | 
+| VSC0017 | [Does not support goto case statement](./VSC0017.md)                                                                                           | Error    | 
+| VSC0018 | [Does not support goto default statement](./VSC0018.md)                                                                                        | Error    | 
+| VSC0019 | [Duplicate FieldChangeCallbackAttribute targets may be cause unexpected behaviour](./VSC0019.md)                                               | Warning  | 
+| VSC0020 | [Target property for FieldChangeCallbackAttribute was not found](./VSC0020.md)                                                                 | Error    | 
+| VSC0021 | [Types must be match between property and VariableChangeField](./VSC0021.md)                                                                   | Error    | 
+| VSC0022 | [Nullable types are not currently supported](./VSC0022.md)                                                                                     | Error    | 
+| VSC0023 | [Use the \`nameof\` operator instead of directly specifying the method name in SendCustomEvent](./VSC0023.md)                                  | Warning  | 
+| VSC0024 | [Use the namespace declaration to avoid class name conflicts](./VSC0024.md)                                                                    | Warning  | 
 
 

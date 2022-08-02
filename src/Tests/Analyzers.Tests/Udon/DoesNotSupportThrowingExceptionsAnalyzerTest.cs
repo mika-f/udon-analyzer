@@ -1,4 +1,4 @@
-﻿// ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
 //  Copyright (c) Natsuneko. All rights reserved.
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // ------------------------------------------------------------------------------------------
@@ -17,35 +17,35 @@ namespace Analyzers.Tests.Udon;
 public class DoesNotSupportThrowingExceptionsAnalyzerTest : UdonSharpDiagnosticVerifier<DoesNotSupportThrowingExceptionsAnalyzer>
 {
     [Fact]
-    public async Task TestDiagnostic_ThrowExpressionAsync()
+    [Example]
+    public async Task TestDiagnostic_ThrowExceptionStatementTest()
     {
         await VerifyAnalyzerAsync(@"
 using System;
 
 using UdonSharp;
 
-class TestBehaviour : UdonSharpBehaviour
+class TestBehaviour0 : UdonSharpBehaviour
 {
-    public void Test() => [|throw new ArgumentException()|];
+    public void TestMethod()
+    {
+        [|throw new NotSupportedException();|]
+    }
 }
 ");
     }
 
     [Fact]
-    [Example]
-    public async Task TestDiagnostic_ThrowStatementAsync()
+    public async Task TestDiagnostic_ThrowExceptionExpressionTest()
     {
         await VerifyAnalyzerAsync(@"
 using System;
 
 using UdonSharp;
 
-class TestBehaviour : UdonSharpBehaviour
+class TestBehaviour0 : UdonSharpBehaviour
 {
-    public void Test()
-    {
-        [|throw new ArgumentException();|]
-    }
+    public void TestMethod() => [|throw new NotSupportedException()|];
 }
 ");
     }

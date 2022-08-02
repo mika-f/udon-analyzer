@@ -17,12 +17,11 @@ using NatsunekoLaboratory.UdonAnalyzer.Internal;
 namespace NatsunekoLaboratory.UdonAnalyzer.UdonSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-[RequireUdonVersion("[2021.11.24.16.19,)")]
-[RequireUdonSharpCompilerVersion("[0.20.3,)")]
+[RequireUdonVersion("[3.1.0,)")]
+[RequireUdonSharpCompilerVersion("[1.0.0,)")]
 public class TypesMustMatchBetweenPropertyAndVariableChangeFieldAnalyzer : BaseDiagnosticAnalyzer
 {
     private const string FieldChangeCallbackAttributeFullyQualifiedName = "UdonSharp.FieldChangeCallbackAttribute";
-
     public override DiagnosticDescriptor SupportedDiagnostic => DiagnosticDescriptors.TypesMustMatchBetweenPropertyAndVariableChangeField;
 
     public override void Initialize(AnalysisContext context)
@@ -37,15 +36,16 @@ public class TypesMustMatchBetweenPropertyAndVariableChangeFieldAnalyzer : BaseD
         var declaration = (FieldDeclarationSyntax)context.Node;
         if (!declaration.HasAttribute(FieldChangeCallbackAttributeFullyQualifiedName, context.SemanticModel))
             return;
-        if (declaration.Ancestors().FirstOrDefault(w => w is ClassDeclarationSyntax) is not ClassDeclarationSyntax classDecl)
+
+        if (declaration.Ancestors().FirstOrDefault(w => w is ClassDeclarationSyntax) is not ClassDeclarationSyntax cls)
             return;
 
         var targetProperty = GetTargetPropertyNameFromSyntax(context, declaration);
         if (string.IsNullOrWhiteSpace(targetProperty))
             return;
 
-        var fields = classDecl.Members.OfType<PropertyDeclarationSyntax>();
-        var property = fields.FirstOrDefault(w => w.Identifier.ValueText == targetProperty);
+        var attr = declaration.GetAttributes(FieldChangeCallbackAttributeFullyQualifiedName, context.SemanticModel).First();
+        var property = cls.Members.OfType<PropertyDeclarationSyntax>().FirstOrDefault(w => w.Identifier.ValueText == targetProperty);
         if (property == null)
             return;
 
@@ -58,7 +58,7 @@ public class TypesMustMatchBetweenPropertyAndVariableChangeFieldAnalyzer : BaseD
         if (fieldType.Type.Equals(propertyType.Type, SymbolEqualityComparer.Default))
             return;
 
-        DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, declaration);
+        DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, attr, propertyType.Type.ToDisplayString());
     }
 
     private static string? GetTargetPropertyNameFromSyntax(SyntaxNodeAnalysisContext context, FieldDeclarationSyntax field)

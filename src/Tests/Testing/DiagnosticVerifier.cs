@@ -100,8 +100,17 @@ public abstract class DiagnosticVerifier<TAnalyzer, TProject> where TAnalyzer : 
                     sr.Read();
 
                     var message = new StringBuilder();
-                    while (sr.Peek() != ']')
-                        message.Append((char)sr.Read());
+                    while (true)
+                    {
+                        if (sr.Peek() == ']' && message[^1] != '\\')
+                            break;
+
+                        var cc = (char)sr.Read();
+                        if (message.Length > 0 && message[^1] == '\\' && cc == ']')
+                            message.Remove(message.Length - 1, 1);
+                        message.Append(cc);
+                    }
+
                     sr.Read();
 
                     // ReSharper disable once CoVariantArrayConversion

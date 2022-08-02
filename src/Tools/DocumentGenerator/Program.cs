@@ -51,8 +51,11 @@ static async Task<int> RunDefaultAsync(CommandLineParameters args)
             Console.WriteLine($"Writing UdonAnalyzer documentation for {category}:{id} to {category.ToLower()}/{id}.md");
         }
 
-        await WriteTemplateAsync(path, "README", "Udon", UdonAnalyzerMarkdown.CreateIndexDocument(runtimeAnalyzers));
-        await WriteTemplateAsync(path, "README", "UdonSharp", UdonSharpAnalyzerMarkdown.CreateIndexDocument(compilerAnalyzers));
+        if (runtimeAnalyzers.Count > 0)
+            await WriteTemplateAsync(path, "README", "Udon", UdonAnalyzerMarkdown.CreateIndexDocument(runtimeAnalyzers));
+
+        if (compilerAnalyzers.Count > 0)
+            await WriteTemplateAsync(path, "README", "UdonSharp", UdonSharpAnalyzerMarkdown.CreateIndexDocument(compilerAnalyzers));
 
         return ExitCodes.Success;
     }

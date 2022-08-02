@@ -61,6 +61,11 @@ public static class ClassDeclarationSyntaxExtensions
     public static AttributeSyntax? GetAttribute(this ClassDeclarationSyntax syntax, Type t, SemanticModel model)
     {
         var fullyQualifiedMetadataName = t.FullName ?? throw new InvalidOperationException();
+        return GetAttribute(syntax, fullyQualifiedMetadataName, model);
+    }
+
+    public static AttributeSyntax? GetAttribute(this ClassDeclarationSyntax syntax, string fullyQualifiedMetadataName, SemanticModel model)
+    {
         var symbol = model.Compilation.GetTypeByMetadataName(fullyQualifiedMetadataName);
         if (symbol == null)
             return null;

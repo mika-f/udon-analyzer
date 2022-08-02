@@ -18,33 +18,33 @@ public class TypesMustMatchBetweenPropertyAndVariableChangeFieldAnalyzerTest : U
 {
     [Fact]
     [Example]
-    public async Task TestDiagnostic_TypesDoesNotMatchBetweenFieldAndPropertyOnUdonSharpBehaviour()
+    public async Task TestDiagnostic_TypesAreMismatchBetweenFieldAndPropertyTest()
     {
         await VerifyAnalyzerAsync(@"
 using UdonSharp;
 
-class TestBehaviour : UdonSharpBehaviour
+public class TestBehaviour : UdonSharpBehaviour
 {
-    [|[FieldChangeCallback(nameof(Foo))]
-    public string _foo;|]
+    [[|FieldChangeCallback(""SomeProperty"")|@int]]
+    private string _str1;
 
-    public int Foo { get; set; }
+    private int SomeProperty { get; set; }
 }
 ");
     }
 
     [Fact]
-    public async Task TestNoDiagnostic_TypesMatchBetweenFieldAndPropertyOnUdonSharpBehaviour()
+    public async Task TestNoDiagnostic_TypesAreMatchBetweenFieldAndPropertyTest()
     {
         await VerifyAnalyzerAsync(@"
 using UdonSharp;
 
-class TestBehaviour : UdonSharpBehaviour
+public class TestBehaviour : UdonSharpBehaviour
 {
-    [FieldChangeCallback(nameof(Foo))]
-    public string _foo;
+    [FieldChangeCallback(""SomeProperty"")]
+    private string _str1;
 
-    public string Foo { get; set; }
+    private string SomeProperty { get; set; }
 }
 ");
     }

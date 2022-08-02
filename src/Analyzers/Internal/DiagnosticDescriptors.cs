@@ -9,413 +9,374 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Internal;
 
 internal static class DiagnosticDescriptors
 {
-    #region VSC - UdonSharp Compiler
-
-    public static readonly DiagnosticDescriptor DoesNotSupportInheritingFromInterfaces = DiagnosticDescriptorFactory.Create(
-        "VSC0001",
-        "UdonSharp does not yet support inheriting from interfaces",
-        "UdonSharp does not yet support inheriting from interfaces",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor BehavioursMustInheritFromSpecifiedClassInsteadOfMonoBehaviour = DiagnosticDescriptorFactory.Create(
-        "VSC0002",
-        "UdonSharp behaviours must inherit from 'UdonSharpBehaviour' instead of 'MonoBehaviour'",
-        "UdonSharp behaviours must inherit from 'UdonSharpBehaviour' instead of 'MonoBehaviour'",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotYetSupportInheritingFromClassesOtherThanSpecifiedClass = DiagnosticDescriptorFactory.Create(
-        "VSC0003",
-        "UdonSharp does not yet support inheriting from classes other than 'UdonSharpBehaviour'",
-        "UdonSharp does not yet support inheriting from classes other than 'UdonSharpBehaviour'",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportConstructorsOnBehaviours = DiagnosticDescriptorFactory.Create(
-        "VSC0004",
-        "UdonSharp does not currently support constructors on UdonSharpBehaviours, use the Start() event to initialize instead",
-        "UdonSharp does not currently support constructors on UdonSharpBehaviours, use the Start() event to initialize instead",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor OnlySupportsClassesThatInheritFromUdonSharpBehaviour = DiagnosticDescriptorFactory.Create(
-        "VSC0005",
-        "UdonSharp only supports classes that inherit from 'UdonSharpBehaviour' at the moment",
-        "UdonSharp only supports classes that inherit from 'UdonSharpBehaviour' at the moment",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportStaticUserDefinedProperties = DiagnosticDescriptorFactory.Create(
-        "VSC0006",
-        "UdonSharp does not currently support static user-defined property declarations",
-        "UdonSharp does not currently support static user-defined property declarations",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportInitializersOnProperties = DiagnosticDescriptorFactory.Create(
-        "VSC0007",
-        "UdonSharp does not currently support initializers on properties",
-        "UdonSharp does not currently support initializers on properties",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor BaseTypeCallingIsNotYetSupported = DiagnosticDescriptorFactory.Create(
-        "VSC0008",
-        "Base type calling is not yet supported by UdonSharp",
-        "Base type calling is not yet supported by UdonSharp",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DefaultExpressionsAreNotYetSupported = DiagnosticDescriptorFactory.Create(
-        "VSC0009",
-        "Default expressions are not yet supported by UdonSharp",
-        "Default expressions are not yet supported by UdonSharp",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DefaultLiteralExpressionsAreNotYetSupported = DiagnosticDescriptorFactory.Create(
-        "VSC0010",
-        "Default literal expressions are not yet supported by UdonSharp",
-        "Default literal expressions are not yet supported by UdonSharp",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotSupportMultidimensionalArrays = DiagnosticDescriptorFactory.Create(
-        "VSC0011",
-        "UdonSharp does not support multidimensional arrays at the moment, use jagged arrays instead for now",
-        "UdonSharp does not support multidimensional arrays at the moment, use jagged arrays instead for now",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotSupportMultidimensionalArrayAccesses = DiagnosticDescriptorFactory.Create(
-        "VSC0012",
-        "UdonSharp does not support multidimensional array accesses yet",
-        "UdonSharp does not support multidimensional array accesses yet",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportNullConditionalOperators = DiagnosticDescriptorFactory.Create(
-        "VSC0013",
-        "UdonSharp does not currently support null conditional operators",
-        "UdonSharp does not currently support null conditional operators",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportStaticMethodDeclarations = DiagnosticDescriptorFactory.Create(
-        "VSC0014",
-        "UdonSharp does not currently support static method declarations",
-        "UdonSharp does not currently support static method declarations",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotYetSupportOutParametersOnUserDefinedMethods = DiagnosticDescriptorFactory.Create(
-        "VSC0015",
-        "UdonSharp does not yet support 'out' parameters on user-defined methods",
-        "UdonSharp does not yet support 'out' parameters on user-defined methods",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotYetSupportInParametersOnUserDefinedMethods = DiagnosticDescriptorFactory.Create(
-        "VSC0016",
-        "UdonSharp does not yet support 'in' parameters on user-defined methods",
-        "UdonSharp does not yet support 'in' parameters on user-defined methods",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotYetSupportRefParametersOnUserDefinedMethods = DiagnosticDescriptorFactory.Create(
-        "VSC0017",
-        "UdonSharp does not yet support 'ref' parameters on user-defined methods",
-        "UdonSharp does not yet support 'ref' parameters on user-defined methods",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotSupportReadonlyReferenceLocalVariableDeclaration = DiagnosticDescriptorFactory.Create(
-        "VSC0018",
-        "UdonSharp does not support 'readonly references' local variable declarations",
-        "UdonSharp does not support 'readonly references' local variable declarations",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotSupportReturnsReadonlyReferenceOnUserDefinedMethodDeclaration = DiagnosticDescriptorFactory.Create(
-        "VSC0019",
-        "UdonSharp does not support returns 'readonly references' on user defined method declarations",
-        "UdonSharp does not support 'readonly references' on user defined method declarations",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotYetSupportGoto = DiagnosticDescriptorFactory.Create(
-        "VSC0020",
-        "UdonSharp does not yet support goto",
-        "UdonSharp does not yet support goto",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotYetSupportLabeledStatements = DiagnosticDescriptorFactory.Create(
-        "VSC0021",
-        "UdonSharp does not yet support labeled statements",
-        "UdonSharp does not yet support labeled statements",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotYetSupportObjectInitializers = DiagnosticDescriptorFactory.Create(
-        "VSC0022",
-        "Object initializers are not yet supported by UdonSharp",
-        "Object initializers are not yet supported by UdonSharp",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotYetSupportGotoCase = DiagnosticDescriptorFactory.Create(
-        "VSC0023",
-        "UdonSharp does not yet support goto case statement",
-        "UdonSharp does not yet support goto case statement",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotYetSupportGotoDefault = DiagnosticDescriptorFactory.Create(
-        "VSC0024",
-        "UdonSharp does not yet support goto default statement",
-        "UdonSharp does not yet support goto default statement",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor OnlyOneClassDeclarationPerFileIsCurrentlySupported = DiagnosticDescriptorFactory.Create(
-        "VSC0025",
-        "Only one class declaration per file is currently supported by UdonSharp",
-        "Only one class declaration per file is currently supported by UdonSharp",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    // ReSharper disable once InconsistentNaming
-    public static readonly DiagnosticDescriptor GetComponentIsCurrentlyBrokenInUdonForSDK3Components = DiagnosticDescriptorFactory.Create(
-        "VSC0026",
-        "GetComponent<T> is currently broken in Udon for SDK3 components",
-        "GetComponent<T> is currently broken in Udon for SDK3 components",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotSupportDefaultArgumentsOrParamsArguments = DiagnosticDescriptorFactory.Create(
-        "VSC0027",
-        "UdonSharp custom methods currently do not support default arguments or params arguments",
-        "UdonSharp custom methods currently do not support default arguments or params arguments",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotYetSupportedStaticFields = DiagnosticDescriptorFactory.Create(
-        "VSC0028",
-        "Static fields are not yet supported by UdonSharp",
-        "Static fields are not yet supported by UdonSharp",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor OnlyOneFieldMayTargetPropertyOnThisProperty = DiagnosticDescriptorFactory.Create(
-        "VSC0029",
-        "Only one field may target property",
-        "Only one field may target property '{0}'",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error,
-        true,
-        "Only one field may target property."
-    );
-
-    public static readonly DiagnosticDescriptor InvalidTargetProperty = DiagnosticDescriptorFactory.Create(
-        "VSC0030",
-        "Invalid target property",
-        "Invalid target property for '{0}'",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error,
-        true,
-        "Invalid target property."
-    );
-
-    public static readonly DiagnosticDescriptor TypesMustMatchBetweenPropertyAndVariableChangeField = DiagnosticDescriptorFactory.Create(
-        "VSC0031",
-        "Types must match between property and variable change field",
-        "Types must match between property and variable change field",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor CannotDefineMethodWithSameNameAsBuiltinUdonSharpBehaviourMethods = DiagnosticDescriptorFactory.Create(
-        "VSC0032",
-        "Cannot define method with the same name as built-in UdonSharpBehaviour methods",
-        "Cannot define method '{0}' with the same name as built-in UdonSharpBehaviour methods",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error,
-        true,
-        "Cannot define method with the same name as built-in UdonSharpBehaviour methods."
-    );
-
-    public static readonly DiagnosticDescriptor OnlySupports1TypeGenericMethodsAtTheMoment = DiagnosticDescriptorFactory.Create(
-        "VSC0033",
-        "UdonSharp only supports 1 type generic methods at the moment",
-        "UdonSharp only supports 1 type generic methods at the moment",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotSupportGenericsMethodDeclaration = DiagnosticDescriptorFactory.Create(
-        "VSC0034",
-        "UdonSharp does not support generics method declarations",
-        "UdonSharp does not support generics method declarations",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportNullableTypes = DiagnosticDescriptorFactory.Create(
-        "VSC0035",
-        "Nullable types are not currently supported by UdonSharp",
-        "Nullable types are not currently supported by UdonSharp",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotYetSupportUserDefinedEnums = DiagnosticDescriptorFactory.Create(
-        "VSC0036",
-        "UdonSharp does not yet support user defined enums",
-        "UdonSharp does not yet support user defined enums",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportUsingTypeofOnUserDefinedTypes = DiagnosticDescriptorFactory.Create(
-        "VSC0037",
-        "UdonSharp does not currently support using 'typeof' on user defined types",
-        "UdonSharp does not currently support using 'typeof' on user defined types",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-
-    public static readonly DiagnosticDescriptor DoesNotYetSupportStaticUsingDirectives = DiagnosticDescriptorFactory.Create(
-        "VSC0038",
-        "UdonSharp does not yet support static using directives",
-        "UdonSharp does not yet support static using directives",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotYetSupportNamespaceAliasDirectives = DiagnosticDescriptorFactory.Create(
-        "VSC0039",
-        "UdonSharp does not yet support namespace alias directives",
-        "UdonSharp does not yet support namespace alias directives",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    // INSERT_VSC_DESCRIPTOR_HERE
-
-    #endregion
-
     #region VRC - VRChat SDK
 
     public static readonly DiagnosticDescriptor TryCatchFinallyIsNotSupported = DiagnosticDescriptorFactory.Create(
         "VRC0001",
-        "Try/Catch/Finally is not supported by UdonSharp since Udon does not have a way to handle exceptions",
-        "Try/Catch/Finally is not supported by UdonSharp since Udon does not have a way to handle exceptions",
+        "Try-Catch-Finally is not supported",
+        "Try-Catch-Finally is not supported",
         DiagnosticCategories.Compiler,
         DiagnosticSeverity.Error
     );
 
     public static readonly DiagnosticDescriptor DoesNotSupportThrowingExceptions = DiagnosticDescriptorFactory.Create(
         "VRC0002",
-        "UdonSharp does not support throwing exceptions since Udon does not have support for exception throwing at the moment",
-        "UdonSharp does not support throwing exceptions since Udon does not have support for exception throwing at the moment",
+        "Does not support throwing exceptions",
+        "Does not support throwing exceptions",
         DiagnosticCategories.Compiler,
         DiagnosticSeverity.Error
     );
 
-    public static readonly DiagnosticDescriptor DoesNotSupportTheAwakeEvent = DiagnosticDescriptorFactory.Create(
+    public static readonly DiagnosticDescriptor DoesNotSupportInstantiatingNonGameObjectTypes = DiagnosticDescriptorFactory.Create(
         "VRC0003",
-        "Udon does not support the 'Awake' event, use 'Start' instead",
-        "Udon does not support the 'Awake' event, use 'Start' instead",
-        DiagnosticCategories.Compiler,
+        "Udon does not support instantiating non-GameObject types",
+        "Udon does not support instantiating non-GameObject types",
+        DiagnosticCategories.Usage,
         DiagnosticSeverity.Error
+    );
+
+    // ReSharper disable once InconsistentNaming
+    public static readonly DiagnosticDescriptor SpecifiedEventIsDeprecatedUseTheVersionWithTheVRCPlayerApi = DiagnosticDescriptorFactory.Create(
+        "VRC0004",
+        "The specified event is deprecated use the version with VRCPlayerApi",
+        "The {0}() event is deprecated use the version with the VRCPlayerApi '{0}(VRCPlayerApi player)' instead",
+        DiagnosticCategories.Usage,
+        DiagnosticSeverity.Error,
+        true,
+        "The specified event is deprecated use the version with VRCPlayerApi."
     );
 
     public static readonly DiagnosticDescriptor DoesNotCurrentlySupportTypeCheckingWithTheIsKeyword = DiagnosticDescriptorFactory.Create(
-        "VRC0004",
-        "UdonSharp does not currently support type checking with the \"is\" keyword since Udon does not yet expose the proper functionality for type checking",
-        "UdonSharp does not currently support type checking with the \"is\" keyword since Udon does not yet expose the proper functionality for type checking",
-        DiagnosticCategories.Compiler,
-        DiagnosticSeverity.Error
-    );
-
-    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportTypeChecking = DiagnosticDescriptorFactory.Create(
         "VRC0005",
-        "The 'is' keyword is not yet supported by UdonSharp since Udon does not expose what is necessary",
-        "The 'is' keyword is not yet supported by UdonSharp since Udon does not expose what is necessary",
-        DiagnosticCategories.Compiler,
+        "Udon does not currently support type checking with the `is` keyword",
+        "Udon does not currently support type checking with the `is` keyword",
+        DiagnosticCategories.Usage,
         DiagnosticSeverity.Error
     );
 
-    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportTypeCasting = DiagnosticDescriptorFactory.Create(
+    public static readonly DiagnosticDescriptor TheAsKeywordIsNotYetSupported = DiagnosticDescriptorFactory.Create(
         "VRC0006",
-        "The 'as' keyword is not yet supported by UdonSharp since Udon does not expose what is necessary",
-        "The 'as' keyword is not yet supported by UdonSharp since Udon does not expose what is necessary",
-        DiagnosticCategories.Compiler,
+        "The `as` keyword is not yet supported by Udon",
+        "The `as` keyword is not yet supported by Udon",
+        DiagnosticCategories.Usage,
         DiagnosticSeverity.Error
     );
 
-    public static readonly DiagnosticDescriptor MethodIsNotExposedInUdon = DiagnosticDescriptorFactory.Create(
+    public static readonly DiagnosticDescriptor MethodIsNotExposedToUdon = DiagnosticDescriptorFactory.Create(
         "VRC0007",
-        "Method is not exposed in Udon",
-        "Method {0} is not exposed in Udon",
-        DiagnosticCategories.Compiler,
+        "Method is not exposed to Udon",
+        "Method '{0}' is not exposed to Udon",
+        DiagnosticCategories.Usage,
         DiagnosticSeverity.Error,
         true,
-        "Method is not exposed in Udon."
+        "Method is not exposed to Udon."
     );
 
-    public static readonly DiagnosticDescriptor FieldAccessorIsNotExposedInUdon = DiagnosticDescriptorFactory.Create(
+    public static readonly DiagnosticDescriptor FieldIsNotExposedToUdon = DiagnosticDescriptorFactory.Create(
         "VRC0008",
-        "Field accessor is not exposed in Udon",
-        "Field accessor {0} is not exposed in Udon",
-        DiagnosticCategories.Compiler,
+        "Field is not exposed to Udon",
+        "Field '{0}' is not exposed to Udon",
+        DiagnosticCategories.Usage,
         DiagnosticSeverity.Error,
         true,
-        "Field accessor is not exposed in Udon."
+        "Field is not exposed to Udon."
     );
 
-    public static readonly DiagnosticDescriptor DoesNotSupportReturnValuesOfType = DiagnosticDescriptorFactory.Create(
+    public static readonly DiagnosticDescriptor TypeIsNotExposedToUdon = DiagnosticDescriptorFactory.Create(
         "VRC0009",
-        "Udon does not support return values of type yet",
-        "Udon does not support return values of type {type} yet",
-        DiagnosticCategories.Compiler,
+        "Type is not exposed to Udon",
+        "Type '{0}' is not exposed to Udon",
+        DiagnosticCategories.Usage,
         DiagnosticSeverity.Error,
         true,
-        "Udon does not support return values of type yet."
+        "Type is not exposed to Udon."
+    );
+
+    public static readonly DiagnosticDescriptor CannotSyncVariableBecauseBehaviourIsSetToNoVariableSync = DiagnosticDescriptorFactory.Create(
+        "VRC0010",
+        "Cannot sync variable because behaviour is set to NoVariableSync, change the behaviour sync mode to sync variables",
+        "Cannot sync variable because behaviour is set to NoVariableSync, change the behaviour sync mode to sync variables",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning
+    );
+
+    public static readonly DiagnosticDescriptor DoesNotCurrentlySupportSyncingOfTheType = DiagnosticDescriptorFactory.Create(
+        "VRC0011",
+        "Udon does not currently support syncing of the type",
+        "Udon does not currently support syncing of the type {0}",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning,
+        true,
+        "Udon does not currently support syncing of the type."
+    );
+
+    public static readonly DiagnosticDescriptor DoesNotSupportLinearInterpolationOfTheSyncedType = DiagnosticDescriptorFactory.Create(
+        "VRC0012",
+        "Udon does not support linear interpolation of the synced type",
+        "Udon does not support linear interpolation of the synced type {0}",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning,
+        true,
+        "Udon does not support linear interpolation of the synced type."
+    );
+
+    public static readonly DiagnosticDescriptor DoesNotSupportSmoothInterpolationOfTheSyncedType = DiagnosticDescriptorFactory.Create(
+        "VRC0013",
+        "Udon does not support smooth interpolation of the synced type",
+        "Udon does not support smooth interpolation of the synced type {0}",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning,
+        true,
+        "Udon does not support smooth interpolation of the synced type."
+    );
+
+    public static readonly DiagnosticDescriptor DoesNotSupportVariableTweeningWhenTheBehaviourIsInManualSyncMode = DiagnosticDescriptorFactory.Create(
+        "VRC0014",
+        "Udon does not support variable tweening when the behaviour is in Manual Sync Mode",
+        "Udon does not support variable tweening when the behaviour is in Manual Sync Mode",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning
+    );
+
+    public static readonly DiagnosticDescriptor SyncingOfArrayTypesIsOnlySupportedInManualSyncMode = DiagnosticDescriptorFactory.Create(
+        "VRC0015",
+        "Syncing of array type is only supported in manual sync mode",
+        "Syncing of array type '{0}' is only supported in manual sync mode",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning,
+        true,
+        "Syncing of array type is only supported in manual sync mode."
+    );
+
+    public static readonly DiagnosticDescriptor TheMethodSpecifiedForSendCustomEventMustBePublic = DiagnosticDescriptorFactory.Create(
+        "VRC0016",
+        "The method specified for SendCustomEvent must be public",
+        "The method specified for SendCustomEvent must be public",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning
+    );
+
+    public static readonly DiagnosticDescriptor TheMethodSpecifiedForOverTheNetworkCannotStartWithAnUnderscore = DiagnosticDescriptorFactory.Create(
+        "VRC0017",
+        "The method specified for over the network cannot start with an underscore",
+        "The method specified for over the network cannot start with an underscore",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning
+    );
+
+    public static readonly DiagnosticDescriptor TheMethodSpecifiedForSendCustomEventIsNotDeclaredInTheBehaviour = DiagnosticDescriptorFactory.Create(
+        "VRC0018",
+        "The method specified for SendCustomEvent is not declared in the behaviour",
+        "The method specified for SendCustomEvent is not declared in the behaviour",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning
     );
 
     // INSERT_VRC_DESCRIPTOR_HERE
+
+    #endregion
+
+    #region VSC - UdonSharp Compiler
+
+    public static readonly DiagnosticDescriptor UdonSharpBehaviourClassesMustBeSameNameAsCsharpFile = DiagnosticDescriptorFactory.Create(
+        "VSC0001",
+        "UdonSharpBehaviour classes must be same name as C# files",
+        "UdonSharpBehaviour classes must be same name as C# files",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor LocalMethodDeclarationsAreNotCurrentlySupported = DiagnosticDescriptorFactory.Create(
+        "VSC0002",
+        "Local method declarations are not currently supported",
+        "Local method declarations are not currently supported",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor NestedTypeDeclarationsAreNotCurrentlySupported = DiagnosticDescriptorFactory.Create(
+        "VSC0003",
+        "Nested type declarations are not currently supported",
+        "Nested type declarations are not currently supported",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor CannotUseTypeofOnUserDefinedTypes = DiagnosticDescriptorFactory.Create(
+        "VSC0004",
+        "Cannot use typeof on user-defined types",
+        "Cannot use typeof on user-defined types",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor DoesNotYetSupportInitializerLists = DiagnosticDescriptorFactory.Create(
+        "VSC0005",
+        "Does not yet support initializer lists",
+        "Does not yet support initializer lists",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor MultidimensionalArraysAreNotYetSupported = DiagnosticDescriptorFactory.Create(
+        "VSC0006",
+        "Multidimensional arrays are not yet supported",
+        "Multidimensional arrays are not yet supported",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor StaticFieldsAreNotYetSupportedOnUserDefinedTypes = DiagnosticDescriptorFactory.Create(
+        "VSC0007",
+        "Static fields are not yet supported on user-defined types",
+        "Static fields are not yet supported on user-defined types",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor PartialMethodDeclarationsAreNotYetSupported = DiagnosticDescriptorFactory.Create(
+        "VSC0008",
+        "Partial method declarations are not yet supported",
+        "Partial method declarations are not yet supported",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor ConstructorsAreNotCurrentlySupported = DiagnosticDescriptorFactory.Create(
+        "VSC0009",
+        "Constructors are not currently supported",
+        "Constructors are not currently supported",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor GenericMethodDeclarationsAreNotCurrentlySupported = DiagnosticDescriptorFactory.Create(
+        "VSC0010",
+        "Generic method declarations on UdonSharpBehaviours are not currently supported, consider using a non-UdonSharpBehaviour class",
+        "Generic method declarations on UdonSharpBehaviours are not currently supported, consider using a non-UdonSharpBehaviour class",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor InterfacesAreNotYetHandled = DiagnosticDescriptorFactory.Create(
+        "VSC0011",
+        "Interfaces are not yet handled",
+        "Interfaces are not yet handled",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor DoesNotYetSupportHidingBaseMethods = DiagnosticDescriptorFactory.Create(
+        "VSC0012",
+        "Does not yet support hiding base methods",
+        "Does not yet support hiding base methods, did you intend to override '{0}'?",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error,
+        true,
+        "Does not yet support hiding base methods."
+    );
+
+    public static readonly DiagnosticDescriptor DoesNotSupportMultidimensionalArrayAccess = DiagnosticDescriptorFactory.Create(
+        "VSC0013",
+        "Does not support multidimensional array access",
+        "Does not support multidimensional array access",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor DoesNotSupportNullConditionalOperators = DiagnosticDescriptorFactory.Create(
+        "VSC0014",
+        "Does not support null conditional operators",
+        "Does not support null conditional operators",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor DoesNotSupportGotoStatement = DiagnosticDescriptorFactory.Create(
+        "VSC0015",
+        "Does not support goto statement",
+        "Does not support goto statement",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor DoesNotSupportLabeledStatement = DiagnosticDescriptorFactory.Create(
+        "VSC0016",
+        "Does not support labeled statement",
+        "Does not support labeled statement",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor DoesNotSupportGotoCaseStatement = DiagnosticDescriptorFactory.Create(
+        "VSC0017",
+        "Does not support goto case statement",
+        "Does not support goto case statement",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor DoesNotSupportGotoDefaultStatement = DiagnosticDescriptorFactory.Create(
+        "VSC0018",
+        "Does not support goto default statement",
+        "Does not support goto default statement",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor DuplicateFieldChangeCallbackTarget = DiagnosticDescriptorFactory.Create(
+        "VSC0019",
+        "Duplicate FieldChangeCallbackAttribute targets may be cause unexpected behaviour",
+        "Duplicate FieldChangeCallbackAttribute targets may be cause unexpected behaviour",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning
+    );
+
+    public static readonly DiagnosticDescriptor TargetPropertyForFieldChangeCallbackAttributeWasNotFound = DiagnosticDescriptorFactory.Create(
+        "VSC0020",
+        "Target property for FieldChangeCallbackAttribute was not found",
+        "Target property '{0}' for FieldChangeCallbackAttribute was not found",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error,
+        true,
+        "Target property for FieldChangeCallbackAttribute was not found."
+    );
+
+    public static readonly DiagnosticDescriptor TypesMustMatchBetweenPropertyAndVariableChangeField = DiagnosticDescriptorFactory.Create(
+        "VSC0021",
+        "Types must be match between property and VariableChangeField",
+        "Target property type '{0}' did not match field type",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error,
+        true,
+        "Types must be match between property and VariableChangeField."
+    );
+
+    public static readonly DiagnosticDescriptor NullableTypesAreNotCurrentlySupported = DiagnosticDescriptorFactory.Create(
+        "VSC0022",
+        "Nullable types are not currently supported",
+        "Nullable types are not currently supported",
+        DiagnosticCategories.Compiler,
+        DiagnosticSeverity.Error
+    );
+
+    public static readonly DiagnosticDescriptor UseTheNameOfOperatorInsteadOfDirectlySpecifyingTheMethodName = DiagnosticDescriptorFactory.Create(
+        "VSC0023",
+        "Use the `nameof` operator instead of directly specifying the method name in SendCustomEvent",
+        "Use the `nameof` operator instead of directly specifying the method name in SendCustomEvent",
+        DiagnosticCategories.Maintainability,
+        DiagnosticSeverity.Warning
+    );
+
+    public static readonly DiagnosticDescriptor UseTheNamespaceDeclarationToAvoidClassNameConflicts = DiagnosticDescriptorFactory.Create(
+        "VSC0024",
+        "Use the namespace declaration to avoid class name conflicts",
+        "Use the namespace declaration to avoid class name conflicts",
+        DiagnosticCategories.Maintainability,
+        DiagnosticSeverity.Warning
+    );
+
+    // INSERT_VSC_DESCRIPTOR_HERE
 
     #endregion
 }

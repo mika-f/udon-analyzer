@@ -19,6 +19,11 @@ public static class FieldDeclarationSyntaxExtensions
         return node.AttributeLists.Any(w => w.Attributes.Any(v => v.IsEquivalentType(fullyQualifiedMetadataName, model)));
     }
 
+    public static AttributeSyntax? GetAttribute(this FieldDeclarationSyntax node, string fullyQualifiedMetadataName, SemanticModel model)
+    {
+        return GetAttributes(node, fullyQualifiedMetadataName, model).FirstOrDefault();
+    }
+
     public static IEnumerable<AttributeSyntax> GetAttributes(this FieldDeclarationSyntax node, string fullyQualifiedMetadataName, SemanticModel model)
     {
         return node.AttributeLists

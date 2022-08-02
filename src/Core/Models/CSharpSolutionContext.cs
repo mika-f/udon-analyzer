@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 using Microsoft.CodeAnalysis.Diagnostics;
 
@@ -17,9 +18,8 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Models;
 
 public static class CSharpSolutionContext
 {
-    private const string UdonRuntimeVersionOldGuid = "473737f63e15e204aa3a3df7a3a173e3";
-    private const string UdonRuntimeVersionNewGuid = "2cdbe2e71e2c46e48951c13df254e5b1";
-    private const string UdonSharpCompilerVersionGuid = "cb4c25a39519c854fbe183f6a7ec08f7";
+    private const string UdonRuntimeVersionGuid = "067f9b5cc16a52649985a5947e355556";
+    private const string UdonSharpCompilerVersionGuid = "cbbe64479c0543f45bdf2fde11738ac2";
 
     // ReSharper disable once InconsistentNaming
     private const string SDKAssemblyName = "VRC.Udon.Wrapper.dll";
@@ -27,7 +27,8 @@ public static class CSharpSolutionContext
     private static string? _udonRuntimeVersion;
     private static string? _udonSharpCompilerVersion;
 
-    private static readonly string DefaultVersion = new GenericVersion("0.0.0.0.0").ToString();
+    private static readonly string DefaultVersion = new GenericVersion("0.0.0").ToString();
+    private static readonly Regex VersionRegex = new("\"version\"\\s+:\\s+\"(.*?)\"", RegexOptions.Compiled);
 
     public static string FetchUdonRuntimeVersion(SyntaxNodeAnalysisContext context)
     {
@@ -37,7 +38,7 @@ public static class CSharpSolutionContext
             if (HasVRChatSDKAssembly(references, out var path))
             {
                 var paths = FindUnityRootDirectory(path);
-                if (TryReadSpecifiedGuidFileAsStringFromPaths(paths, new[] { UdonRuntimeVersionOldGuid, UdonRuntimeVersionNewGuid }, out var version))
+                if (TryReadSpecifiedGuidFileAsJsonStringFromPaths(paths, new[] { UdonRuntimeVersionGuid }, out var version))
                     _udonRuntimeVersion = version;
             }
         }
@@ -53,7 +54,7 @@ public static class CSharpSolutionContext
             if (HasVRChatSDKAssembly(references, out var path))
             {
                 var paths = FindUnityRootDirectory(path);
-                if (TryReadSpecifiedGuidFileAsStringFromPaths(paths, new[] { UdonSharpCompilerVersionGuid }, out var version))
+                if (TryReadSpecifiedGuidFileAsJsonStringFromPaths(paths, new[] { UdonSharpCompilerVersionGuid }, out var version))
                     _udonSharpCompilerVersion = version;
             }
         }
@@ -70,7 +71,7 @@ public static class CSharpSolutionContext
 
     private static IEnumerable<string> FindUnityRootDirectory(string path)
     {
-        const string unityAssetsDirectory = "Assets";
+        const string unityAssetsDirectory = "Packages";
         var paths = new List<string>();
         var lastIndex = 0;
 
@@ -86,18 +87,23 @@ public static class CSharpSolutionContext
         return paths;
     }
 
-    private static bool TryReadSpecifiedGuidFileAsStringFromPaths(IEnumerable<string> paths, string[] guid, [NotNullWhen(true)] out string? version)
+    private static bool TryReadSpecifiedGuidFileAsJsonStringFromPaths(IEnumerable<string> paths, string[] guid, [NotNullWhen(true)] out string? version)
     {
         foreach (var path in paths)
         {
-            var metas = Directory.GetFiles(Path.Combine(path, "Assets"), "version.txt.meta", SearchOption.AllDirectories);
+            var metas = Directory.GetFiles(Path.Combine(path, "Packages"), "package.json.meta", SearchOption.AllDirectories);
             foreach (var meta in metas)
                 if (guid.Any(w => HasSpecifiedGuid(meta, w)))
                 {
                     version = ReadContentFromMetaPath(meta);
-                    if (version.StartsWith("v"))
-                        version = version["v".Length..];
-                    return true;
+                    if (VersionRegex.IsMatch(version))
+                    {
+                        var match = VersionRegex.Match(version);
+                        version = match.Groups[1].Value;
+                        return true;
+                    }
+
+                    return false;
                 }
         }
 

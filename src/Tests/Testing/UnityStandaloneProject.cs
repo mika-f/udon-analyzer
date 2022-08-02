@@ -29,10 +29,10 @@ public class UnityStandaloneProject : StandaloneProject
     protected override IEnumerable<string> ExternalReferences()
     {
         var managed = Path.Combine(UnityInstallationPath, "Data", "Managed");
-        yield return Path.Combine(managed, "UnityEditor.dll");
         yield return Path.Combine(managed, "UnityEngine.dll");
 
         var engine = Path.Combine(UnityInstallationPath, "Data", "Managed", "UnityEngine");
+        yield return Path.Combine(engine, "UnityEditor.dll");
         yield return Path.Combine(engine, "UnityEngine.CoreModule.dll");
 
         var mono = Path.Combine(UnityInstallationPath, "Data", "MonoBleedingEdge", "lib", "mono", "4.7.1-api");

@@ -18,34 +18,17 @@ public class DoesNotCurrentlySupportTypeCheckingWithTheIsKeywordAnalyzerTest : U
 {
     [Fact]
     [Example]
-    public async Task TestDiagnostic_IsExpressionOnUdonSharpBehaviour()
+    public async Task TestDiagnostic_TypeCheckingWithIsKeyword()
     {
         await VerifyAnalyzerAsync(@"
 using UdonSharp;
 
-class TestBehaviour : UdonSharpBehaviour
+class TestBehaviour0 : UdonSharpBehaviour
 {
-    void TestMethod()
+    public void TestMethod()
     {
         var a = """";
         var b = [|a is string|];
-    }
-}
-");
-    }
-
-    [Fact]
-    public async Task TestNoDiagnostic_IsExpressionOnMonoBehaviour()
-    {
-        await VerifyAnalyzerAsync(@"
-using UnityEngine;
-
-class TestBehaviour : MonoBehaviour
-{
-    void TestMethod()
-    {
-        var a = """";
-        var b = a is string;
     }
 }
 ");

@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
-
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -24,6 +23,10 @@
     <ProjectReference Include="..\..\AnalyzerSpec\AnalyzerSpec.csproj" />
     <ProjectReference Include="..\..\Analyzers\Analyzers.csproj" />
     <ProjectReference Include="..\Testing\Testing.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="UdonSharp\" />
   </ItemGroup>
 
 </Project>

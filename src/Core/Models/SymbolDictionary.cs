@@ -6,21 +6,99 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.IO;
 using System.Linq;
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
+
+using NatsunekoLaboratory.UdonAnalyzer.Extensions;
 
 namespace NatsunekoLaboratory.UdonAnalyzer.Models;
 
 public class SymbolDictionary
 {
     private static SymbolDictionary? _instance;
+    private static readonly List<string> WhitelistRegistry;
+    private static readonly List<string> CanSyncRegistry;
+    private static readonly List<string> CanSyncLinearRegistry;
+    private static readonly List<string> CanSyncSmoothRegistry;
     private readonly Dictionary<string, ImmutableArray<byte>> _cached;
     private readonly object _lockObj;
     private readonly Dictionary<string, List<string>> _symbols;
 
     public static SymbolDictionary Instance => _instance ??= new SymbolDictionary();
+
+    static SymbolDictionary()
+    {
+        WhitelistRegistry = new List<string>
+        {
+            "VRCUdonCommonInterfacesIUdonEventReceiver.__get_gameObject__UnityEngineGameObject",
+            "VRCUdonCommonInterfacesIUdonEventReceiver.__GetProgramVariable__SystemString__T",
+            "VRCUdonCommonInterfacesIUdonEventReceiver.__SetProgramVariable__SystemString_T__SystemVoid",
+            "Type_SystemVoid"
+        };
+
+        CanSyncRegistry = new List<string>
+        {
+            "bool",
+            "char",
+            "byte",
+            "uint",
+            "int",
+            "long",
+            "sbyte",
+            "ulong",
+            "float",
+            "double",
+            "short",
+            "ushort",
+            "string",
+            "UnityEngine.Color",
+            "UnityEngine.Color32",
+            "UnityEngine.Vector2",
+            "UnityEngine.Vector3",
+            "UnityEngine.Vector4",
+            "UnityEngine.Quaternion",
+            "VRC.SDKBase.VRCUrl"
+        };
+
+        CanSyncLinearRegistry = new List<string>
+        {
+            "byte",
+            "uint",
+            "int",
+            "long",
+            "sbyte",
+            "ulong",
+            "float",
+            "double",
+            "short",
+            "ushort",
+            "UnityEngine.Color",
+            "UnityEngine.Color32",
+            "UnityEngine.Vector2",
+            "UnityEngine.Vector3",
+            "UnityEngine.Quaternion"
+        };
+
+        CanSyncSmoothRegistry = new List<string>
+        {
+            "byte",
+            "uint",
+            "int",
+            "long",
+            "sbyte",
+            "ulong",
+            "float",
+            "double",
+            "short",
+            "ushort",
+            "UnityEngine.Vector2",
+            "UnityEngine.Vector3",
+            "UnityEngine.Quaternion"
+        };
+    }
 
     private SymbolDictionary()
     {
@@ -33,20 +111,88 @@ public class SymbolDictionary
     {
         if (IsUserDefinedSymbol(symbol))
             return true;
+        if (symbol is INamespaceSymbol)
+            return true;
 
         LoadDictionaryFromAdditionalFiles(context);
 
-        var declarationId = DocumentationCommentId.CreateDeclarationId(symbol);
-        return _symbols.SelectMany(w => w.Value).Any(w => w == declarationId);
+        var declarationId = $"Type_{symbol.ToVRChatDeclarationId()}";
+        return _symbols.SelectMany(w => w.Value).Any(w => w == declarationId) || WhitelistRegistry.Contains(declarationId);
+    }
+
+    public bool IsSymbolIsAllowed(ISymbol symbol, ISymbol? receiver, SyntaxNodeAnalysisContext context)
+    {
+        if (IsUserDefinedSymbol(symbol))
+            return true;
+        if (symbol is INamespaceSymbol)
+            return true;
+
+        LoadDictionaryFromAdditionalFiles(context);
+
+        var declarationId = symbol.ToVRChatDeclarationId(receiver);
+        return _symbols.SelectMany(w => w.Value).Any(w => w == declarationId) || WhitelistRegistry.Contains(declarationId);
+    }
+
+    public bool IsSymbolIsAllowed(ISymbol symbol, ISymbol? receiver, bool isGetterContext, SyntaxNodeAnalysisContext context)
+    {
+        if (IsUserDefinedSymbol(symbol))
+            return true;
+        if (symbol is INamespaceSymbol)
+            return true;
+
+        LoadDictionaryFromAdditionalFiles(context);
+
+        if (isGetterContext && receiver is INamedTypeSymbol { EnumUnderlyingType: not null })
+            return IsSymbolIsAllowed(receiver, context);
+
+        var declarationId = symbol.ToVRChatDeclarationId(receiver, isGetterContext);
+        return _symbols.SelectMany(w => w.Value).Any(w => w == declarationId) || WhitelistRegistry.Contains(declarationId);
+    }
+
+    public bool IsSymbolCanSync(ISymbol symbol)
+    {
+        if (symbol is IArrayTypeSymbol arr)
+            return IsSymbolCanSync(arr.ElementType);
+
+        switch (symbol)
+        {
+            case INamedTypeSymbol t:
+                var str = t.ToDisplayString();
+                return CanSyncRegistry.Contains(str);
+
+            default:
+                return false;
+        }
+    }
+
+    public bool IsSymbolCanLinearSync(ISymbol symbol)
+    {
+        if (symbol is IArrayTypeSymbol)
+            return false;
+
+        var str = symbol.ToDisplayString();
+        return CanSyncLinearRegistry.Contains(str);
+    }
+
+    public bool IsSymbolCanSmoothSync(ISymbol symbol)
+    {
+        if (symbol is IArrayTypeSymbol)
+            return false;
+
+        var str = symbol.ToDisplayString();
+        return CanSyncSmoothRegistry.Contains(str);
     }
 
     private static bool IsUserDefinedSymbol(ISymbol symbol)
     {
         return symbol switch
         {
-            INamedTypeSymbol t => t.BaseType?.ToDisplayString() == "UdonSharp.UdonSharpBehaviour",
+            IArrayTypeSymbol a => IsUserDefinedSymbol(a.ElementType),
+            // UdonSharp.UdonSharpBehaviour is located in source, but specified in this line for tests
+            INamedTypeSymbol t => t.BaseType?.ToDisplayString() == "UdonSharp.UdonSharpBehaviour" || t.ToDisplayString() == "UdonSharp.UdonSharpBehaviour" || t.Locations.All(w => w.IsInSource),
             IMethodSymbol m => IsUserDefinedSymbol(m.ReceiverType ?? throw new InvalidOperationException()),
             IFieldSymbol f => IsUserDefinedSymbol(f.ContainingType ?? throw new InvalidOperationException()),
+            IPropertySymbol p => IsUserDefinedSymbol(p.ContainingType ?? throw new InvalidOperationException()),
             _ => false
         };
     }
@@ -57,7 +203,11 @@ public class SymbolDictionary
         {
             var sources = context.Options
                                  .AdditionalFiles
-                                 .Where(w => w.Path.StartsWith("PublicAPI.Shipped.") && w.Path.EndsWith(".txt"))
+                                 .Where(w =>
+                                 {
+                                     var filename = Path.GetFileName(w.Path);
+                                     return filename.StartsWith("PublicAPI.Shipped.") && filename.EndsWith(".txt");
+                                 })
                                  .ToList();
 
             if (sources.Count != _cached.Count)

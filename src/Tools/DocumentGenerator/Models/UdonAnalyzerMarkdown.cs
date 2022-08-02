@@ -24,7 +24,7 @@ internal static class UdonAnalyzerMarkdown
                 TableBody("ID", metadata.Id),
                 TableBody("Category", metadata.Category),
                 TableBody("Severity", metadata.Severity.ToString()),
-                TableBody("Runtime Version", metadata.RuntimeVersion)
+                TableBody("Runtime Version", metadata.RuntimeVersion!)
             ),
             Paragraph(metadata.Description),
             NewLine(),
