@@ -196,7 +196,7 @@ class TestBehaviour0 : UdonSharpBehaviour
 {
     public override void Interact()
     {
-        [|SendCustomNetworkEvent(NetworkEventTarget.All, ""TestMethod"", 1)|];
+        [|SendCustomNetworkEvent(NetworkEventTarget.All, ""TestMethod"")|];
     }
 
     private void TestMethod() { }
