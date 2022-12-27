@@ -28,7 +28,7 @@ public static class CSharpSolutionContext
     private static string? _udonSharpCompilerVersion;
 
     private static readonly string DefaultVersion = new GenericVersion("0.0.0").ToString();
-    private static readonly Regex VersionRegex = new("\"version\"\\s+:\\s+\"(.*?)\"", RegexOptions.Compiled);
+    private static readonly Regex VersionRegex = new(@"""version""\s*:\s*""(.*?)""", RegexOptions.Compiled);
 
     public static string FetchUdonRuntimeVersion(SyntaxNodeAnalysisContext context)
     {

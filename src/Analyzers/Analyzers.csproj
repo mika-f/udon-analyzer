@@ -24,8 +24,4 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.2.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj" />
-  </ItemGroup>
-
 </Project>

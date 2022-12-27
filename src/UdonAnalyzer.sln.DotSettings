@@ -3,4 +3,7 @@
  Copyright (c) Natsuneko. All rights reserved.&#xD;
  Licensed under the Microsoft Reference Source License. See LICENSE in the project root for license information.&#xD;
 -----------------------------------------------------------------------------------------------------------------&#xD;
-</s:String></wpf:ResourceDictionary>
+</s:String>
+	<s:Boolean x:Key="/Default/Environment/UnitTesting/MsTestProvider/UseTestRunConfigFromMetadataFile/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestRunner/EnvironmentVariablesIndexed/=UDON_005FANALYZER_005FTARGET_005FPROJECT/@EntryIndexedValue">M:\repos\github.com\mika-f\UdonAnalyzerTesting\Assembly-CSharp.csproj</s:String>
+	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestRunner/RunConfigurationFilename/@EntryValue">M:\repos\github.com\mika-f\udon-analyzer\src\Tests\Analyzers.Tests\UdonSharp.runsettings</s:String></wpf:ResourceDictionary>

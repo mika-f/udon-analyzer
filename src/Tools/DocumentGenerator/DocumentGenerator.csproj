@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ConsoleCore\ConsoleCore.csproj" />
-    <ProjectReference Include="..\..\Core\Core.csproj" />
     <ProjectReference Include="..\CodeGeneration\CodeGeneration.csproj" />
   </ItemGroup>
 

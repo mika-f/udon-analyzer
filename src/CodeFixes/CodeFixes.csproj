@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Analyzers\Analyzers.csproj" />
-    <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 
 </Project>
