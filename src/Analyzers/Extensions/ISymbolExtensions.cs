@@ -50,7 +50,7 @@ public static class ISymbolExtensions
 
             case IMethodSymbol ms:
             {
-                var parameters = string.Join("__", ms.Parameters.Select(w => w.ToVRChatDeclarationId()));
+                var parameters = string.Join("_", ms.Parameters.Select(w => w.ToVRChatDeclarationId()));
                 if (parameters.Length > 0)
                     return $"{(receiver ?? ms.ContainingType).ToVRChatDeclarationId()}.__{ms.Name}__{parameters}__{ms.ReturnType.ToVRChatDeclarationId()}";
                 return $"{(receiver ?? ms.ContainingType).ToVRChatDeclarationId()}.__{ms.Name}__{ms.ReturnType.ToVRChatDeclarationId()}";
