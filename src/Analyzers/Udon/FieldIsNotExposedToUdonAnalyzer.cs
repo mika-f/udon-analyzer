@@ -36,6 +36,9 @@ public class FieldIsNotExposedToUdonAnalyzer : BaseDiagnosticAnalyzer
         if (si.Symbol == null)
             return;
 
+        if (si.Symbol is IMethodSymbol)
+            return;
+
         var t = context.SemanticModel.GetTypeInfo(expression.Expression);
         if (SymbolDictionary.Instance.IsSymbolIsAllowed(si.Symbol, t.Type, !isAssignment, context))
             return;
