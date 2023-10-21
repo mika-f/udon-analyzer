@@ -56,6 +56,9 @@ public static class CSharpSolutionContext
                 var paths = FindUnityRootDirectory(path);
                 if (TryReadSpecifiedGuidFileAsJsonStringFromPaths(paths, new[] { UdonSharpCompilerVersionGuid }, out var version))
                     _udonSharpCompilerVersion = version;
+
+                if (string.IsNullOrWhiteSpace(_udonSharpCompilerVersion) && !string.IsNullOrWhiteSpace(_udonRuntimeVersion))
+                    _udonSharpCompilerVersion = _udonRuntimeVersion;
             }
         }
 
