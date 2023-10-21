@@ -9,7 +9,7 @@ namespace NatsunekoLaboratory.UdonAnalyzer;
 
 public static class DiagnosticDescriptorFactory
 {
-    private const string HelpLinkBaseUri = "https://docs.natsuneko.moe/udon-analyzer/analyzers/";
+    private const string HelpLinkBaseUri = "https://docs.natsuneko.cat/udon-analyzer/diagnostics/";
 
     public static DiagnosticDescriptor Create(string id, string title, string messageFormat, string category, DiagnosticSeverity defaultSeverity, bool isEnabledByDefault = true, string? description = null)
     {
