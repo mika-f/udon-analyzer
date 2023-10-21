@@ -117,4 +117,43 @@ class SomeBehaviour : UdonSharpBehaviour
 }
 ");
     }
+
+    [Fact]
+    public async Task TestNoDiagnostic_ReceiverIsLocalVarsButDefinedInShippedApiOnUdonSharpBehaviour()
+    {
+        var additionals = new List<(string Filename, string Content)>
+        {
+            ("PublicAPI.Shipped.test.txt", "UnityEngineGameObject.__SetActive__SystemBoolean__SystemVoid")
+        };
+
+
+        await VerifyAnalyzerAsync(@"
+using UnityEngine;
+
+namespace UdonSharp.Examples.Utilities
+{
+    /// <summary>
+    /// A Basic example class that demonstrates how to toggle a list of object on and off when someone interacts with the UdonBehaviour
+    /// This toggle only works locally
+    /// </summary>
+    [AddComponentMenu(""Udon Sharp/Utilities/Interact Toggle"")]
+    [UdonBehaviourSyncMode(BehaviourSyncMode.NoVariableSync)]
+    public class InteractToggle : UdonSharpBehaviour 
+    {
+        [Tooltip(""List of objects to toggle on and off"")]
+        public GameObject[] toggleObjects;
+
+        public override void Interact()
+        {
+            foreach (GameObject toggleObject in toggleObjects)
+            {
+                if (toggleObject != null) {
+                    toggleObject.SetActive(!toggleObject.activeSelf);
+                }
+            }
+        }
+    }
+}
+", additionals);
+    }
 }
