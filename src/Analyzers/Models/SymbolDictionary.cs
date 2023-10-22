@@ -4,6 +4,7 @@
 // ------------------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
@@ -25,7 +26,7 @@ public class SymbolDictionary
     private static readonly List<string> CanSyncSmoothRegistry;
     private readonly Dictionary<string, ImmutableArray<byte>> _cached;
     private readonly object _lockObj;
-    private readonly Dictionary<string, List<string>> _symbols;
+    private readonly ConcurrentDictionary<string, ConcurrentBag<string>> _symbols;
 
     public static SymbolDictionary Instance => _instance ??= new SymbolDictionary();
 
@@ -104,7 +105,7 @@ public class SymbolDictionary
     {
         _cached = new Dictionary<string, ImmutableArray<byte>>();
         _lockObj = new object();
-        _symbols = new Dictionary<string, List<string>>();
+        _symbols = new ConcurrentDictionary<string, ConcurrentBag<string>>();
     }
 
     public bool IsSymbolIsAllowed(ISymbol symbol, SyntaxNodeAnalysisContext context)
@@ -217,9 +218,8 @@ public class SymbolDictionary
             }
 
             foreach (var source in sources)
-                if (_cached.ContainsKey(source.Path))
+                if (_cached.TryGetValue(source.Path, out var cached))
                 {
-                    var cached = _cached[source.Path];
                     if (cached.Equals(source.GetText()?.GetChecksum()))
                         continue;
                     LoadDictionaryIntoCache(source);
@@ -238,11 +238,12 @@ public class SymbolDictionary
         if (source == null)
             return;
 
-        if (!_symbols.ContainsKey(text.Path))
-            _symbols.Add(text.Path, new List<string>());
+        // clean
+        _symbols.AddOrUpdate(text.Path, _ => new ConcurrentBag<string>(), (_, _) => new ConcurrentBag<string>());
 
-        var symbols = _symbols[text.Path];
-        symbols.Clear();
-        symbols.AddRange(source.Lines.Select(line => line.ToString()));
+        var symbols = _symbols.GetOrAdd(text.Path, new ConcurrentBag<string>());
+
+        foreach (var s in source.Lines.Select(line => line.ToString()))
+            symbols.Add(s);
     }
 }
