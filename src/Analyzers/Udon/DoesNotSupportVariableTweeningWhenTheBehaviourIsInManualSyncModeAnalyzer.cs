@@ -42,7 +42,11 @@ public class DoesNotSupportVariableTweeningWhenTheBehaviourIsInManualSyncModeAna
             if (attr == null || attr.ArgumentList?.Arguments.Count < 1)
                 return;
 
-            var val = context.SemanticModel.GetConstantValue(attr.ArgumentList!.Arguments[0].Expression);
+            // UdonSynced(default) == UdonSyncMode.None
+            if (attr.ArgumentList == null)
+                return;
+
+            var val = context.SemanticModel.GetConstantValue(attr.ArgumentList.Arguments[0].Expression);
             if (!val.HasValue || val.Value is not 2 /* Linear */ and not 3 /* Smooth */)
                 return;
 
