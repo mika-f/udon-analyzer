@@ -70,6 +70,42 @@ class TestBehaviour : UdonSharpBehaviour
 ", additionals);
     }
 
+    [Theory]
+    [InlineData("_img.texture", "new Texture2D(1, 1)", "UnityEngineUIRawImage.__set_texture__UnityEngineTexture__SystemVoid")]
+    public async Task TestNoDiagnostic_AllowedSetterContextFieldOnUdonSharpBehaviour(string access, string val, string declaration)
+    {
+        var additionals = new List<(string Filename, string Content)>
+        {
+            ("PublicAPI.Shipped.test.txt", declaration)
+        };
+
+
+        await VerifyAnalyzerAsync(@$"
+using System;
+
+
+using UdonSharp;
+
+using UnityEngine;
+using UnityEngine.UI;
+
+using VRC.SDK3.Image;
+using VRC.SDKBase;
+using VRC.Udon;
+
+class TestBehaviour : UdonSharpBehaviour
+{{
+    private RawImage _img;
+    
+    public void TestMethod()
+    {{
+        {access} = {val};
+    }}
+}}
+", additionals);
+    }
+
+
     [Fact]
     [Example]
     public async Task TestDiagnostic_DisallowedFieldSymbol()

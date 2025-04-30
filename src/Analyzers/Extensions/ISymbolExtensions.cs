@@ -92,7 +92,7 @@ public static class ISymbolExtensions
                 return $"{FlattenNamespace(symbol)}";
 
             case IPropertySymbol ps:
-                return $"{(receiver ?? ps.ContainingType).ToVRChatDeclarationId()}.__{(isGetterContext ? "get" : "set")}_{ps.Name}__{ps.Type.ToVRChatDeclarationId()}";
+                return $"{(receiver ?? ps.ContainingType).ToVRChatDeclarationId()}.__{(isGetterContext ? "get" : "set")}_{ps.Name}__{ps.Type.ToVRChatDeclarationId()}{(isGetterContext ? "" : "__SystemVoid")}";
         }
 
         return "INVALID";
