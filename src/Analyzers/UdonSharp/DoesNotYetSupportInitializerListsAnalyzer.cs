@@ -31,6 +31,6 @@ public class DoesNotYetSupportInitializerListsAnalyzer : BaseDiagnosticAnalyzer
     {
         var expression = (ObjectCreationExpressionSyntax)context.Node;
         if (expression.Initializer != null)
-            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, expression.Initializer);
+            DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, expression);
     }
 }

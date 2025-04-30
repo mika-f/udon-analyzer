@@ -27,7 +27,7 @@ class TestBehaviour0 : UdonSharpBehaviour
 {
     public void TestMethod()
     {
-        var go = new GameObject [|{ name = ""Hello, World"" }|];
+        var go = [|new GameObject { name = ""Hello, World"" }|];
     }
 }
 ");
