@@ -54,6 +54,10 @@ public class TheMethodSpecifiedForSendCustomEventIsNotDeclaredInTheBehaviourAnal
             if (AnalyzeReceiverMembers(receiver, target))
                 return;
         }
+        else
+        {
+            return;
+        }
 
         DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, invocation);
     }

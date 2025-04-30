@@ -54,6 +54,10 @@ public class TheMethodSpecifiedForOverTheNetworkCannotStartWithAnUnderscoreAnaly
             if (AnalyzeReceiverMembers(receiver, target))
                 return;
         }
+        else
+        {
+            return;
+        }
 
         DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, invocation);
     }

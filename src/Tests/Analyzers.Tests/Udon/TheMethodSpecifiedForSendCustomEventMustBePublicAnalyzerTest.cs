@@ -203,4 +203,23 @@ class TestBehaviour0 : UdonSharpBehaviour
 }
 ");
     }
+
+    [Fact]
+    public async Task TestNoDiagnostic_GetComponentUdonBehaviourIsNotSendCustomNetworkEventTest()
+    {
+        await VerifyAnalyzerAsync(@"
+using UdonSharp;
+
+using VRC.Udon;
+
+class TestBehaviour0 : UdonSharpBehaviour
+{
+    private void TestMethod()
+    {
+        var _ = GetComponent<UdonBehaviour>();
+    }
+}
+
+");
+    }
 }
