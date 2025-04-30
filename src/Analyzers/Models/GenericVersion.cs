@@ -15,7 +15,8 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Models;
 /// </summary>
 public class GenericVersion : IComparable<GenericVersion>, IEquatable<GenericVersion>
 {
-    private static readonly Regex ValidVersionPattern = new(@"^([1-9]\d*|0)(\.\d+(\.\d+(\.\d+(\.\d+)?)?)?)?$", RegexOptions.Compiled);
+    private static readonly Regex ValidVersionPattern = new(@"^([1-9]\d*|0)(\.\d+(\.\d+(-(alpha|beta|rc|canary))?(\.\d+(\.\d+)?)?)?)?$", RegexOptions.Compiled);
+    private static readonly Regex ValidPreReleaseTagPattern = new(@"^\d-(alpha|beta|rc|canary)$", RegexOptions.Compiled);
 
     public int Major { get; }
     public int Minor { get; } = -1;
@@ -70,8 +71,6 @@ public class GenericVersion : IComparable<GenericVersion>, IEquatable<GenericVer
         if (build < 0)
             throw new ArgumentOutOfRangeException(nameof(build));
 
-        if (revision < 0)
-            throw new ArgumentOutOfRangeException(nameof(revision));
 
         Major = major;
         Minor = minor;
@@ -90,11 +89,6 @@ public class GenericVersion : IComparable<GenericVersion>, IEquatable<GenericVer
         if (build < 0)
             throw new ArgumentOutOfRangeException(nameof(build));
 
-        if (majorRevision < 0)
-            throw new ArgumentOutOfRangeException(nameof(majorRevision));
-
-        if (minorRevision < 0)
-            throw new ArgumentOutOfRangeException(nameof(minorRevision));
 
         Major = major;
         Minor = minor;
@@ -224,6 +218,8 @@ public class GenericVersion : IComparable<GenericVersion>, IEquatable<GenericVer
 
         var components = version.Split('.');
         var parsedComponentsLength = 0;
+        var hasTag = false;
+        var tag = "";
         int major = 0, minor = 0, build = 0, majorRevision = 0, minorRevision = 0;
 
         if (components.Length >= 5)
@@ -245,7 +241,16 @@ public class GenericVersion : IComparable<GenericVersion>, IEquatable<GenericVer
         if (components.Length >= 3)
         {
             if (!int.TryParse(components[2], out build))
-                return false;
+            {
+                if (!ValidPreReleaseTagPattern.IsMatch(components[2]))
+                    return false;
+
+                var c = components[2].Split('-');
+                if (!int.TryParse(c[0], out build))
+                    return false;
+                tag = c[1];
+                hasTag = true;
+            }
 
             parsedComponentsLength++;
         }
@@ -265,6 +270,27 @@ public class GenericVersion : IComparable<GenericVersion>, IEquatable<GenericVer
 
             parsedComponentsLength++;
         }
+
+        if (hasTag)
+            // 1.0.1 > 1.0.1-rc.1 > 1.0.1-beta.1 > 1.0.1-alpha.2 > 1.0.1-alpha.1 > 1.0.1-canary.1 > 1.0.0
+            switch (tag)
+            {
+                case "canary":
+                    majorRevision -= 100;
+                    break;
+
+                case "alpha":
+                    majorRevision -= 99;
+                    break;
+
+                case "beta":
+                    majorRevision -= 98;
+                    break;
+
+                case "rc":
+                    majorRevision -= 97;
+                    break;
+            }
 
         result.ParsedVersion = parsedComponentsLength switch
         {
