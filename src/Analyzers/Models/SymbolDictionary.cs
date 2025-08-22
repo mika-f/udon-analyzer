@@ -186,7 +186,7 @@ public class SymbolDictionary
         return CanSyncSmoothRegistry.Contains(str);
     }
 
-    private static bool IsUserDefinedSymbol(ISymbol symbol)
+    public bool IsUserDefinedSymbol(ISymbol symbol)
     {
         return symbol switch
         {

@@ -9,6 +9,8 @@ using System.Linq;
 
 using Microsoft.CodeAnalysis;
 
+using NatsunekoLaboratory.UdonAnalyzer.Models;
+
 namespace NatsunekoLaboratory.UdonAnalyzer.Extensions;
 
 // ReSharper disable once InconsistentNaming
@@ -60,6 +62,8 @@ public static class ISymbolExtensions
                 return ps.Type.ToVRChatDeclarationId();
 
             case INamedTypeSymbol nts:
+                if (SymbolDictionary.Instance.IsUserDefinedSymbol(symbol))
+                    return RemapInternalComponents("VRC.Udon.Common.Interfaces.IUdonEventReceiver");
                 if (nts.ContainingType != null)
                     return RemapInternalComponents($"{nts.ContainingType.ToVRChatDeclarationId()}{nts.Name}");
                 return RemapInternalComponents($"{FlattenNamespace(symbol)}{nts.Name}");
