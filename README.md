@@ -1,6 +1,8 @@
 # Udon Analyzer
 
-A collection of [analyzers](./src/Analyzers/README.md), [refactorings](./src/Refactorings/README.md), and [code-fixes](./src/CodeFixes/README.md) for [UdonSharp](https://github.com/vrchat-community/UdonSharp), powered by [Roslyn](https://github.com/dotnet/roslyn).
+[JP - 日本語](./README.ja-jp.md) | [EN - English](./README.md)
+
+A collection of analyzers, refactorings, and code-fixes for [UdonSharp](https://github.com/vrchat-community/UdonSharp), powered by [Roslyn](https://github.com/dotnet/roslyn).
 
 ## Features
 
@@ -11,7 +13,6 @@ Officially supported editors are following:
 - Visual Studio 2019 (Community, Pro, Enterprise)
 - Visual Studio 2022 (Community, Pro, Enterprise)
 - Visual Studio Code
-  - Note: Extensions for Visual Studio Code is not included in this repository. Visit [here](https://github.com/natsuneko-laboratory/udon-analyzer-vscode).
 - OmniSharp
 
 You can also run it from outside of the editor. The following execution methods are supported:
@@ -19,7 +20,6 @@ You can also run it from outside of the editor. The following execution methods 
 - NuGet
 - Command-Line Interface
 - Unity Integration
-  - Note: Unity Integration is not included in this repository. Visit [here](https://github.com/natsuneko-laboratory/udon-analyzer-unity).
 
 ## License
 

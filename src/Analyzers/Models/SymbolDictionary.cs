@@ -145,6 +145,8 @@ public class SymbolDictionary
 
         if (isGetterContext && receiver is INamedTypeSymbol { EnumUnderlyingType: not null })
             return IsSymbolIsAllowed(receiver, context);
+        if (isGetterContext && symbol is INamedTypeSymbol { EnumUnderlyingType: not null })
+            return IsSymbolIsAllowed(symbol, context);
 
         var declarationId = symbol.ToVRChatDeclarationId(receiver, isGetterContext);
         return _symbols.SelectMany(w => w.Value).Any(w => w == declarationId) || WhitelistRegistry.Contains(declarationId);
