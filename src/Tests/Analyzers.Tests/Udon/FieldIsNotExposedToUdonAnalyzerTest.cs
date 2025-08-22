@@ -29,6 +29,7 @@ public class FieldIsNotExposedToUdonAnalyzerTest : UdonSharpDiagnosticVerifier<F
     [InlineData("Vector3.one", "UnityEngineVector3.__get_one__UnityEngineVector3")]
     [InlineData("Vector3.one == Vector3.one", "UnityEngineVector3.__get_one__UnityEngineVector3")]
     [InlineData("_pickup.InteractionText", "VRCSDK3ComponentsVRCPickup.__get_InteractionText__SystemString")]
+    [InlineData("VRC.Udon.Common.Interfaces.NetworkEventTarget.All", "Type_VRCUdonCommonInterfacesNetworkEventTarget")]
     public async Task TestNoDiagnostic_AllowedGetterContextFieldOnUdonSharpBehaviour(string access, string declaration)
     {
         var additionals = new List<(string Filename, string Content)>
