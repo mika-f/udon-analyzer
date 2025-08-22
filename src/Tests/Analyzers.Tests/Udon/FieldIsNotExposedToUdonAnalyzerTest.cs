@@ -26,6 +26,7 @@ public class FieldIsNotExposedToUdonAnalyzerTest : UdonSharpDiagnosticVerifier<F
     [InlineData("_constraint.gameObject", "UnityEngineAnimationsScaleConstraint.__get_gameObject__UnityEngineGameObject")]
     [InlineData("_arr.Length", "SystemInt32Array.__get_Length__SystemInt32")]
     [InlineData("_arr2.Length", "SystemInt32Array.__get_Length__SystemInt32")]
+    [InlineData("_arr3.Length", "VRCUdonCommonInterfacesIUdonEventReceiverArray.__get_Length__SystemInt32")]
     [InlineData("Vector3.one", "UnityEngineVector3.__get_one__UnityEngineVector3")]
     [InlineData("Vector3.one == Vector3.one", "UnityEngineVector3.__get_one__UnityEngineVector3")]
     [InlineData("_pickup.InteractionText", "VRCSDK3ComponentsVRCPickup.__get_InteractionText__SystemString")]
@@ -61,6 +62,7 @@ class TestBehaviour : UdonSharpBehaviour
     private ScaleConstraint _constraint;
     private int[] _arr;
     private int[][] _arr2;
+    private UserDefinedType[] _arr3;
     private VRC_Pickup _pickup;
     
     public void TestMethod()
@@ -68,6 +70,8 @@ class TestBehaviour : UdonSharpBehaviour
         var _ = {access};
     }}
 }}
+
+class UserDefinedType : UdonSharpBehaviour {{}}
 ", additionals);
     }
 
