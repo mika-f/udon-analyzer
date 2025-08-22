@@ -24,7 +24,7 @@ public class UnityStandaloneProject : StandaloneProject
         UnityInstallationPath = FindUnityPath(version);
     }
 
-    protected virtual string TargetedUnityVersion => "2019.4.31f1";
+    protected virtual string TargetedUnityVersion => "2022.3.22f1";
 
     protected override IEnumerable<string> ExternalReferences()
     {
