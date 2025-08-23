@@ -1,9 +1,8 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">-----------------------------------------------------------------------------------------------------------------&#xD;
+	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">------------------------------------------------------------------------------------------&#xD;
  Copyright (c) Natsuneko. All rights reserved.&#xD;
- Licensed under the Microsoft Reference Source License. See LICENSE in the project root for license information.&#xD;
------------------------------------------------------------------------------------------------------------------&#xD;
-</s:String>
+ Licensed under the MIT License. See LICENSE in the project root for license information.&#xD;
+------------------------------------------------------------------------------------------</s:String>
 	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EFeature_002EServices_002ECodeCleanup_002EFileHeader_002EFileHeaderSettingsMigrate/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/UnitTesting/MsTestProvider/UseTestRunConfigFromMetadataFile/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestRunner/EnvironmentVariablesIndexed/=UDON_005FANALYZER_005FTARGET_005FPROJECT/@EntryIndexedValue">C:\Users\natsuneko\ghq\github.com\mika-f\UdonSharp-Analyzer-Test\Assembly-CSharp.csproj</s:String>
