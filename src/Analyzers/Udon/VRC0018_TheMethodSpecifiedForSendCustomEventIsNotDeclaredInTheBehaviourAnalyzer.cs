@@ -1,7 +1,7 @@
-// ------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------
 //  Copyright (c) Natsuneko. All rights reserved.
-//  Licensed under the MIT License. See LICENSE in the project root for license information.
-// ------------------------------------------------------------------------------------------
+//  Licensed under the Microsoft Reference Source License. See LICENSE in the project root for license information.
+// -----------------------------------------------------------------------------------------------------------------
 
 using System.Linq;
 
@@ -35,23 +35,23 @@ public class TheMethodSpecifiedForSendCustomEventIsNotDeclaredInTheBehaviourAnal
         if (invocation.Expression is IdentifierNameSyntax identifier)
         {
             // directly access
-            var target = AnalyzeSendCustomEvent(context, identifier, invocation.ArgumentList.Arguments);
+            var (target, offset) = AnalyzeSendCustomEvent(context, identifier, invocation.ArgumentList.Arguments);
             if (target == null)
                 return;
 
             var receiver = context.SemanticModel.GetDeclaredSymbol(invocation.AncestorsAndSelf().OfType<ClassDeclarationSyntax>().First());
-            if (AnalyzeReceiverMembers(receiver, target))
+            if (AnalyzeReceiverMembers(receiver, target, invocation.ArgumentList.Arguments.Count - offset))
                 return;
         }
         else if (invocation.Expression is MemberAccessExpressionSyntax ma)
         {
             // receiver access
-            var target = AnalyzeSendCustomEvent(context, ma.Name, invocation.ArgumentList.Arguments);
+            var (target, offset) = AnalyzeSendCustomEvent(context, ma.Name, invocation.ArgumentList.Arguments);
             if (target == null)
                 return;
 
             var receiver = context.SemanticModel.GetTypeInfo(ma.Expression).Type as INamedTypeSymbol;
-            if (AnalyzeReceiverMembers(receiver, target))
+            if (AnalyzeReceiverMembers(receiver, target, invocation.ArgumentList.Arguments.Count - offset))
                 return;
         }
         else
@@ -62,7 +62,7 @@ public class TheMethodSpecifiedForSendCustomEventIsNotDeclaredInTheBehaviourAnal
         DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, invocation);
     }
 
-    private static string? AnalyzeSendCustomEvent(SyntaxNodeAnalysisContext context, SimpleNameSyntax name, SeparatedSyntaxList<ArgumentSyntax> arguments)
+    private static (string?, int) AnalyzeSendCustomEvent(SyntaxNodeAnalysisContext context, SimpleNameSyntax name, SeparatedSyntaxList<ArgumentSyntax> arguments)
     {
         var param = name.Identifier.ValueText switch
         {
@@ -74,18 +74,27 @@ public class TheMethodSpecifiedForSendCustomEventIsNotDeclaredInTheBehaviourAnal
         };
 
         if (param == null)
-            return null;
+            return (null, 0);
+
+        var offset = name.Identifier.ValueText switch
+        {
+            "SendCustomEvent" => 1,
+            "SendCustomEventDelayedFrames" => 1,
+            "SendCustomEventDelayedSeconds" => 1,
+            "SendCustomNetworkEvent" => 2,
+            _ => 0
+        };
 
         var value = context.SemanticModel.GetConstantValue(param.Expression);
-        return value.HasValue ? value.Value as string : null;
+        return value.HasValue ? (value.Value as string, offset) : (null, offset);
     }
 
-    private static bool AnalyzeReceiverMembers(INamedTypeSymbol? symbol, string target)
+    private static bool AnalyzeReceiverMembers(INamedTypeSymbol? symbol, string target, int len)
     {
         if (symbol == null)
             return true;
 
         var candidates = symbol.GetMembers(target).OfType<IMethodSymbol>().ToList();
-        return candidates.Count >= 1 && candidates.Count(w => w.Parameters.Length == 0) >= 1;
+        return candidates.Count >= 1 && candidates.Count(w => w.Parameters.Length == len) >= 1;
     }
 }
