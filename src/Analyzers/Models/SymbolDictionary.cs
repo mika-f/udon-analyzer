@@ -224,7 +224,9 @@ public class SymbolDictionary
                 {
                     if (cached.Equals(source.GetText()?.GetChecksum()))
                         continue;
+
                     LoadDictionaryIntoCache(source);
+                    _cached[source.Path] = source.GetText()?.GetChecksum() ?? ImmutableArray<byte>.Empty;
                 }
                 else
                 {
