@@ -20,5 +20,6 @@
 | VRC0016 | [The method specified for SendCustomEvent must be public](./VRC0016.md)                                                           | Warning  | 
 | VRC0017 | [The method specified for over the network cannot start with an underscore](./VRC0017.md)                                         | Warning  | 
 | VRC0018 | [The method specified for SendCustomEvent is not declared in the behaviour](./VRC0018.md)                                         | Warning  | 
+| VRC0019 | [NetworkCallableAttribute must be required for calling method via SendCustomNetworkEvent with parameters](./VRC0019.md)           | Error    | 
 
 

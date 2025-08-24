@@ -1,4 +1,4 @@
-// ------------------------------------------------------------------------------------------
+﻿// ------------------------------------------------------------------------------------------
 //  Copyright (c) Natsuneko. All rights reserved.
 //  Licensed under the MIT License. See LICENSE in the project root for license information.
 // ------------------------------------------------------------------------------------------
@@ -16,11 +16,11 @@ using NatsunekoLaboratory.UdonAnalyzer.Internal;
 namespace NatsunekoLaboratory.UdonAnalyzer.Udon;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-[RequireUdonVersion("[3.1.0,)")]
+[RequireUdonVersion("[3.8.1,)")]
 [RequireUdonSharpCompilerVersion("[1.0.0,)")]
-public class TheMethodSpecifiedForSendCustomEventIsNotDeclaredInTheBehaviourAnalyzer : BaseDiagnosticAnalyzer
+public class NetworkCallableAttributeMustBeRequiredForCallingMethodViaSendCustomNetworkEventWithParametersAnalyzer : BaseDiagnosticAnalyzer
 {
-    public override DiagnosticDescriptor SupportedDiagnostic => DiagnosticDescriptors.TheMethodSpecifiedForSendCustomEventIsNotDeclaredInTheBehaviour;
+    public override DiagnosticDescriptor SupportedDiagnostic => DiagnosticDescriptors.NetworkCallableAttributeMustBeRequiredForCallingMethodViaSendCustomNetworkEventWithParameters;
 
     public override void Initialize(AnalysisContext context)
     {
@@ -35,66 +35,61 @@ public class TheMethodSpecifiedForSendCustomEventIsNotDeclaredInTheBehaviourAnal
         if (invocation.Expression is IdentifierNameSyntax identifier)
         {
             // directly access
-            var (target, offset) = AnalyzeSendCustomEvent(context, identifier, invocation.ArgumentList.Arguments);
+            var target = AnalyzeSendCustomEvent(context, identifier, invocation.ArgumentList.Arguments);
             if (target == null)
                 return;
 
             var receiver = context.SemanticModel.GetDeclaredSymbol(invocation.AncestorsAndSelf().OfType<ClassDeclarationSyntax>().First());
-            if (AnalyzeReceiverMembers(receiver, target, invocation.ArgumentList.Arguments.Count - offset))
+            if (AnalyzeReceiverMembers(context, receiver, target, invocation.ArgumentList.Arguments.Count)) 
                 return;
         }
         else if (invocation.Expression is MemberAccessExpressionSyntax ma)
         {
             // receiver access
-            var (target, offset) = AnalyzeSendCustomEvent(context, ma.Name, invocation.ArgumentList.Arguments);
+            var target = AnalyzeSendCustomEvent(context, ma.Name, invocation.ArgumentList.Arguments);
             if (target == null)
                 return;
 
             var receiver = context.SemanticModel.GetTypeInfo(ma.Expression).Type as INamedTypeSymbol;
-            if (AnalyzeReceiverMembers(receiver, target, invocation.ArgumentList.Arguments.Count - offset))
+            if (AnalyzeReceiverMembers(context, receiver, target, invocation.ArgumentList.Arguments.Count))
                 return;
-        }
-        else
-        {
-            return;
         }
 
         DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, invocation);
     }
 
-    private static (string?, int) AnalyzeSendCustomEvent(SyntaxNodeAnalysisContext context, SimpleNameSyntax name, SeparatedSyntaxList<ArgumentSyntax> arguments)
+    private string? AnalyzeSendCustomEvent(SyntaxNodeAnalysisContext context, SimpleNameSyntax name, SeparatedSyntaxList<ArgumentSyntax> arguments)
     {
         var param = name.Identifier.ValueText switch
         {
-            "SendCustomEvent" => arguments[0],
-            "SendCustomEventDelayedFrames" => arguments[0],
-            "SendCustomEventDelayedSeconds" => arguments[0],
             "SendCustomNetworkEvent" => arguments[1],
             _ => null
         };
 
         if (param == null)
-            return (null, 0);
-
-        var offset = name.Identifier.ValueText switch
-        {
-            "SendCustomEvent" => 1,
-            "SendCustomEventDelayedFrames" => 2,
-            "SendCustomEventDelayedSeconds" => 2,
-            "SendCustomNetworkEvent" => 2,
-            _ => 0
-        };
+            return null;
 
         var value = context.SemanticModel.GetConstantValue(param.Expression);
-        return value.HasValue ? (value.Value as string, offset) : (null, offset);
+        return value.HasValue ? value.Value as string : null;
     }
 
-    private static bool AnalyzeReceiverMembers(INamedTypeSymbol? symbol, string target, int len)
+    private bool AnalyzeReceiverMembers(SyntaxNodeAnalysisContext context, INamedTypeSymbol? receiver, string target, int len)
     {
-        if (symbol == null)
+        if (receiver == null)
             return true;
 
-        var candidates = symbol.GetMembers(target).OfType<IMethodSymbol>().ToList();
-        return candidates.Count >= 1 && candidates.Count(w => w.Parameters.Length == len) >= 1;
+        var candidates = receiver.GetMembers(target).OfType<IMethodSymbol>().ToList();
+        var handler = candidates.FirstOrDefault(w => w.Parameters.Length == len - 2);
+        if (handler == null)
+            return true;
+        
+        if (len - 2 == 0)
+            return true; // No parameters, no need to check for NetworkCallable attribute
+
+        var attrs = handler.GetAttributes().Where(w => w.AttributeClass?.ToDisplayString() == "VRC.SDK3.UdonNetworkCalling.NetworkCallableAttribute").ToList();
+        if (attrs.Count == 0)
+            return false;
+
+        return true;
     }
 }
