@@ -172,6 +172,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Warning
     );
 
+    public static readonly DiagnosticDescriptor NetworkCallableAttributeMustBeRequiredForCallingMethodViaSendCustomNetworkEventWithParameters = DiagnosticDescriptorFactory.Create(
+        "VRC0019",
+        "NetworkCallableAttribute must be required for calling method via SendCustomNetworkEvent with parameters",
+        "NetworkCallableAttribute must be required for calling method via SendCustomNetworkEvent with parameters",
+        DiagnosticCategories.Usage,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
