@@ -180,6 +180,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor TheParameterTypeOfMethodDoesNotMatchTheNthArgumentOfSendCustomNetworkEvent = DiagnosticDescriptorFactory.Create(
+        "VRC0020",
+        "The parameter type of method does not match the Nth argument of SendCustomNetworkEvent",
+        "The parameter type '{0} of method '{1}' does not match the {2}th argument ({3}) of SendCustomNetworkEvent",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Error
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
