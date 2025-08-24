@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Linq;
 using System.Runtime.Versioning;
 
 using Microsoft.Win32;
@@ -68,11 +69,11 @@ public class UnityStandaloneProject : StandaloneProject
         var editors = process.StandardOutput.ReadToEnd();
         foreach (var editor in editors.Split("\n"))
         {
-            var version = editor.Split(",")[0].Trim();
+            var version = editor.Split(" ")[0].Trim();
             if (version != targetVersion)
                 continue;
 
-            var path = editor.Split(",")[1].Trim();
+            var path = string.Join(" ", editor.Split(" ").Skip(1));
             return Path.GetDirectoryName(path["installed at".Length..].Trim())!;
         }
 
