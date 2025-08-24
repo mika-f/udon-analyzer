@@ -142,7 +142,7 @@ class TestBehaviour0 : UdonSharpBehaviour
 
     public void TestMethod()
     {
-        [|_behaviour.SendCustomNetworkEvent(NetworkEventTarget.Al, ""SomeMethod"")|];
+        [|_behaviour.SendCustomNetworkEvent(NetworkEventTarget.All, ""SomeMethod"")|];
     }
 }
 
@@ -162,7 +162,7 @@ class TestBehaviour0 : UdonSharpBehaviour
 {
     public void TestMethod()
     {
-        [|SendCustomNetworkEvent(NetworkEventTarget.Al, ""SomeMethod"")|];
+        [|SendCustomNetworkEvent(NetworkEventTarget.All, ""SomeMethod"")|];
     }
 }
 ");
@@ -307,7 +307,7 @@ class TestBehaviour0 : UdonSharpBehaviour
 
     public void TestMethod()
     {
-        _behaviour.SendCustomNetworkEvent(NetworkEventTarget.Al, ""SomeMethod"");
+        _behaviour.SendCustomNetworkEvent(NetworkEventTarget.All, ""SomeMethod"");
     }
 }
 
@@ -330,7 +330,7 @@ class TestBehaviour0 : UdonSharpBehaviour
 {
     public void TestMethod()
     {
-        SendCustomNetworkEvent(NetworkEventTarget.Al, ""SomeMethod"");
+        SendCustomNetworkEvent(NetworkEventTarget.All, ""SomeMethod"");
     }
 
     public void SomeMethod() {}
