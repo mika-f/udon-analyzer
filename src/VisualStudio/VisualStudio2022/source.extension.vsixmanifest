@@ -22,8 +22,6 @@
   <Assets>
     <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Analyzers" Path="|Analyzers|"/>
     <Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="Analyzers" Path="|Analyzers|"/>
-    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="CodeFixes" Path="|CodeFixes|"/>
-    <Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="CodeFixes" Path="|CodeFixes|"/>
   </Assets>
   <Prerequisites>
     <Prerequisite Id="Microsoft.VisualStudio.Component.Roslyn.LanguageServices" Version="[17.0.31404.187,18.0)" DisplayName="C# and Visual Basic" />
