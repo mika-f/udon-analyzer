@@ -22,5 +22,6 @@
 | VRC0018 | [The method specified for SendCustomEvent is not declared in the behaviour](./VRC0018.md)                                         | Warning  | 
 | VRC0019 | [NetworkCallableAttribute must be required for calling method via SendCustomNetworkEvent with parameters](./VRC0019.md)           | Error    | 
 | VRC0020 | [The parameter type of method does not match the Nth argument of SendCustomNetworkEvent](./VRC0020.md)                            | Error    | 
+| VRC0021 | [Unable to send network event to UdonBehaviour with SyncType 'None'](./VRC0021.md)                                                | Warning  | 
 
 

@@ -188,6 +188,14 @@ internal static class DiagnosticDescriptors
         DiagnosticSeverity.Error
     );
 
+    public static readonly DiagnosticDescriptor UnableToSendNetworkEventToUdonBehaviourWithSyncTypeNone = DiagnosticDescriptorFactory.Create(
+        "VRC0021",
+        "Unable to send network event to UdonBehaviour with SyncType 'None'",
+        "Unable to send network event to UdonBehaviour '{0}' with SyncType 'None'",
+        DiagnosticCategories.Unexpected,
+        DiagnosticSeverity.Warning
+    );
+
     // INSERT_VRC_DESCRIPTOR_HERE
 
     #endregion
