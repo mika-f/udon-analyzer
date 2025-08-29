@@ -45,9 +45,7 @@ public class UdonAnalyzerMetadata
         {
             await TryLoadUdonAnalyzerSolutionAsync().Stay();
             await TryLoadAnalyzersAsync().Stay();
-            await TryLoadCodeFixesAsync().Stay();
             await TryLoadAnalyzerTestsAsync().Stay();
-            await TryLoadCodeFixTestsAsync().Stay();
 
             return true;
         }
@@ -67,7 +65,6 @@ public class UdonAnalyzerMetadata
         {
             await TryLoadUdonAnalyzerSolutionAsync().Stay();
             await TryLoadAnalyzersAsync().Stay();
-            await TryLoadCodeFixesAsync().Stay();
 
             return true;
         }
@@ -171,10 +168,6 @@ public class UdonAnalyzerMetadata
         }
     }
 
-    private Task TryLoadCodeFixesAsync()
-    {
-        return Task.CompletedTask;
-    }
 
     private async Task TryLoadAnalyzerTestsAsync()
     {
@@ -184,28 +177,21 @@ public class UdonAnalyzerMetadata
         if (!_solution.TryGetProject(UdonAnalyzerProjects.AnalyzersTests, out var project))
             throw new InvalidOperationException();
 
-        var specs = await EnumerateTestClassesAsync(project).Stay();
+        var specs = (await EnumerateTestClassesAsync(project).Stay()).ToList();
 
         foreach (var (document, node) in specs)
         {
             var metadata = await AnalyzeMetadataFromSourceAsync(document, node).Stay();
             if (metadata != null)
             {
+                var fix = specs.FirstOrDefault(w => w.Document.Name == document.Name.Substring(0, document.Name.IndexOf("AnalyzerTest", StringComparison.Ordinal)) + "CodeFixProviderTest.cs");
+                if (fix != default)
+                    metadata = metadata with { CodeWithFix = await AnalyzeTestCodeForCodeFixesAsync(fix.Document, fix.Node) };
+
                 _metadata.RemoveAt(_metadata.Select((w, i) => (w, i)).First(w => w.w.ClassName == metadata.ClassName).i);
                 _metadata.Add(metadata);
             }
         }
-    }
-
-    private async Task TryLoadCodeFixTestsAsync()
-    {
-        if (_solution == null)
-            throw new InvalidOperationException();
-
-        if (!_solution.TryGetProject(UdonAnalyzerProjects.CodeFixesTests, out var project))
-            throw new InvalidOperationException();
-
-        var tests = await EnumerateTestClassesAsync(project).Stay();
     }
 
     private string GetSourcePath(string project, string? category = null)
@@ -309,6 +295,41 @@ public class UdonAnalyzerMetadata
 
         var code = model.GetConstantValue(invoke.ArgumentList.Arguments[0].Expression);
         return code.HasValue ? ParseAnnotatedSourceCodeToErrorCode(code.Value as string ?? throw new InvalidOperationException()) : null;
+    }
+
+    private static async Task<string?> AnalyzeTestCodeForCodeFixesAsync(Document document, ClassDeclarationSyntax node)
+    {
+        var model = await document.GetSemanticModelAsync().Stay();
+        if (model == null)
+            return null;
+
+        var attribute = node.GetAttribute<DescribeAttribute>(model);
+        if (attribute == null)
+            return null;
+
+        if (attribute.ArgumentList!.Arguments.First().Expression is not TypeOfExpressionSyntax @typeof)
+            return null;
+
+        var info = model.GetSymbolInfo(@typeof.Type);
+        if (info.Symbol is not INamedTypeSymbol symbol)
+            return null;
+
+        var target = node.Members.FirstOrDefault(w => w is MethodDeclarationSyntax m && m.HasAttribute<ExampleAttribute>(model));
+        if (target is not MethodDeclarationSyntax method)
+            return null;
+        var expression = method.Body!.DescendantNodes().FirstOrDefault(w =>
+        {
+            if (w is not AwaitExpressionSyntax { Expression: InvocationExpressionSyntax invocation })
+                return false;
+            var info = ModelExtensions.GetSymbolInfo(model, invocation);
+            if (info.Symbol is not IMethodSymbol symbol)
+                return false;
+            return symbol.Name == "VerifyCodeFixAsync";
+        }) as AwaitExpressionSyntax;
+        if (expression is not { Expression: InvocationExpressionSyntax invoke })
+            return null;
+        var code = model.GetConstantValue(invoke.ArgumentList.Arguments[1].Expression);
+        return code.HasValue ? code.Value as string ?? throw new InvalidOperationException() : null;
     }
 
     private static string ParseAnnotatedSourceCodeToErrorCode(string annotated)
