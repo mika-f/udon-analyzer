@@ -40,7 +40,7 @@ public class UdonSharpBehaviourClassesMustBeSameNameAsCsharpFileCodeFixProvider 
             {
                 var oldName = declaration.Identifier.ToFullString().Trim();
                 var newName = context.Document.Name.Replace(".cs", "");
-                context.RegisterCodeFix(CodeAction.Create($"Rename '{oldName}' to '{newName}'", w => RunCodeFix(context.Document, root, declaration, w)), diagnostic);
+                context.RegisterCodeFix(CodeAction.Create($"Rename '{oldName}' to '{newName}'", w => RunCodeFix(context.Document, declaration, w)), diagnostic);
             }
         }
     }
@@ -50,7 +50,7 @@ public class UdonSharpBehaviourClassesMustBeSameNameAsCsharpFileCodeFixProvider 
         return WellKnownFixAllProviders.BatchFixer;
     }
 
-    private static async Task<Solution> RunCodeFix(Document document, SyntaxNode root, ClassDeclarationSyntax @class, CancellationToken ct)
+    private static async Task<Solution> RunCodeFix(Document document, ClassDeclarationSyntax @class, CancellationToken ct)
     {
         var solution = document.Project.Solution;
         var sm = await document.GetSemanticModelAsync(ct);
