@@ -70,3 +70,12 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# macOS Specified
+.DS_Store
+
+# VSCode Specified
+.vscode/
+
+# Udon
+SerializedUdonPrograms/

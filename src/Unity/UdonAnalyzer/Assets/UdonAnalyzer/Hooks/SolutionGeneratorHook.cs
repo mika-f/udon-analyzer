@@ -12,6 +12,14 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Hooks
             var document = XDocument.Parse(content);
             var @namespace = (XNamespace)"http://schemas.microsoft.com/developer/msbuild/2003";
             var project = document.Element(@namespace + "Project");
+
+            // for Visual Studio Code (VSCode generated xmlns=None csproj)
+            if (project == null)
+            {
+                project = document.Element("Project");
+                @namespace = XNamespace.None;
+            }
+
             var itemGroup = new XElement(@namespace + "ItemGroup");
 
             {
@@ -28,7 +36,7 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Hooks
             {
                 var additionalFiles = AssetDatabase.FindAssets("l:RoslynAdditionalFiles")
                                                    .Select(AssetDatabase.GUIDToAssetPath)
-                                                   .Select(w => w.Replace("/", "\\"))
+                                                   .Select(w => w.Replace("/", System.IO.Path.DirectorySeparatorChar.ToString()))
                                                    .ToArray();
 
                 var items = project.Descendants(@namespace + "ItemGroup")
