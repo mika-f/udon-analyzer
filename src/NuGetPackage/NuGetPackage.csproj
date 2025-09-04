@@ -26,7 +26,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CodeFixes\CodeFixes.csproj" />
     <ProjectReference Include="..\Analyzers\Analyzers.csproj" />
   </ItemGroup>
 
@@ -37,7 +36,6 @@
   <Target Name="_AddAnalyzersToOutput">
     <ItemGroup>
       <TfmSpecificPackageFile Include="$(OutputPath)\NatsunekoLaboratory.UdonAnalyzer.Analyzers.dll" PackagePath="analyzers/dotnet/cs" />
-      <TfmSpecificPackageFile Include="$(OutputPath)\NatsunekoLaboratory.UdonAnalyzer.CodeFixes.dll" PackagePath="analyzers/dotnet/cs" />
     </ItemGroup>
   </Target>
 
