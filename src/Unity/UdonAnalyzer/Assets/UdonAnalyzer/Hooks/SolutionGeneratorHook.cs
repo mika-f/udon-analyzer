@@ -36,7 +36,7 @@ namespace NatsunekoLaboratory.UdonAnalyzer.Hooks
             {
                 var additionalFiles = AssetDatabase.FindAssets("l:RoslynAdditionalFiles")
                                                    .Select(AssetDatabase.GUIDToAssetPath)
-                                                   .Select(w => w.Replace("/", "\\"))
+                                                   .Select(w => w.Replace("/", System.IO.Path.DirectorySeparatorChar.ToString()))
                                                    .ToArray();
 
                 var items = project.Descendants(@namespace + "ItemGroup")
