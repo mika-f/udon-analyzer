@@ -40,7 +40,7 @@ public class NetworkCallableAttributeMustBeRequiredForCallingMethodViaSendCustom
                 return;
 
             var receiver = context.SemanticModel.GetDeclaredSymbol(invocation.AncestorsAndSelf().OfType<ClassDeclarationSyntax>().First());
-            if (AnalyzeReceiverMembers(context, receiver, target, invocation.ArgumentList.Arguments.Count)) 
+            if (AnalyzeReceiverMembers(context, receiver, target, invocation.ArgumentList.Arguments.Count))
                 return;
         }
         else if (invocation.Expression is MemberAccessExpressionSyntax ma)
@@ -53,6 +53,10 @@ public class NetworkCallableAttributeMustBeRequiredForCallingMethodViaSendCustom
             var receiver = context.SemanticModel.GetTypeInfo(ma.Expression).Type as INamedTypeSymbol;
             if (AnalyzeReceiverMembers(context, receiver, target, invocation.ArgumentList.Arguments.Count))
                 return;
+        }
+        else
+        {
+            return;
         }
 
         DiagnosticHelper.ReportDiagnostic(context, SupportedDiagnostic, invocation);

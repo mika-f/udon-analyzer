@@ -80,4 +80,23 @@ class TestBehaviour : UdonSharpBehaviour
 }
 ");
     }
+
+    [Fact]
+    public async Task TestNoDiagnostic_CallingGenericsMethod()
+    {
+        await VerifyAnalyzerAsync(@"
+using UdonSharp;
+
+using VRC.SDK3.UdonNetworkCalling;
+using VRC.Udon.Common.Interfaces;
+
+class TestBehaviour : UdonSharpBehaviour
+{
+    public void TestMethod()
+    {
+        var a = GetComponent<UdonBehaviour>();
+    }
+}
+");
+    }
 }
