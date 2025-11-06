@@ -1,0 +1,22 @@
+{
+  "name": "cat.natsuneko.udon-analyzer",
+  "version": "1.0.0-beta.10",
+  "displayName": "UdonAnalyzer",
+  "description": "UdonAnalyzer: A Roslyn Analyzer for VRChat",
+  "unity": "2022.3",
+  "keywords": [
+    "UdonSharp",
+    "Udon",
+    "RoslynAnalyzer",
+    "Analyzer"
+  ],
+  "author": {
+    "name": "Natsune Mochizuki",
+    "email": "me@natsuneko.cat",
+    "url": "https://natsuneko.com"
+  },
+  "license": "MIT",
+  "documentationUrl": "https://docs.natsuneko.cat/en-us/udon-analyzer/",
+  "licensesUrl": "https://github.com/mika-f/UdonAnalyzer/blob/main/LICENSE",
+  "dependencies": {}
+}

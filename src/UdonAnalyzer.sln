@@ -46,8 +46,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleCore.Tests", "Tests\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unity", "Unity", "{321BDE57-4C01-4AEB-8A7E-42B6EBEA0F39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NatsunekoLaboratory.UdonAnalyzer", "Unity\UdonAnalyzer\NatsunekoLaboratory.UdonAnalyzer.csproj", "{B9C38B42-FAB8-CFF9-2EFB-9227DF03BA48}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -160,14 +158,6 @@ Global
 		{D6137903-5E35-4F6D-B501-7ED8FB0CD1C1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D6137903-5E35-4F6D-B501-7ED8FB0CD1C1}.Release|x86.ActiveCfg = Release|Any CPU
 		{D6137903-5E35-4F6D-B501-7ED8FB0CD1C1}.Release|x86.Build.0 = Release|Any CPU
-		{B9C38B42-FAB8-CFF9-2EFB-9227DF03BA48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9C38B42-FAB8-CFF9-2EFB-9227DF03BA48}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B9C38B42-FAB8-CFF9-2EFB-9227DF03BA48}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B9C38B42-FAB8-CFF9-2EFB-9227DF03BA48}.Debug|x86.Build.0 = Debug|Any CPU
-		{B9C38B42-FAB8-CFF9-2EFB-9227DF03BA48}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9C38B42-FAB8-CFF9-2EFB-9227DF03BA48}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{B9C38B42-FAB8-CFF9-2EFB-9227DF03BA48}.Release|x86.ActiveCfg = Debug|Any CPU
-		{B9C38B42-FAB8-CFF9-2EFB-9227DF03BA48}.Release|x86.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -182,7 +172,6 @@ Global
 		{9C3B2289-6463-4031-B4D8-72C96F16B973} = {0625FAA5-DA05-43B9-8990-F98E3A0CBF2F}
 		{9E536D06-6851-47F9-83BD-E15813DC2C13} = {0625FAA5-DA05-43B9-8990-F98E3A0CBF2F}
 		{D6137903-5E35-4F6D-B501-7ED8FB0CD1C1} = {F33F611F-81EF-4B9D-9FB8-7DA91EA29918}
-		{B9C38B42-FAB8-CFF9-2EFB-9227DF03BA48} = {321BDE57-4C01-4AEB-8A7E-42B6EBEA0F39}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD9AF575-4E27-4074-881E-A56B09EBDC81}

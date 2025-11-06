@@ -74,6 +74,7 @@ StyleCopReport.xml
 *_h.h
 *.ilk
 *.meta
+!src/Unity/**/*.meta
 *.obj
 *.iobj
 *.pch
@@ -399,3 +400,7 @@ FodyWeavers.xsd
 .idea/
 
 !/bin/
+
+# UdonAnalyzer
+**/PublicAPI.Shipped.txt
+**/PublicAPI.Shipped.txt.meta
