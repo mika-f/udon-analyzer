@@ -12,6 +12,7 @@ Officially supported editors are following:
 
 - Visual Studio 2019 (Community, Pro, Enterprise)
 - Visual Studio 2022 (Community, Pro, Enterprise)
+- Visual Studio 2026 (Community, Pro, Enterprise)
 - Visual Studio Code
 - OmniSharp
 

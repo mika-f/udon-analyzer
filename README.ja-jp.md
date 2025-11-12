@@ -12,6 +12,7 @@ UdonSharp (または他の C#/VB 実装の Udon) ソースコードをリアル�
 
 - Visual Studio 2019 (Community, Pro, Enterprise)
 - Visual Studio 2022 (Community, Pro, Enterprise)
+- Visual Studio 2026 (Community, Pro, Enterprise)
 - Visual Studio Code
 - OmniSharp
 
