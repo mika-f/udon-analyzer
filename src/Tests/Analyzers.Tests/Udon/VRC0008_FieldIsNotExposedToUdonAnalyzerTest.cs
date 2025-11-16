@@ -173,4 +173,30 @@ class SomeBehaviour : UdonSharpBehaviour
 }
 ");
     }
+
+    [Theory]
+    [InlineData("var a = VRC.SDK3.Components.Video.VideoError.Unknown", "Type_VRCSDK3ComponentsVideoVideoError")]
+    [InlineData("System.Array.Copy(a, a, 1)", "SystemArray.__Copy__SystemArray_SystemArray_SystemInt32__SystemVoid")]
+    public async Task TestNoDiagnostic_FullyQualifiedNamespaceAccess(string statement, string declaration)
+    {
+        var additionals = new List<(string Filename, string Content)>
+        {
+            ("PublicAPI.Shipped.test.txt", declaration)
+        };
+
+        await VerifyAnalyzerAsync(@$"
+using UdonSharp;
+
+class TestBehaviour : UdonSharpBehaviour
+{{
+    private SomeBehaviour _behaviour;
+
+    public void TestMethod()
+    {{
+        var a = new int[10];
+        {statement};
+    }}
+}}
+", additionals);
+    }
 }
