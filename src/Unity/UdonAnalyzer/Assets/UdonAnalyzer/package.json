@@ -1,6 +1,6 @@
 {
   "name": "cat.natsuneko.udon-analyzer",
-  "version": "1.0.0-beta.10",
+  "version": "1.0.0-beta.11",
   "displayName": "UdonAnalyzer",
   "description": "UdonAnalyzer: A Roslyn Analyzer for VRChat",
   "unity": "2022.3",
