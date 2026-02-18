@@ -88,7 +88,16 @@ public abstract class BaseDiagnosticAnalyzer : DiagnosticAnalyzer
         if (symbol == null)
             return true;
 
-        return symbol.BaseType?.Equals(context.SemanticModel.Compilation.GetTypeByMetadataName(CurrentSpecifiedBehaviourInheritFullName(context)), SymbolEqualityComparer.Default) != true;
+        bool RecursivelyCheckBaseType(INamedTypeSymbol s)
+        {
+            if (s.BaseType == null)
+                return true;
+            if (s.BaseType.Equals(context.SemanticModel.Compilation.GetTypeByMetadataName(CurrentSpecifiedBehaviourInheritFullName(context)), SymbolEqualityComparer.Default))
+                return false;
+            return RecursivelyCheckBaseType(s.BaseType);
+        }
+
+        return RecursivelyCheckBaseType(symbol);
     }
 
     private static bool IsSyntaxNodeInsideOfIgnoringPreprocessor(SyntaxNodeAnalysisContext context)
